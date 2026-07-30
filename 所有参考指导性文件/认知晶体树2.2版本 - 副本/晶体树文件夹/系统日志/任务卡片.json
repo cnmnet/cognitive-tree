@@ -1,0 +1,61 @@
+[
+  {
+    "id": "TASK-20260611120000-001",
+    "type": "conflict",
+    "title": "晶体冲突：C021 vs C055",
+    "content": "相似度 0.72\nC021: 负反馈强制触发原则\nC055: 三步推演法",
+    "source": "C021 vs C055",
+    "suggested_action": "确认是否需要在C055中显式引用C021",
+    "status": "pending"
+  },
+  {
+    "id": "TASK-20260708121555-198",
+    "type": "conflict",
+    "title": "晶体冲突：C021 vs C038",
+    "content": "冲突类型：高度重复\n严重程度：高\n相似度：0.93\n\nA (C021): 负反馈强制触发原则\nB (C038): 择时与选股分离原则\n\n建议动作：建议合并这两个晶体，保留更完整的一个",
+    "source": "C021 vs C038",
+    "links": [],
+    "suggested_action": "建议合并这两个晶体，保留更完整的一个",
+    "status": "pending"
+  },
+  {
+    "id": "TASK-20260708121555-719",
+    "type": "conflict",
+    "title": "晶体冲突：C031 vs C035",
+    "content": "冲突类型：高度重复\n严重程度：高\n相似度：0.92\n\nA (C031): 结构叙事双螺旋\nB (C035): 逻辑叙事传播分工律\n\n建议动作：建议合并这两个晶体，保留更完整的一个",
+    "source": "C031 vs C035",
+    "links": [],
+    "suggested_action": "建议合并这两个晶体，保留更完整的一个",
+    "status": "pending"
+  },
+  {
+    "id": "TASK-20260708121555-314",
+    "type": "conflict",
+    "title": "晶体冲突：C021 vs C026",
+    "content": "冲突类型：高度重复\n严重程度：高\n相似度：0.90\n\nA (C021): 负反馈强制触发原则\nB (C026): “重度用户优先”原则\n\n建议动作：建议合并这两个晶体，保留更完整的一个",
+    "source": "C021 vs C026",
+    "links": [],
+    "suggested_action": "建议合并这两个晶体，保留更完整的一个",
+    "status": "pending"
+  },
+  {
+    "id": "TASK-20260708121555-954",
+    "type": "conflict",
+    "title": "晶体冲突：C014 vs C065",
+    "content": "冲突类型：语义冲突\n严重程度：中\n相似度：0.85\n\nA (C014): 场景化决策赋能闭环：追踪接受/拒绝反馈\nB (C065): 命运悲剧闭环结构：盛极而衰、因果报应。适用于追踪长期悬置冲突。\n\n建议动作：建议补充适用边界，明确两者的区分条件",
+    "source": "C014 vs C065",
+    "links": [],
+    "suggested_action": "建议补充适用边界，明确两者的区分条件",
+    "status": "pending"
+  },
+  {
+    "id": "TASK-20260708121555-514",
+    "type": "conflict",
+    "title": "晶体冲突：C015 vs C050",
+    "content": "冲突类型：语义冲突\n严重程度：中\n相似度：0.84\n\nA (C015): 决策链穿透：让决策链权力结构可视化\nB (C050): 抽象能力迁移律：从一个场景抽象的结构可迁移至结构同构的其他场景\n\n建议动作：建议补充适用边界，明确两者的区分条件",
+    "source": "C015 vs C050",
+    "links": [],
+    "suggested_action": "建议补充适用边界，明确两者的区分条件",
+    "status": "pending"
+  }
+]

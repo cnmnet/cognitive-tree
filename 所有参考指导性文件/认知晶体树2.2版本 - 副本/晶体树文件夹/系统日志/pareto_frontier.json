@@ -1,0 +1,567 @@
+{
+  "configs": {
+    "PROFILE_HIGH_ACCURACY": {
+      "accuracy": 0.9,
+      "cost": 0.3,
+      "latency": 0.2
+    },
+    "PROFILE_BALANCED": {
+      "accuracy": 0.7,
+      "cost": 0.2,
+      "latency": 0.15
+    },
+    "PROFILE_ECONOMY": {
+      "accuracy": 0.5,
+      "cost": 0.1,
+      "latency": 0.1
+    },
+    "high_accuracy": {
+      "accuracy": 0.85,
+      "cost": 0.005,
+      "latency": 30.5,
+      "crystal_refs": 5.0,
+      "quality_score": 0.85,
+      "count": 1
+    },
+    "balanced": {
+      "accuracy": 0.7154243326118324,
+      "cost": 0.021862465909090904,
+      "latency": 258.4116520578212,
+      "crystal_refs": 90.86363636363639,
+      "quality_score": 0.7154243326118324,
+      "count": 88
+    },
+    "economy": {
+      "accuracy": 0.55,
+      "cost": 0.0008,
+      "latency": 8.1,
+      "crystal_refs": 1.0,
+      "quality_score": 0.55,
+      "count": 1
+    }
+  },
+  "history": [
+    {
+      "timestamp": "2026-07-11T22:01:59.056381",
+      "profile": "balanced",
+      "accuracy": 0.6722222222222222,
+      "cost": 0.027909,
+      "latency": 292.1852128505707,
+      "crystal_refs": 121,
+      "quality_score": 0.6722222222222222
+    },
+    {
+      "timestamp": "2026-07-11T22:18:44.678659",
+      "profile": "balanced",
+      "accuracy": 0.6833333333333332,
+      "cost": 0.029245,
+      "latency": 292.53686332702637,
+      "crystal_refs": 88,
+      "quality_score": 0.6833333333333332
+    },
+    {
+      "timestamp": "2026-07-11T22:32:31.865518",
+      "profile": "balanced",
+      "accuracy": 0.6888888888888889,
+      "cost": 0.026319,
+      "latency": 304.0677852630615,
+      "crystal_refs": 73,
+      "quality_score": 0.6888888888888889
+    },
+    {
+      "timestamp": "2026-07-11T22:47:51.689662",
+      "profile": "balanced",
+      "accuracy": 0.6777777777777778,
+      "cost": 0.024676999999999998,
+      "latency": 195.389466047287,
+      "crystal_refs": 97,
+      "quality_score": 0.6777777777777778
+    },
+    {
+      "timestamp": "2026-07-12T17:14:08.786012",
+      "profile": "balanced",
+      "accuracy": 0.7437499999999999,
+      "cost": 0.025651,
+      "latency": 203.62098717689514,
+      "crystal_refs": 99,
+      "quality_score": 0.7437499999999999
+    },
+    {
+      "timestamp": "2026-07-12T18:06:08.591878",
+      "profile": "balanced",
+      "accuracy": 0.7722222222222221,
+      "cost": 0.026491999999999998,
+      "latency": 183.30365657806396,
+      "crystal_refs": 105,
+      "quality_score": 0.7722222222222221
+    },
+    {
+      "timestamp": "2026-07-12T18:43:41.273252",
+      "profile": "balanced",
+      "accuracy": 0.7,
+      "cost": 0.026234999999999998,
+      "latency": 180.8256905078888,
+      "crystal_refs": 123,
+      "quality_score": 0.7
+    },
+    {
+      "timestamp": "2026-07-12T19:09:00.776406",
+      "profile": "balanced",
+      "accuracy": 0.7142857142857143,
+      "cost": 0.024808,
+      "latency": 185.0275173187256,
+      "crystal_refs": 85,
+      "quality_score": 0.7142857142857143
+    },
+    {
+      "timestamp": "2026-07-12T19:35:54.757708",
+      "profile": "balanced",
+      "accuracy": 0.7444444444444445,
+      "cost": 0.025259,
+      "latency": 219.95760488510132,
+      "crystal_refs": 103,
+      "quality_score": 0.7444444444444445
+    },
+    {
+      "timestamp": "2026-07-12T20:46:51.077727",
+      "profile": "balanced",
+      "accuracy": 0.6833333333333333,
+      "cost": 0.029474,
+      "latency": 244.3858072757721,
+      "crystal_refs": 96,
+      "quality_score": 0.6833333333333333
+    },
+    {
+      "timestamp": "2026-07-13T10:17:59.138601",
+      "profile": "balanced",
+      "accuracy": 0.8333333333333334,
+      "cost": 0.020093,
+      "latency": 369.6021294593811,
+      "crystal_refs": 97,
+      "quality_score": 0.8333333333333334
+    },
+    {
+      "timestamp": "2026-07-13T17:00:54.605711",
+      "profile": "balanced",
+      "accuracy": 0.7944444444444444,
+      "cost": 0.019471,
+      "latency": 568.3422493934631,
+      "crystal_refs": 112,
+      "quality_score": 0.7944444444444444
+    },
+    {
+      "timestamp": "2026-07-13T17:04:14.476556",
+      "profile": "balanced",
+      "accuracy": 0.7611111111111112,
+      "cost": 0.020397,
+      "latency": 199.8668451309204,
+      "crystal_refs": 111,
+      "quality_score": 0.7611111111111112
+    },
+    {
+      "timestamp": "2026-07-14T11:04:08.529728",
+      "profile": "balanced",
+      "accuracy": 0.725,
+      "cost": 0.019202999999999998,
+      "latency": 246.45594358444214,
+      "crystal_refs": 72,
+      "quality_score": 0.725
+    },
+    {
+      "timestamp": "2026-07-14T11:06:59.654856",
+      "profile": "balanced",
+      "accuracy": 0.7499999999999999,
+      "cost": 0.019756,
+      "latency": 171.12112474441528,
+      "crystal_refs": 89,
+      "quality_score": 0.7499999999999999
+    },
+    {
+      "timestamp": "2026-07-14T11:23:04.952864",
+      "profile": "balanced",
+      "accuracy": 0.6944444444444444,
+      "cost": 0.019371,
+      "latency": 219.20950841903687,
+      "crystal_refs": 120,
+      "quality_score": 0.6944444444444444
+    },
+    {
+      "timestamp": "2026-07-14T11:26:31.936144",
+      "profile": "balanced",
+      "accuracy": 0.7166666666666667,
+      "cost": 0.020434,
+      "latency": 206.9782817363739,
+      "crystal_refs": 80,
+      "quality_score": 0.7166666666666667
+    },
+    {
+      "timestamp": "2026-07-14T11:44:26.613398",
+      "profile": "balanced",
+      "accuracy": 0.8111111111111111,
+      "cost": 0.019289,
+      "latency": 205.0436670780182,
+      "crystal_refs": 74,
+      "quality_score": 0.8111111111111111
+    },
+    {
+      "timestamp": "2026-07-14T11:47:39.171515",
+      "profile": "balanced",
+      "accuracy": 0.7666666666666667,
+      "cost": 0.018372,
+      "latency": 192.55211734771729,
+      "crystal_refs": 84,
+      "quality_score": 0.7666666666666667
+    },
+    {
+      "timestamp": "2026-07-14T12:05:39.819535",
+      "profile": "balanced",
+      "accuracy": 0.7333333333333333,
+      "cost": 0.018867,
+      "latency": 192.19459652900696,
+      "crystal_refs": 71,
+      "quality_score": 0.7333333333333333
+    },
+    {
+      "timestamp": "2026-07-14T12:08:35.932472",
+      "profile": "balanced",
+      "accuracy": 0.7777777777777778,
+      "cost": 0.019178999999999998,
+      "latency": 176.10493731498718,
+      "crystal_refs": 99,
+      "quality_score": 0.7777777777777778
+    },
+    {
+      "timestamp": "2026-07-14T12:23:26.506825",
+      "profile": "balanced",
+      "accuracy": 0.7055555555555556,
+      "cost": 0.019160999999999997,
+      "latency": 206.42372345924377,
+      "crystal_refs": 100,
+      "quality_score": 0.7055555555555556
+    },
+    {
+      "timestamp": "2026-07-14T13:49:36.037438",
+      "profile": "balanced",
+      "accuracy": 0.7777777777777778,
+      "cost": 0.020912999999999998,
+      "latency": 206.84327363967896,
+      "crystal_refs": 105,
+      "quality_score": 0.7777777777777778
+    },
+    {
+      "timestamp": "2026-07-14T14:01:31.723096",
+      "profile": "balanced",
+      "accuracy": 0.7500000000000001,
+      "cost": 0.024423,
+      "latency": 215.73639345169067,
+      "crystal_refs": 115,
+      "quality_score": 0.7500000000000001
+    },
+    {
+      "timestamp": "2026-07-14T14:28:01.363853",
+      "profile": "balanced",
+      "accuracy": 0.7444444444444444,
+      "cost": 0.024949,
+      "latency": 210.38896656036377,
+      "crystal_refs": 79,
+      "quality_score": 0.7444444444444444
+    },
+    {
+      "timestamp": "2026-07-14T14:49:06.277221",
+      "profile": "balanced",
+      "accuracy": 0.7666666666666666,
+      "cost": 0.026105999999999997,
+      "latency": 236.7303969860077,
+      "crystal_refs": 94,
+      "quality_score": 0.7666666666666666
+    },
+    {
+      "timestamp": "2026-07-14T15:02:53.248144",
+      "profile": "balanced",
+      "accuracy": 0.7166666666666667,
+      "cost": 0.026005999999999998,
+      "latency": 251.301677942276,
+      "crystal_refs": 119,
+      "quality_score": 0.7166666666666667
+    },
+    {
+      "timestamp": "2026-07-14T15:20:07.591431",
+      "profile": "balanced",
+      "accuracy": 0.7,
+      "cost": 0.025567,
+      "latency": 284.6740789413452,
+      "crystal_refs": 126,
+      "quality_score": 0.7
+    },
+    {
+      "timestamp": "2026-07-14T15:23:42.989889",
+      "profile": "balanced",
+      "accuracy": 0.6888888888888889,
+      "cost": 0.026331999999999998,
+      "latency": 215.39245414733887,
+      "crystal_refs": 97,
+      "quality_score": 0.6888888888888889
+    },
+    {
+      "timestamp": "2026-07-14T15:45:06.626789",
+      "profile": "balanced",
+      "accuracy": 0.7722222222222221,
+      "cost": 0.025341,
+      "latency": 183.26290345191956,
+      "crystal_refs": 139,
+      "quality_score": 0.7722222222222221
+    },
+    {
+      "timestamp": "2026-07-14T15:48:09.515927",
+      "profile": "balanced",
+      "accuracy": 0.7388888888888888,
+      "cost": 0.026185,
+      "latency": 181.5340015888214,
+      "crystal_refs": 129,
+      "quality_score": 0.7388888888888888
+    },
+    {
+      "timestamp": "2026-07-14T16:07:25.351239",
+      "profile": "balanced",
+      "accuracy": 0.7111111111111109,
+      "cost": 0.025932,
+      "latency": 287.64440989494324,
+      "crystal_refs": 86,
+      "quality_score": 0.7111111111111109
+    },
+    {
+      "timestamp": "2026-07-14T16:25:33.360209",
+      "profile": "balanced",
+      "accuracy": 0.7166666666666667,
+      "cost": 0.027114,
+      "latency": 417.0809850692749,
+      "crystal_refs": 128,
+      "quality_score": 0.7166666666666667
+    },
+    {
+      "timestamp": "2026-07-14T16:39:16.895635",
+      "profile": "balanced",
+      "accuracy": 0.7444444444444445,
+      "cost": 0.02828,
+      "latency": 243.95230889320374,
+      "crystal_refs": 69,
+      "quality_score": 0.7444444444444445
+    },
+    {
+      "timestamp": "2026-07-14T17:08:28.314297",
+      "profile": "balanced",
+      "accuracy": 0.66875,
+      "cost": 0.02282,
+      "latency": 245.18474864959717,
+      "crystal_refs": 106,
+      "quality_score": 0.66875
+    },
+    {
+      "timestamp": "2026-07-15T10:37:10.850825",
+      "profile": "balanced",
+      "accuracy": 0.7055555555555556,
+      "cost": 0.019400999999999998,
+      "latency": 221.26219964027405,
+      "crystal_refs": 93,
+      "quality_score": 0.7055555555555556
+    },
+    {
+      "timestamp": "2026-07-15T11:30:48.814187",
+      "profile": "balanced",
+      "accuracy": 0.7333333333333332,
+      "cost": 0.020323,
+      "latency": 515.6416213512421,
+      "crystal_refs": 89,
+      "quality_score": 0.7333333333333332
+    },
+    {
+      "timestamp": "2026-07-15T11:57:37.378461",
+      "profile": "balanced",
+      "accuracy": 0.7666666666666666,
+      "cost": 0.029168,
+      "latency": 229.6098141670227,
+      "crystal_refs": 98,
+      "quality_score": 0.7666666666666666
+    },
+    {
+      "timestamp": "2026-07-15T12:19:48.761054",
+      "profile": "balanced",
+      "accuracy": 0.8,
+      "cost": 0.027634,
+      "latency": 246.05251026153564,
+      "crystal_refs": 88,
+      "quality_score": 0.8
+    },
+    {
+      "timestamp": "2026-07-15T15:00:08.865616",
+      "profile": "balanced",
+      "accuracy": 0.7666666666666666,
+      "cost": 0.02751,
+      "latency": 250.71818661689758,
+      "crystal_refs": 106,
+      "quality_score": 0.7666666666666666
+    },
+    {
+      "timestamp": "2026-07-15T15:09:39.324042",
+      "profile": "balanced",
+      "accuracy": 0.6666666666666666,
+      "cost": 0.025006999999999998,
+      "latency": 280.2696213722229,
+      "crystal_refs": 117,
+      "quality_score": 0.6666666666666666
+    },
+    {
+      "timestamp": "2026-07-15T15:29:29.326106",
+      "profile": "balanced",
+      "accuracy": 0.6999999999999998,
+      "cost": 0.012891999999999999,
+      "latency": 251.85742211341858,
+      "crystal_refs": 82,
+      "quality_score": 0.6999999999999998
+    },
+    {
+      "timestamp": "2026-07-15T15:40:48.203257",
+      "profile": "balanced",
+      "accuracy": 0.75,
+      "cost": 0.013446999999999999,
+      "latency": 458.97556352615356,
+      "crystal_refs": 62,
+      "quality_score": 0.75
+    },
+    {
+      "timestamp": "2026-07-15T16:35:14.506074",
+      "profile": "balanced",
+      "accuracy": 0.7666666666666666,
+      "cost": 0.021374,
+      "latency": 212.87900829315186,
+      "crystal_refs": 88,
+      "quality_score": 0.7666666666666666
+    },
+    {
+      "timestamp": "2026-07-16T12:14:43.412562",
+      "profile": "balanced",
+      "accuracy": 0.75,
+      "cost": 0.012397,
+      "latency": 204.2991909980774,
+      "crystal_refs": 63,
+      "quality_score": 0.75
+    },
+    {
+      "timestamp": "2026-07-16T14:18:48.212471",
+      "profile": "balanced",
+      "accuracy": 0.6777777777777777,
+      "cost": 0.023698,
+      "latency": 273.125262260437,
+      "crystal_refs": 63,
+      "quality_score": 0.6777777777777777
+    },
+    {
+      "timestamp": "2026-07-16T14:53:31.270743",
+      "profile": "balanced",
+      "accuracy": 0.7777777777777778,
+      "cost": 0.019242,
+      "latency": 278.57315468788147,
+      "crystal_refs": 79,
+      "quality_score": 0.7777777777777778
+    },
+    {
+      "timestamp": "2026-07-16T15:42:59.276045",
+      "profile": "balanced",
+      "accuracy": 0.6944444444444443,
+      "cost": 0.019731,
+      "latency": 283.82021403312683,
+      "crystal_refs": 82,
+      "quality_score": 0.6944444444444443
+    },
+    {
+      "timestamp": "2026-07-17T18:22:55.467531",
+      "profile": "balanced",
+      "accuracy": 0.6222222222222222,
+      "cost": 0.030674,
+      "latency": 250.85766172409058,
+      "crystal_refs": 70,
+      "quality_score": 0.6222222222222222
+    },
+    {
+      "timestamp": "2026-07-19T21:40:55.757266",
+      "profile": "balanced",
+      "accuracy": 0.6111111111111112,
+      "cost": 0.028381,
+      "latency": 218.35082340240479,
+      "crystal_refs": 127,
+      "quality_score": 0.6111111111111112
+    }
+  ],
+  "daily_stats": [
+    {
+      "date": "2026-07-09",
+      "quality_score": 0.688888888888889,
+      "crystal_refs": 81,
+      "bias_index": 0.3,
+      "tokens_used": 28470
+    },
+    {
+      "date": "2026-07-10",
+      "quality_score": 0.6833333333333332,
+      "crystal_refs": 114,
+      "bias_index": 0.3,
+      "tokens_used": 25038
+    },
+    {
+      "date": "2026-07-11",
+      "quality_score": 0.6777777777777778,
+      "crystal_refs": 97,
+      "bias_index": 0.3,
+      "tokens_used": 24677
+    },
+    {
+      "date": "2026-07-12",
+      "quality_score": 0.6833333333333333,
+      "crystal_refs": 96,
+      "bias_index": 0.3,
+      "tokens_used": 29474
+    },
+    {
+      "date": "2026-07-13",
+      "quality_score": 0.7611111111111112,
+      "crystal_refs": 111,
+      "bias_index": 0.3,
+      "tokens_used": 20397
+    },
+    {
+      "date": "2026-07-14",
+      "quality_score": 0.66875,
+      "crystal_refs": 106,
+      "bias_index": 0.3,
+      "tokens_used": 22820
+    },
+    {
+      "date": "2026-07-15",
+      "quality_score": 0.7666666666666666,
+      "crystal_refs": 88,
+      "bias_index": 0.3,
+      "tokens_used": 21374
+    },
+    {
+      "date": "2026-07-16",
+      "quality_score": 0.6944444444444443,
+      "crystal_refs": 82,
+      "bias_index": 0.3,
+      "tokens_used": 19731
+    },
+    {
+      "date": "2026-07-17",
+      "quality_score": 0.6222222222222222,
+      "crystal_refs": 70,
+      "bias_index": 0.3,
+      "tokens_used": 30674
+    },
+    {
+      "date": "2026-07-19",
+      "quality_score": 0.6111111111111112,
+      "crystal_refs": 127,
+      "bias_index": 0.3,
+      "tokens_used": 28381
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "exploration_log": [
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-13T14:03:05.714662",
+      "force_level": "high",
+      "crystal_generated": "C073",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-13T14:03:07.295112",
+      "force_level": "high",
+      "crystal_generated": "C073",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-13T14:03:08.604615",
+      "force_level": "medium",
+      "crystal_generated": "C073",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H006",
+      "timestamp": "2026-07-13T14:13:39.476462",
+      "force_level": "high",
+      "crystal_generated": "C073",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H045",
+      "timestamp": "2026-07-13T14:13:40.556327",
+      "force_level": "medium",
+      "crystal_generated": "C073",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H057",
+      "timestamp": "2026-07-13T14:13:41.731440",
+      "force_level": "medium",
+      "crystal_generated": "C073",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H059",
+      "timestamp": "2026-07-13T14:22:29.884807",
+      "force_level": "medium",
+      "crystal_generated": null,
+      "status": "completed"
+    },
+    {
+      "hole_id": "H060",
+      "timestamp": "2026-07-13T14:22:29.919806",
+      "force_level": "medium",
+      "crystal_generated": null,
+      "status": "completed"
+    },
+    {
+      "hole_id": "H032",
+      "timestamp": "2026-07-13T14:22:29.944316",
+      "force_level": "medium",
+      "crystal_generated": null,
+      "status": "completed"
+    },
+    {
+      "hole_id": "H005",
+      "timestamp": "2026-07-13T14:44:48.237220",
+      "force_level": "medium",
+      "crystal_generated": "C073",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H025",
+      "timestamp": "2026-07-13T14:44:49.770585",
+      "force_level": "medium",
+      "crystal_generated": "C073",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H029",
+      "timestamp": "2026-07-13T14:44:51.430907",
+      "force_level": "medium",
+      "crystal_generated": "C073",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H036",
+      "timestamp": "2026-07-13T15:06:37.957896",
+      "force_level": "medium",
+      "crystal_generated": "C073",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H047",
+      "timestamp": "2026-07-13T15:06:39.225636",
+      "force_level": "medium",
+      "crystal_generated": "C073",
+      "status": "completed"
+    }
+  ],
+  "last_saved": "2026-07-13T15:06:39.225636"
+}

@@ -1,0 +1,316 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>认知晶体树 v2.2 全量回归测试报告</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+                background: #f5f7fa;
+                margin: 0;
+                padding: 20px;
+                color: #1a2c3e;
+            }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                background: white;
+                border-radius: 16px;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+                padding: 30px;
+            }
+            h1 {
+                font-size: 28px;
+                border-bottom: 3px solid #2a9d8f;
+                padding-bottom: 12px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            .summary {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 16px;
+                margin: 24px 0;
+                background: #f8fafc;
+                border-radius: 12px;
+                padding: 20px;
+            }
+            .summary-item {
+                text-align: center;
+            }
+            .summary-item .number {
+                font-size: 32px;
+                font-weight: 700;
+            }
+            .summary-item .label {
+                font-size: 14px;
+                color: #5a7b8e;
+            }
+            .status-pass { color: #2a9d8f; }
+            .status-fail { color: #d84a55; }
+            .status-error { color: #f59e0b; }
+            .details { margin-top: 24px; }
+            .failure, .error {
+                background: #fef2f2;
+                border-left: 4px solid #d84a55;
+                padding: 12px 16px;
+                margin-bottom: 12px;
+                border-radius: 8px;
+                overflow-x: auto;
+            }
+            .error {
+                background: #fffbeb;
+                border-left-color: #f59e0b;
+            }
+            .failure h4, .error h4 { margin: 0 0 8px 0; font-size: 15px; }
+            pre {
+                margin: 6px 0;
+                font-size: 13px;
+                background: #f1f3f5;
+                padding: 10px;
+                border-radius: 6px;
+                white-space: pre-wrap;
+                word-break: break-all;
+            }
+            .timestamp {
+                color: #5a7b8e;
+                font-size: 14px;
+                margin-top: 16px;
+                text-align: right;
+                border-top: 1px solid #e9edf2;
+                padding-top: 16px;
+            }
+            .badge {
+                display: inline-block;
+                padding: 4px 12px;
+                border-radius: 40px;
+                font-size: 14px;
+                font-weight: 600;
+            }
+            .badge-pass { background: #d1fae5; color: #065f46; }
+            .badge-fail { background: #fee2e2; color: #991b1b; }
+            .badge-error { background: #fef3c7; color: #92400e; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🧪 认知晶体树 v2.2 全量回归测试报告</h1>
+            <div class="summary">
+                <div class="summary-item">
+                    <div class="number status-pass">16</div>
+                    <div class="label">✅ 通过</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number status-fail">7</div>
+                    <div class="label">❌ 失败</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number status-error">8</div>
+                    <div class="label">⚠️ 错误</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number">31</div>
+                    <div class="label">📊 总计</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number">51.6%</div>
+                    <div class="label">📈 通过率</div>
+                </div>
+            </div>
+
+            <div>
+                <span class="badge badge-pass">通过 16</span>
+                <span class="badge badge-fail">失败 7</span>
+                <span class="badge badge-error">错误 8</span>
+            </div>
+
+            <div class="details">
+                <h2>📋 详细信息</h2>
+                
+        <div class="failure">
+            <h4>❌ test_isolated_crystal_trigger_validation (__main__.TestMetaPrimitiveChains)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 200, in test_isolated_crystal_trigger_validation
+    self.assertIsInstance(gap_result, dict)
+AssertionError: [] is not an instance of <class 'dict'>
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ test_history_diagnose_and_reuse (__main__.TestHistoryRetrieval)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 223, in test_history_diagnose_and_reuse
+    self.assertTrue(result.get("matched", False))
+AssertionError: False is not true
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ test_create_and_validate_skill (__main__.TestSkillMigration)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 294, in test_create_and_validate_skill
+    self.assertTrue(result["valid"])
+AssertionError: False is not true
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ test_claim_extractor (__main__.TestVerificationComponents)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 338, in test_claim_extractor
+    self.assertGreater(len(claims), 0)
+AssertionError: 0 not greater than 0
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ test_status_bar_data (__main__.TestHealthAssertions)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 491, in test_status_bar_data
+    self.assertIsInstance(status.get("cognitive_continuity_score"), (int, float))
+AssertionError: None is not an instance of (<class 'int'>, <class 'float'>)
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ test_self_healing_trigger (__main__.TestSelfHealing)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 507, in test_self_healing_trigger
+    self.assertIsNotNone(healer.last_repair_time)
+AssertionError: unexpectedly None
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ test_auth_register_login (__main__.TestAuthAndPayment)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 538, in test_auth_register_login
+    self.assertTrue(success)
+AssertionError: False is not true
+</pre>
+        </div>
+        
+                
+        <div class="error">
+            <h4>⚠️ test_force_explore_hole (__main__.TestForceExploration)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 308, in test_force_explore_hole
+    result = explorer.force_explore(hole_id, force_level="high")
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 5815, in force_explore
+    crystals = self.engine.parse_crystals()
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 7908, in parse_crystals
+    for match in re.finditer(pattern, content):
+UnboundLocalError: local variable 're' referenced before assignment
+</pre>
+        </div>
+        
+        <div class="error">
+            <h4>⚠️ test_sandbox_execution (__main__.TestVerificationComponents)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 354, in test_sandbox_execution
+    claim = ClaimExtractor().extract_from_text("准确率为95%")[0]
+IndexError: list index out of range
+</pre>
+        </div>
+        
+        <div class="error">
+            <h4>⚠️ test_session_lock_on_unarchived (__main__.TestDepositAndLock)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 390, in test_session_lock_on_unarchived
+    unarchived = self.engine._get_unarchived_holes()
+AttributeError: 'CrystalEngine' object has no attribute '_get_unarchived_holes'
+</pre>
+        </div>
+        
+        <div class="error">
+            <h4>⚠️ test_gödel_evolution_cycle (__main__.TestGödelEvolution)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 452, in test_gödel_evolution_cycle
+    result = agent.run_evolution_cycle("radical")
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 1849, in run_evolution_cycle
+    eval_result = self.evaluate_candidate(candidate, validation_questions)
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 1658, in evaluate_candidate
+    crystals = self.engine.parse_crystals()
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 7908, in parse_crystals
+    for match in re.finditer(pattern, content):
+UnboundLocalError: local variable 're' referenced before assignment
+</pre>
+        </div>
+        
+        <div class="error">
+            <h4>⚠️ test_recursive_evolution_integration (__main__.TestGödelEvolution)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 457, in test_recursive_evolution_integration
+    result = self.engine.meta.gödel_agent.run_recursive_evolution_cycle()
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 2416, in run_recursive_evolution_cycle
+    "failed_stages": [k for k, v in result.items() if v.get("status") == "error"]
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 2416, in <listcomp>
+    "failed_stages": [k for k, v in result.items() if v.get("status") == "error"]
+AttributeError: 'str' object has no attribute 'get'
+</pre>
+        </div>
+        
+        <div class="error">
+            <h4>⚠️ test_audit_service (__main__.TestAuditAndHealth)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 469, in test_audit_service
+    report = auditor.run_audit()
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 6536, in run_audit
+    L1, L2, L3 = self.engine.update_crystal_layers()
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 8650, in update_crystal_layers
+    crystals = self.parse_crystals()
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 7908, in parse_crystals
+    for match in re.finditer(pattern, content):
+UnboundLocalError: local variable 're' referenced before assignment
+</pre>
+        </div>
+        
+        <div class="error">
+            <h4>⚠️ test_health_dashboard (__main__.TestAuditAndHealth)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 478, in test_health_dashboard
+    self.engine.run_audit_now()
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 7142, in run_audit_now
+    report = self._audit_service.run_audit()
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 6536, in run_audit
+    L1, L2, L3 = self.engine.update_crystal_layers()
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 8650, in update_crystal_layers
+    crystals = self.parse_crystals()
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 7908, in parse_crystals
+    for match in re.finditer(pattern, content):
+UnboundLocalError: local variable 're' referenced before assignment
+</pre>
+        </div>
+        
+        <div class="error">
+            <h4>⚠️ test_debate_with_all_components (__main__.TestEndToEndDebate)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 576, in test_debate_with_all_components
+    result = debate.run(question, mode="debate_full", max_rounds=2)
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 11561, in run
+    shared_context = self._crystal_context(question)
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 10819, in _crystal_context
+    assoc = self.engine.get_associative_crystals(question, top_k=5)
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 8911, in get_associative_crystals
+    all_crystals = self.parse_crystals()
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py", line 7908, in parse_crystals
+    for match in re.finditer(pattern, content):
+UnboundLocalError: local variable 're' referenced before assignment
+</pre>
+        </div>
+        
+                
+            </div>
+
+            <div class="timestamp">
+                测试开始：2026-07-28 15:47:05<br>
+                测试结束：2026-07-28 15:52:35<br>
+                耗时：330.00 秒
+            </div>
+        </div>
+    </body>
+    </html>
+    

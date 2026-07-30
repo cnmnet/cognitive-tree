@@ -1,0 +1,120 @@
+[
+  {
+    "id": "INSP-001",
+    "source": "对话",
+    "content": "将八道防线与沉思式反思融合，形成免疫+智慧的协同效应",
+    "status": "已评估",
+    "created_at": "2026-07-09T17:09:06.714618",
+    "evaluation": {
+      "importance": 0.052,
+      "urgency": 0,
+      "alignment": 0.5,
+      "resource_hours": 1,
+      "total_score": 0.176,
+      "level": "rejected"
+    }
+  },
+  {
+    "id": "INSP-002",
+    "source": "对话",
+    "content": "实现跨用户认知贡献层，让用户共享高质量晶体",
+    "status": "已评估",
+    "created_at": "2026-07-09T17:09:06.714618",
+    "evaluation": {
+      "importance": 0.042,
+      "urgency": 0,
+      "alignment": 0.5,
+      "resource_hours": 1,
+      "total_score": 0.17099999999999999,
+      "level": "rejected"
+    }
+  },
+  {
+    "id": "INSP-003",
+    "source": "对话",
+    "content": "优化向量检索性能，减少查询延迟",
+    "status": "已采纳",
+    "created_at": "2026-07-09T17:09:06.714618"
+  },
+  {
+    "id": "INSP-TEST-001",
+    "source": "测试用例",
+    "content": "引入基于注意力机制的上下文压缩，提升长文本处理效率。",
+    "status": "已评估",
+    "created_at": "2026-07-28T14:23:23.777972",
+    "evaluation": {
+      "importance": 0.502,
+      "urgency": 0,
+      "alignment": 0.2,
+      "resource_hours": 1,
+      "total_score": 0.311,
+      "level": "rejected"
+    }
+  },
+  {
+    "id": "INSP-TEST-002",
+    "source": "测试用例",
+    "content": "建立晶体自动老化机制，定期归档低热度晶体，保持知识新鲜度。",
+    "status": "已评估",
+    "created_at": "2026-07-28T14:23:23.777972",
+    "evaluation": {
+      "importance": 0.358,
+      "urgency": 0,
+      "alignment": 0.5,
+      "resource_hours": 1,
+      "total_score": 0.32899999999999996,
+      "level": "rejected"
+    }
+  },
+  {
+    "id": "INSP-TEST-003",
+    "source": "测试用例",
+    "content": "设计一个‘认知体检’功能，每周自动检查知识结构健康度。",
+    "status": "已评估",
+    "created_at": "2026-07-28T14:23:23.777972",
+    "evaluation": {
+      "importance": 0.054,
+      "urgency": 0,
+      "alignment": 0.5,
+      "resource_hours": 1,
+      "total_score": 0.177,
+      "level": "rejected"
+    }
+  },
+  {
+    "id": "INSP-TEST-S001",
+    "source": "测试用例",
+    "content": "范式变革：构建跨领域知识迁移的认知晶体网络，使系统能自动发现并填补知识盲区，从根本上提升决策质量。",
+    "status": "已执行",
+    "created_at": "2026-07-28T14:26:49.478186",
+    "evaluation": {
+      "importance": 0.848,
+      "urgency": 0,
+      "alignment": 0.8,
+      "resource_hours": 1,
+      "total_score": 0.6639999999999999,
+      "level": "S"
+    },
+    "result": {
+      "success": true,
+      "target_id": "C175",
+      "message": "已生成晶体 C175",
+      "feedback": "已自动执行，尚未验证效果。"
+    },
+    "executed_at": "2026-07-28T14:31:06.047810"
+  },
+  {
+    "id": "INSP-PHASE1-001",
+    "source": "测试",
+    "content": "实现跨领域知识迁移的认知框架",
+    "status": "待筛选",
+    "created_at": "2026-07-28T15:21:46.599559"
+  },
+  {
+    "id": "INSP-PHASE2-S001",
+    "source": "测试",
+    "content": "S级灵感：构建自适应认知架构，提升系统灵活性",
+    "status": "待筛选",
+    "created_at": "2026-07-28T15:21:46.602558"
+  }
+]

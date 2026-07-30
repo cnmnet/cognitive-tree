@@ -1,0 +1,76 @@
+=== 启动时间: 2026-07-30T13:36:45.809935 ===
+命令: C:\Users\Administrator\AppData\Local\Programs\Python\Python310\python.exe D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py --gui
+工作目录: D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本
+数据目录: D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\晶体树文件夹
+============================================================
+D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py:20475: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: iCCP: known incorrect sRGB profile
+注意：sentence_transformers 未强制要求，系统将使用内置检索
+[OK] VectorStore 初始化成功，已有 97 条向量
+注意：sentence_transformers 未强制要求，系统将使用内置检索
+[OK] VectorStore 初始化成功，已有 97 条向量
+✅ 注册 /api/trending 路由
+✅ 注册 /api/trending/refresh 路由
+✅ 注册 /api/radar 路由
+🔧 应用 V3.0 融合版补丁...
+✅ 角色突触文件已存在: D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\晶体树文件夹\系统日志\角色突触.json
+✅ 注册 /api/trending 路由
+✅ 注册 /api/trending/refresh 路由
+✅ 注册 /api/radar 路由
+🔧 应用 V3.0 融合版补丁...
+✅ 角色突触文件已存在: D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\晶体树文件夹\系统日志\角色突触.json
+[OK] VectorStore 初始化成功，已有 97 条向量
+============================================================
+🔍 执行认知晶体树 v2.2 启动自检断言...
+============================================================
+  ✅ 组件 CrystalEngine 存在
+  ✅ 组件 DebateEngine 存在
+  ✅ 组件 MetaLayer 存在
+  ✅ 组件 CheapGate 存在
+  ✅ 认知指纹已建立（总交互数: 1）
+  ✅ 帕累托前沿文件存在
+  ✅ 灵感池文件存在
+  ✅ Config.ALARM_RULES 存在
+  ✅ Config.ROUTING_CONFIG 存在
+  ✅ Config.META_CHAIN_RULES 存在
+  ✅ Config.META_PRIMITIVES 存在
+============================================================
+✅ Day 0 启动自检断言全部通过！
+============================================================
+🔍 执行认知晶体树2.2定义自检断言...
+  ✅ 组件 CrystalEngine 存在
+  ✅ 组件 DebateEngine 存在
+  ✅ 组件 MetaLayer 存在
+  ✅ 组件 CheapGate 存在
+  ✅ 认知指纹已建立
+✅ 自检断言全部通过
+
+============================================================
+🔍 执行 Day 18 持续验证（升级版）
+============================================================
+  ✅ 组件 CrystalEngine 可用
+  ✅ 组件 DebateEngine 可用
+  ✅ 组件 MetaLayer 可用
+  ✅ 组件 CheapGate 可用
+  ⚠️ 认知连续性数据不足（仅 1 次对话），评分: 5.0/10
+------------------------------------------------------------
+✅ 定义验证通过：四个组件完整，认知连续性评分 5.0/10
+[OK] VectorStore 初始化成功，已有 97 条向量
+📊 层级审计服务已启动（每周自动运行）
+[SYSTEM] 🧠 RUMAD 控制器初始化完成
+[SYSTEM] 🧠 RUMAD 已禁用
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7134.23it/s]
+D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py:22140: PydanticDeprecatedSince20: The `dict` method is deprecated; use `model_dump` instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.5/migration/
+  result = super().dict(*args, **kwargs)
+D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\crystal_tree_all_in_one_day.py:11567: PydanticDeprecatedSince20: The `dict` method is deprecated; use `model_dump` instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.5/migration/
+  "round_by_round": [r.dict() for r in final_schema.round_by_round],

@@ -1,0 +1,40 @@
+name: Validate Skill Package
+
+on:
+  issues:
+    types: [opened, edited, labeled]
+  pull_request:
+    paths:
+      - 'skills/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install -r requirements.txt 2>/dev/null || true
+      - name: Find and validate all skills
+        run: |
+          for skill in skills/*/; do
+            if [ -f "${skill}validate.py" ]; then
+              echo "Validating ${skill}..."
+              python "${skill}validate.py" || exit 1
+            fi
+          done
+      - name: Comment result on issue
+        if: github.event_name == 'issues'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const msg = `✅ Skill 验证通过！\n\n- 验证时间: ${new Date().toISOString()}\n- 检查项: ${process.env.GITHUB_WORKFLOW}`;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: msg
+            });

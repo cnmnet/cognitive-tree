@@ -1,0 +1,13 @@
+{
+  "chain_states": {
+    "isolated_crystal_to_validation": {
+      "last_triggered": "2026-07-30T14:18:19.794691",
+      "trigger_count": 133
+    },
+    "stale_hot_to_gap_detection": {
+      "last_triggered": null,
+      "trigger_count": 0
+    }
+  },
+  "last_saved": "2026-07-30T14:18:19.795691"
+}

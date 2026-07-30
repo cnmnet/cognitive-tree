@@ -1,0 +1,378 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>认知晶体树 v2.2 全量回归测试报告</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+                background: #f5f7fa;
+                margin: 0;
+                padding: 20px;
+                color: #1a2c3e;
+            }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                background: white;
+                border-radius: 16px;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+                padding: 30px;
+            }
+            h1 {
+                font-size: 28px;
+                border-bottom: 3px solid #2a9d8f;
+                padding-bottom: 12px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            .summary {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 16px;
+                margin: 24px 0;
+                background: #f8fafc;
+                border-radius: 12px;
+                padding: 20px;
+            }
+            .summary-item {
+                text-align: center;
+            }
+            .summary-item .number {
+                font-size: 32px;
+                font-weight: 700;
+            }
+            .summary-item .label {
+                font-size: 14px;
+                color: #5a7b8e;
+            }
+            .status-pass { color: #2a9d8f; }
+            .status-fail { color: #d84a55; }
+            .status-error { color: #f59e0b; }
+            .details { margin-top: 24px; }
+            .failure, .error {
+                background: #fef2f2;
+                border-left: 4px solid #d84a55;
+                padding: 12px 16px;
+                margin-bottom: 12px;
+                border-radius: 8px;
+                overflow-x: auto;
+            }
+            .error {
+                background: #fffbeb;
+                border-left-color: #f59e0b;
+            }
+            .failure h4, .error h4 { margin: 0 0 8px 0; font-size: 15px; }
+            pre {
+                margin: 6px 0;
+                font-size: 13px;
+                background: #f1f3f5;
+                padding: 10px;
+                border-radius: 6px;
+                white-space: pre-wrap;
+                word-break: break-all;
+            }
+            .timestamp {
+                color: #5a7b8e;
+                font-size: 14px;
+                margin-top: 16px;
+                text-align: right;
+                border-top: 1px solid #e9edf2;
+                padding-top: 16px;
+            }
+            .badge {
+                display: inline-block;
+                padding: 4px 12px;
+                border-radius: 40px;
+                font-size: 14px;
+                font-weight: 600;
+            }
+            .badge-pass { background: #d1fae5; color: #065f46; }
+            .badge-fail { background: #fee2e2; color: #991b1b; }
+            .badge-error { background: #fef3c7; color: #92400e; }
+            .test-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                font-size: 14px;
+            }
+            .test-table th {
+                background: #f0f4f8;
+                text-align: left;
+                padding: 8px 12px;
+                border-bottom: 2px solid #dde2e8;
+            }
+            .test-table td {
+                padding: 6px 12px;
+                border-bottom: 1px solid #eee;
+            }
+            .test-table tr:hover {
+                background: #f8fafc;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🧪 认知晶体树 v2.2 全量回归测试报告</h1>
+            <div class="summary">
+                <div class="summary-item">
+                    <div class="number status-pass">26</div>
+                    <div class="label">✅ 通过</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number status-fail">5</div>
+                    <div class="label">❌ 失败</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number status-error">0</div>
+                    <div class="label">⚠️ 错误</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number">31</div>
+                    <div class="label">📊 总计</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number">83.9%</div>
+                    <div class="label">📈 通过率</div>
+                </div>
+            </div>
+
+            <div>
+                <span class="badge badge-pass">通过 26</span>
+                <span class="badge badge-fail">失败 5</span>
+                <span class="badge badge-error">错误 0</span>
+            </div>
+
+            <!-- ===== 所有测试明细表格 ===== -->
+            <h2 style="margin-top:30px;">📋 所有测试明细</h2>
+            <table class="test-table">
+                <thead>
+                    <tr>
+                        <th>测试用例</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestAlarmAndRouting.test_alarm_knowledge_poverty</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestAlarmAndRouting.test_dynamic_routing_complexity</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestAuditAndHealth.test_audit_service</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestAuditAndHealth.test_health_dashboard</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestAuthAndPayment.test_auth_register_login</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestAuthAndPayment.test_trial_limit</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestAuthAndPayment.test_upgrade_tier</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestContemplativeReflection.test_reflection_generates_wise_echo</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestDepositAndLock.test_extract_conclusion_layers</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestDepositAndLock.test_session_lock_on_unarchived</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestDualLoopVerification.test_dual_loop_report</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestEndToEndDebate.test_debate_with_all_components</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestFailurePatternDiagnosis.test_diagnose_failure_patterns</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestForceExploration.test_force_explore_hole</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestGitHubAndRadar.test_multilingual_radar</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestGitHubAndRadar.test_trending_crystalizer</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestGödelEvolution.test_gödel_evolution_cycle</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestGödelEvolution.test_recursive_evolution_integration</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestHealthAssertions.test_status_bar_data</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#d84a55; font-weight:bold;">❌ 失败</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestHebbianLearning.test_hebbian_update_and_boost</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestHistoryRetrieval.test_history_diagnose_and_reuse</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#d84a55; font-weight:bold;">❌ 失败</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestMetaPrimitiveChains.test_isolated_crystal_trigger_validation</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#d84a55; font-weight:bold;">❌ 失败</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestParetoTracking.test_record_and_status</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestRUMAD.test_rumad_select_action</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestSaturationDetector.test_saturation_detection</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestSelfHealing.test_self_healing_trigger</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestSkillMigration.test_create_and_validate_skill</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#d84a55; font-weight:bold;">❌ 失败</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestVerificationComponents.test_claim_extractor</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestVerificationComponents.test_m3mad_bench</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestVerificationComponents.test_sandbox_execution</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#d84a55; font-weight:bold;">❌ 失败</td>
+        </tr>
+        
+        <tr>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee;">__main__.TestVerificationComponents.test_svrmad_posterior</td>
+            <td style="padding:6px 12px; border-bottom:1px solid #eee; color:#2a9d8f; font-weight:bold;">✅ 通过</td>
+        </tr>
+        
+                </tbody>
+            </table>
+
+            <!-- ===== 失败/错误详情（如有） ===== -->
+            <div class="details">
+                <h2>🔍 失败 / 错误详情</h2>
+                
+        <div class="failure">
+            <h4>❌ __main__.TestMetaPrimitiveChains.test_isolated_crystal_trigger_validation</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\test.py", line 205, in test_isolated_crystal_trigger_validation
+    self.assertGreaterEqual(
+AssertionError: 0 not greater than or equal to 3 : 未能检测到足够多的孤立晶体，请检查 active_gap_detection 实现
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ __main__.TestHistoryRetrieval.test_history_diagnose_and_reuse</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\test.py", line 241, in test_history_diagnose_and_reuse
+    self.assertTrue(
+AssertionError: False is not true : 未能匹配历史失败轨迹，请检查 diagnose_history 实现
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ __main__.TestSkillMigration.test_create_and_validate_skill</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\test.py", line 315, in test_create_and_validate_skill
+    self.assertTrue(result["valid"])
+AssertionError: False is not true
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ __main__.TestVerificationComponents.test_sandbox_execution</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\test.py", line 378, in test_sandbox_execution
+    self.assertGreater(
+AssertionError: 0 not greater than 0 : ClaimExtractor 未能提取出任何主张，请检查 ClaimExtractor 实现
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ __main__.TestHealthAssertions.test_status_bar_data</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\test.py", line 520, in test_status_bar_data
+    self.assertIsInstance(status.get("fingerprint_change_rate"), (int, float))
+AssertionError: None is not an instance of (<class 'int'>, <class 'float'>)
+</pre>
+        </div>
+        
+                
+            </div>
+
+            <div class="timestamp">
+                测试开始：2026-07-28 17:20:40<br>
+                测试结束：2026-07-28 17:41:30<br>
+                耗时：1250.89 秒
+            </div>
+        </div>
+    </body>
+    </html>
+    

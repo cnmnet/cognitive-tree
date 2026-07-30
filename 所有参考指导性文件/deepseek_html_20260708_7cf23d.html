@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>认知晶体树 · 辩论审计报告（老板驾驶舱）</title>
+    <style>
+        /* ========== 设计令牌（完全保留原样式） ========== */
+        :root {
+            --primary: #6C5CE7;
+            --primary-dark: #4834D4;
+            --primary-light: #A29BFE;
+            --success: #00B894;
+            --success-bg: #E6F9F1;
+            --warning: #FDCB6E;
+            --warning-bg: #FFF9E6;
+            --danger: #E17055;
+            --danger-bg: #FDE8E4;
+            --deferred: #DFE6E9;
+            --bg: #F8F9FA;
+            --card-bg: #FFFFFF;
+            --text: #2D3436;
+            --text-muted: #636E72;
+            --border: #DFE6E9;
+            --shadow: 0 4px 24px rgba(108, 92, 231, 0.08);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --font: -apple-system, "PingFang SC", "Microsoft YaHei", "Inter", sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            padding: 40px 32px;
+            line-height: 1.7;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* ========== 顶部品牌栏 ========== */
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 28px;
+        }
+        .app-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+        .app-header .badge {
+            background: var(--primary);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 40px;
+        }
+        .app-header .meta {
+            font-size: 14px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* ========== 看板指标卡 ========== */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .stat-card {
+            background: var(--card-bg);
+            padding: 20px 16px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--border);
+            transition: transform 0.1s ease;
+        }
+        .stat-card:hover { transform: translateY(-2px); }
+        .stat-card .number { font-size: 32px; font-weight: 700; line-height: 1.2; }
+        .stat-card .label { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+        .stat-card .sub { font-size: 12px; color: var(--text-muted); opacity: 0.8; margin-top: 2px; }
+        .stat-card.accepted { border-left-color: var(--success); }
+        .stat-card.accepted .number { color: var(--success); }
+        .stat-card.deferred { border-left-color: var(--warning); }
+        .stat-card.deferred .number { color: #D4A017; }
+        .stat-card.rejected { border-left-color: var(--danger); }
+        .stat-card.rejected .number { color: var(--danger); }
+        .stat-card.crystals { border-left-color: var(--primary); }
+        .stat-card.crystals .number { color: var(--primary); }
+        .stat-card.holes { border-left-color: #6c5ce7; }
+        .stat-card.holes .number { color: #6c5ce7; }
+
+        /* ========== 卡片通用 ========== */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px 32px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(108, 92, 231, 0.06);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+        }
+        .card-title .tag {
+            font-size: 12px;
+            font-weight: 500;
+            padding: 2px 12px;
+            border-radius: 40px;
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .executive-summary {
+            border-left: 6px solid var(--primary);
+            padding-left: 24px;
+            margin-bottom: 24px;
+        }
+        .executive-summary .verdict {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.5;
+        }
+        .executive-summary .verdict strong { color: var(--primary); }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin: 24px 0 20px;
+        }
+        .action-item {
+            background: var(--bg);
+            padding: 18px 20px;
+            border-radius: var(--radius-sm);
+            border-bottom: 3px solid var(--primary-light);
+        }
+        .action-item .step { font-weight: 700; color: var(--primary); font-size: 14px; }
+        .action-item .title { font-weight: 600; font-size: 16px; margin: 4px 0 6px; }
+        .action-item .desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+        .risk-box {
+            background: var(--warning-bg);
+            padding: 16px 20px;
+            border-radius: var(--radius-sm);
+            border-left: 4px solid var(--warning);
+            font-size: 14px;
+            color: #5D4A1A;
+        }
+        .risk-box strong { color: #8B6D1A; }
+
+        .epilogue-section {
+            background: linear-gradient(135deg, #F4F0FF, #FFFFFF);
+            padding: 20px 24px;
+            border-radius: var(--radius-sm);
+            margin-top: 20px;
+            border: 1px solid var(--primary-light);
+        }
+        .epilogue-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        #typewriter {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            line-height: 1.8;
+            min-height: 60px;
+            font-style: italic;
+        }
+        #typewriter .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 24px;
+            background: var(--primary);
+            margin-left: 4px;
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        details {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+            transition: all 0.15s ease;
+            background: var(--card-bg);
+        }
+        details[open] { border-color: var(--primary-light); box-shadow: 0 2px 12px rgba(108, 92, 231, 0.06); }
+        details summary {
+            padding: 14px 20px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text);
+            border-radius: var(--radius-sm);
+            transition: background 0.1s;
+            user-select: none;
+        }
+        details summary:hover { background: var(--bg); }
+        details summary::-webkit-details-marker { display: none; }
+        details summary .arrow { color: var(--text-muted); font-size: 14px; transition: transform 0.2s; }
+        details[open] summary .arrow { transform: rotate(180deg); }
+        .details-body { padding: 0 20px 20px 20px; border-top: 1px solid var(--border); margin-top: 4px; padding-top: 18px; }
+
+        .role-interaction {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 6px 12px;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+        .role-interaction:last-child { border-bottom: none; }
+        .role-tag {
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            background: var(--bg);
+            color: var(--text);
+        }
+        .role-tag.radical { background: #FDE8E4; color: #C0392B; }
+        .role-tag.conservative { background: #E3F0FF; color: #1A5276; }
+        .role-tag.structural { background: #E8F8F5; color: #0E6251; }
+        .role-tag.lark { background: #F4ECF7; color: #6C3483; }
+        .role-tag.pilgrim { background: #FEF9E7; color: #7D6608; }
+        .role-tag.strategist { background: #FDEBD0; color: #935E38; }
+        .role-tag.statesman { background: #EBF5FB; color: #1A5276; }
+        .role-tag.judge { background: #E5E8E8; color: #2C3E50; }
+
+        .arrow-symbol { color: var(--text-muted); font-weight: 300; padding: 0 4px; }
+        .action-word {
+            font-weight: 600;
+            color: var(--primary);
+            background: #F4F0FF;
+            padding: 0 8px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        .action-word.absorb { color: var(--success); background: var(--success-bg); }
+        .action-word.concede { color: #D4A017; background: var(--warning-bg); }
+
+        .judge-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .judge-table th {
+            text-align: left;
+            padding: 12px 12px 12px 0;
+            border-bottom: 2px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 13px;
+        }
+        .judge-table td {
+            padding: 14px 12px 14px 0;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+        .judge-table tr:last-child td { border-bottom: none; }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .status-badge.adopted { background: var(--success-bg); color: var(--success); }
+        .status-badge.conditional { background: var(--warning-bg); color: #B7950B; }
+        .status-badge.deferred { background: #F2F3F5; color: var(--text-muted); }
+        .status-badge.rejected { background: var(--danger-bg); color: var(--danger); }
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .matrix-item {
+            background: var(--bg);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            text-align: center;
+        }
+        .matrix-item .name { font-weight: 600; font-size: 13px; }
+        .matrix-item .score { font-size: 20px; font-weight: 700; color: var(--primary); margin-top: 2px; }
+        .matrix-item .bar-bg { width: 100%; height: 4px; background: var(--border); border-radius: 4px; margin-top: 6px; overflow: hidden; }
+        .matrix-item .bar-fill { height: 100%; background: var(--primary); border-radius: 4px; transition: width 0.6s ease; }
+
+        .loading { text-align: center; padding: 40px; color: var(--text-muted); }
+        .loading i { font-size: 32px; margin-bottom: 12px; display: block; }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid { grid-template-columns: repeat(3, 1fr); }
+            .action-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            body { padding: 20px 16px; }
+            .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
+            .action-grid { grid-template-columns: 1fr; }
+            .app-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .executive-summary .verdict { font-size: 18px; }
+            .card { padding: 20px; }
+            .matrix-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            .dashboard-grid { grid-template-columns: 1fr 1fr; }
+            .stat-card .number { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== 顶部导航（动态） ===== -->
+    <header class="app-header">
+        <div>
+            <h1>🧠 认知晶体树 · 辩论审计报告</h1>
+            <div style="display:flex; gap:16px; margin-top:4px; font-size:14px; color:var(--text-muted);">
+                <span>📅 <span id="reportDate">加载中...</span></span>
+                <span>🔄 <span id="roundCount">-</span> 轮辩论</span>
+                <span>👥 <span id="roleCount">-</span> 角色参与</span>
+            </div>
+        </div>
+        <div class="meta">
+            <span class="badge">📌 老板驾驶舱版</span>
+            <span style="font-weight:500;">⚡ 决策简报</span>
+        </div>
+    </header>
+
+    <!-- ===== 看板指标 ===== -->
+    <section class="dashboard-grid">
+        <div class="stat-card accepted">
+            <div class="number" id="statAdopted">-</div>
+            <div class="label">✅ 采纳项</div>
+            <div class="sub" id="statConditional">含 - 项附条件</div>
+        </div>
+        <div class="stat-card deferred">
+            <div class="number" id="statDeferred">-</div>
+            <div class="label">⏸ 暂缓项</div>
+            <div class="sub">转待确认卡片</div>
+        </div>
+        <div class="stat-card rejected">
+            <div class="number" id="statRejected">-</div>
+            <div class="label">❌ 驳回项</div>
+            <div class="sub">违反成本/风险原则</div>
+        </div>
+        <div class="stat-card crystals">
+            <div class="number" id="statCrystals">-</div>
+            <div class="label">💎 引用晶体</div>
+            <div class="sub" id="statCrystalIds">—</div>
+        </div>
+        <div class="stat-card holes">
+            <div class="number" id="statHoles">-</div>
+            <div class="label">🕳️ 孔洞变动</div>
+            <div class="sub" id="statHoleDetail">加载中...</div>
+        </div>
+    </section>
+
+    <!-- ===== 老板版 · 刚性内核 ===== -->
+    <div class="card">
+        <div class="card-title">
+            📊 决策简报 · 终审结论
+            <span class="tag">老板必读</span>
+        </div>
+        <div class="executive-summary">
+            <div class="verdict" id="boardVerdict"><span class="loading"><i>⏳</i>加载决策摘要...</span></div>
+        </div>
+        <div class="action-grid" id="actionGrid"></div>
+        <div class="risk-box" id="riskBox">
+            <strong>⚠️ 风险限额</strong> <span id="riskContent">加载中...</span>
+        </div>
+        <div class="epilogue-section">
+            <div class="epilogue-label">✨ 文末金句 · 儒雅笔谈</div>
+            <div id="typewriter"><span class="cursor"></span></div>
+        </div>
+    </div>
+
+    <!-- ===== 辩论逐轮复盘 ===== -->
+    <div class="card">
+        <div class="card-title">
+            📜 辩论轮次复盘
+            <span style="font-size:13px;font-weight:400;color:var(--text-muted);">点击展开每轮交锋 · 数据完整不截断</span>
+        </div>
+        <div id="roundsContainer"><span class="loading"><i>⏳</i>加载辩论轮次...</span></div>
+    </div>
+
+    <!-- ===== 法官审计依据 ===== -->
+    <div class="card">
+        <div class="card-title">
+            ⚖️ 法官审计依据
+            <span style="font-size:13px;font-weight:400;color:var(--text-muted);">点击展开完整裁决链</span>
+        </div>
+        <details id="judgeDetails">
+            <summary style="background:var(--bg);border-radius:8px;padding:12px 20px;margin-bottom:0;">
+                <span style="font-weight:600;">📋 查看全部裁决细则</span>
+                <span class="arrow">▼</span>
+            </summary>
+            <div class="details-body">
+                <table class="judge-table">
+                    <thead><tr><th>引证规则</th><th>针对角色</th><th>裁决结论</th><th>状态</th></tr></thead>
+                    <tbody id="judgeTableBody"><tr><td colspan="4" class="loading">加载裁决数据...</td></tr></tbody>
+                </table>
+                <div style="margin-top:16px;padding:14px 18px;background:var(--bg);border-radius:8px;border-left:4px solid var(--primary);">
+                    <strong>📌 终审裁决：</strong> <span id="finalVerdict">加载中...</span>
+                </div>
+                <div style="margin-top:12px;padding:12px 18px;background:var(--danger-bg);border-radius:8px;border-left:4px solid var(--danger);">
+                    <strong>❌ 驳回项目：</strong> <span id="rejectedItems">加载中...</span>
+                </div>
+            </div>
+        </details>
+    </div>
+
+    <!-- ===== 证据评分矩阵 ===== -->
+    <div class="card">
+        <div class="card-title">
+            📊 证据评分矩阵
+            <span style="font-size:13px;font-weight:400;color:var(--text-muted);">专家审计 · 论证严密性量化</span>
+        </div>
+        <details>
+            <summary style="background:var(--bg);border-radius:8px;padding:12px 20px;margin-bottom:0;">
+                <span style="font-weight:600;">📈 各角色综合得分</span>
+                <span class="arrow">▼</span>
+            </summary>
+            <div class="details-body">
+                <div class="matrix-grid" id="matrixGrid"><span class="loading">加载评分数据...</span></div>
+                <div style="margin-top:16px;font-size:14px;color:var(--text-muted);background:var(--bg);padding:12px 16px;border-radius:8px;">
+                    <strong>🔍 消解路径追溯：</strong> <span id="resolutionPath">加载中...</span>
+                </div>
+            </div>
+        </details>
+    </div>
+
+    <!-- ===== 未决问题 & 新孔洞 ===== -->
+    <div class="card" style="border-left:4px solid #6c5ce7;">
+        <div class="card-title">
+            🧩 未决问题 & 新孔洞
+            <span style="font-size:13px;font-weight:400;color:var(--text-muted);">需持续追踪的知识缺口</span>
+        </div>
+        <div id="holeContainer" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <span class="loading" style="grid-column:1/-1;">加载孔洞数据...</span>
+        </div>
+    </div>
+
+    <!-- ===== 底部水印 ===== -->
+    <div style="text-align:center;padding-top:24px;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border);margin-top:8px;">
+        认知晶体树 V3.0 · 自进化智能体联邦 · 辩论审计报告已完整生成
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- JavaScript：从后端 API 拉取数据并渲染 -->
+    <!-- ============================================================ -->
+    <script>
+        // ---------- 工具函数 ----------
+        function $(id) { return document.getElementById(id); }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return String(text).replace(/[&<>"']/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                if (m === '"') return '&quot;';
+                if (m === "'") return '&#39;';
+                return m;
+            });
+        }
+
+        function extractFirstSentence(text) {
+            if (!text) return '';
+            const match = text.match(/^[^。！？]*[。！？]/);
+            return match ? match[0] : text.slice(0, 80) + '...';
+        }
+
+        function extractActions(text) {
+            if (!text) return [];
+            // 尝试匹配 "举措" 或数字列表
+            const lines = text.split('\n').filter(l => l.trim());
+            const actions = [];
+            for (const line of lines) {
+                if (line.includes('举措') || line.includes('步骤') || /^\d+[.、]/.test(line.trim())) {
+                    actions.push(line.trim());
+                }
+                if (actions.length >= 3) break;
+            }
+            return actions;
+        }
+
+        function getStatusBadge(status) {
+            const map = {
+                'adopted': 'adopted',
+                'conditional': 'conditional',
+                'deferred': 'deferred',
+                'rejected': 'rejected'
+            };
+            const labelMap = {
+                'adopted': '✅ 采纳',
+                'conditional': '✅ 附条件采纳',
+                'deferred': '⏸ 暂缓',
+                'rejected': '❌ 驳回'
+            };
+            const cls = map[status] || '';
+            const label = labelMap[status] || status;
+            return `<span class="status-badge ${cls}">${label}</span>`;
+        }
+
+        // ---------- 主要渲染函数 ----------
+        function renderDashboard(data) {
+            const schema = data.final_schema || {};
+            const stats = schema.dashboard_stats || {};
+            const meta = schema.meta || {};
+
+            // 顶部信息
+            const ts = meta.timestamp ? new Date(meta.timestamp) : new Date();
+            $('reportDate').textContent = ts.toLocaleDateString('zh-CN') + ' ' + ts.toLocaleTimeString('zh-CN');
+            const rounds = data.rounds || [];
+            $('roundCount').textContent = rounds.length || 0;
+
+            // 统计角色数
+            const roles = Object.keys(schema.role_contributions || {});
+            $('roleCount').textContent = roles.length || 0;
+
+            // 看板指标
+            const adopted = stats.adopted || 0;
+            const conditional = stats.conditional || 0;
+            const deferred = stats.deferred || 0;
+            const rejected = stats.rejected || 0;
+            $('statAdopted').textContent = adopted;
+            $('statConditional').textContent = `含 ${conditional} 项附条件`;
+            $('statDeferred').textContent = deferred;
+            $('statRejected').textContent = rejected;
+
+            // 统计晶体和孔洞
+            let crystalIds = [];
+            let holeIds = [];
+            for (const role of Object.values(schema.role_contributions || {})) {
+                for (const link of (role.evidence_links || [])) {
+                    if (link.startsWith('C')) crystalIds.push(link);
+                    else if (link.startsWith('H')) holeIds.push(link);
+                }
+            }
+            crystalIds = [...new Set(crystalIds)];
+            holeIds = [...new Set(holeIds)];
+            $('statCrystals').textContent = crystalIds.length;
+            $('statCrystalIds').textContent = crystalIds.slice(0, 5).join(', ') + (crystalIds.length > 5 ? '...' : '') || '—';
+            $('statHoles').textContent = holeIds.length;
+            $('statHoleDetail').textContent = holeIds.length ? `引用 ${holeIds.length} 个孔洞` : '无孔洞引用';
+
+            // 老板版决策摘要
+            const boardText = schema.board_version || '（暂无决策摘要）';
+            $('boardVerdict').innerHTML = `<strong>${escapeHtml(extractFirstSentence(boardText))}</strong>`;
+
+            // 三大举措
+            const actions = extractActions(boardText);
+            const actionGrid = $('actionGrid');
+            if (actions.length >= 3) {
+                actionGrid.innerHTML = actions.slice(0, 3).map((a, i) => `
+                    <div class="action-item">
+                        <div class="step">📌 举措 ${i+1}</div>
+                        <div class="title">${escapeHtml(a.slice(0, 30))}</div>
+                        <div class="desc">${escapeHtml(a)}</div>
+                    </div>
+                `).join('');
+            } else {
+                // 从采纳项中提取
+                const adoptions = schema.judge_audit?.by_rule?.filter(r => r.status === 'adopted' || r.status === 'conditional') || [];
+                if (adoptions.length) {
+                    actionGrid.innerHTML = adoptions.slice(0, 3).map((r, i) => `
+                        <div class="action-item">
+                            <div class="step">✅ 采纳 ${i+1}</div>
+                            <div class="title">${escapeHtml(r.target_role || '')}</div>
+                            <div class="desc">${escapeHtml(r.verdict || '')}</div>
+                        </div>
+                    `).join('');
+                } else {
+                    actionGrid.innerHTML = `<div style="grid-column:1/-1;color:var(--text-muted);">暂无举措数据</div>`;
+                }
+            }
+
+            // 风险限额
+            const riskMatch = boardText.match(/风险[：:]\s*([^\n]*)/);
+            $('riskContent').textContent = riskMatch ? riskMatch[1] : '（无明确风险描述）';
+
+            // 儒雅笔谈 - 打字机
+            const elegantText = schema.elegant_epilogue || '决策之道，不在快慢，而在虚实之间。';
+            startTypewriter(elegantText);
+
+            // 逐轮复盘
+            renderRounds(rounds);
+
+            // 法官审计
+            renderJudge(schema.judge_audit || {});
+
+            // 评分矩阵
+            renderMatrix(schema.expert_version || '');
+
+            // 孔洞
+            renderHoles(schema.judge_audit || {});
+        }
+
+        // ---------- 渲染逐轮复盘 ----------
+        function renderRounds(rounds) {
+            const container = $('roundsContainer');
+            if (!rounds || !rounds.length) {
+                container.innerHTML = `<div style="color:var(--text-muted);">暂无辩论轮次数据</div>`;
+                return;
+            }
+
+            container.innerHTML = '';
+            rounds.forEach((round, idx) => {
+                const roundNum = round.round || idx + 1;
+                const answers = round.answers || [];
+                const audit = round.audit || {};
+
+                // 提取核心焦点
+                let dynamics = round.dynamics || '';
+                if (!dynamics) {
+                    const firstAnswer = answers.find(a => !a.role?.includes('百灵鸟'));
+                    if (firstAnswer) {
+                        dynamics = firstAnswer.answer?.slice(0, 80) || '';
+                    }
+                }
+
+                // 提取吸收关系
+                const absorptions = [];
+                const feedbacks = audit.feedback_by_role || {};
+                for (const [role, fb] of Object.entries(feedbacks)) {
+                    if (fb.includes('吸收') || fb.includes('采纳')) {
+                        absorptions.push(`${role}: ${fb.slice(0, 50)}`);
+                    }
+                }
+
+                const detail = document.createElement('details');
+                detail.open = idx === 1 || idx === rounds.length - 1; // 默认展开第2轮和最后一轮
+                detail.innerHTML = `
+                    <summary>
+                        <span>⚡ 第 ${roundNum} 轮 · ${escapeHtml(dynamics.slice(0, 40))}${dynamics.length > 40 ? '...' : ''}</span>
+                        <span class="arrow">▼</span>
+                    </summary>
+                    <div class="details-body">
+                        ${answers.map(a => `
+                            <div class="role-interaction">
+                                <span class="role-tag ${getRoleClass(a.role)}">${escapeHtml(a.role || '未知')}</span>
+                                <span>${escapeHtml((a.answer || '').slice(0, 150))}${(a.answer || '').length > 150 ? '...' : ''}</span>
+                            </div>
+                        `).join('')}
+                        ${absorptions.length ? `
+                            <div style="margin-top:12px;font-size:14px;color:var(--text-muted);background:var(--bg);padding:8px 16px;border-radius:8px;">
+                                📌 吸收关系：${absorptions.join(' | ')}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+                container.appendChild(detail);
+            });
+        }
+
+        function getRoleClass(role) {
+            const map = {
+                '激进者': 'radical', '保守者': 'conservative', '结构主义者': 'structural',
+                '百灵鸟': 'lark', '取经者': 'pilgrim', '奇谋者': 'strategist',
+                '延安智者': 'statesman', '大法官': 'judge', '首席发言人': 'spokesperson'
+            };
+            return map[role] || '';
+        }
+
+        // ---------- 渲染法官审计 ----------
+        function renderJudge(judgeAudit) {
+            const rules = judgeAudit.by_rule || [];
+            const tbody = $('judgeTableBody');
+            if (!rules.length) {
+                tbody.innerHTML = `<tr><td colspan="4" style="color:var(--text-muted);">暂无裁决数据</td></tr>`;
+            } else {
+                tbody.innerHTML = rules.map(r => `
+                    <tr>
+                        <td><strong>${escapeHtml(r.rule || '—')}</strong></td>
+                        <td>${escapeHtml(r.target_role || '')}</td>
+                        <td>${escapeHtml(r.verdict || '')}</td>
+                        <td>${getStatusBadge(r.status)}</td>
+                    </tr>
+                `).join('');
+            }
+            $('finalVerdict').textContent = judgeAudit.final_verdict || '（暂无终审裁决）';
+
+            const rejected = judgeAudit.rejected_items || [];
+            $('rejectedItems').textContent = rejected.length ? rejected.map(r => r.item || r).join('；') : '无驳回项';
+        }
+
+        // ---------- 渲染评分矩阵 ----------
+        function renderMatrix(expertText) {
+            const grid = $('matrixGrid');
+            // 尝试从 expert_text 中提取评分
+            const matrixMatch = expertText.match(/【证据评分矩阵】\s*\n([\s\S]*?)(?=\n\n|$)/);
+            if (matrixMatch) {
+                const lines = matrixMatch[1].split('\n').filter(l => l.includes(':') || l.includes('：'));
+                if (lines.length) {
+                    grid.innerHTML = lines.map(line => {
+                        const parts = line.split(/[:：]/).map(s => s.trim());
+                        const name = parts[0] || '未知';
+                        const score = parseFloat(parts[1]) || 0.5;
+                        const pct = Math.min(100, Math.round(score * 100));
+                        return `
+                            <div class="matrix-item">
+                                <div class="name">${escapeHtml(name)}</div>
+                                <div class="score">${score.toFixed(2)}</div>
+                                <div class="bar-bg"><div class="bar-fill" style="width:${pct}%;"></div></div>
+                            </div>
+                        `;
+                    }).join('');
+                    return;
+                }
+            }
+            // 降级：从角色贡献中生成
+            grid.innerHTML = `<div style="grid-column:1/-1;color:var(--text-muted);">暂无评分数据</div>`;
+        }
+
+        // ---------- 渲染孔洞 ----------
+        function renderHoles(judgeAudit) {
+            const container = $('holeContainer');
+            const rejected = judgeAudit.rejected_items || [];
+            const deferred = (judgeAudit.by_rule || []).filter(r => r.status === 'deferred');
+
+            const holes = [];
+            rejected.forEach((r, i) => {
+                holes.push({
+                    id: `H${String(i+1).padStart(3, '0')}`,
+                    content: r.item || r,
+                    severity: 'danger',
+                    suggestion: '建议：专项评估'
+                });
+            });
+            deferred.forEach((r, i) => {
+                holes.push({
+                    id: `H${String(i+1).padStart(3, '0')}`,
+                    content: r.verdict || r.rule || '',
+                    severity: 'warning',
+                    suggestion: '建议：下次辩论专项讨论'
+                });
+            });
+
+            if (!holes.length) {
+                container.innerHTML = `
+                    <div style="grid-column:1/-1;background:var(--bg);padding:16px 20px;border-radius:var(--radius-sm);text-align:center;color:var(--text-muted);">
+                        ✅ 暂无未决问题或新孔洞
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = holes.map(h => `
+                <div style="background:var(--bg);padding:16px 20px;border-radius:var(--radius-sm);border-left:4px solid ${h.severity === 'danger' ? 'var(--danger)' : 'var(--warning)'};">
+                    <div style="font-weight:700;color:${h.severity === 'danger' ? 'var(--danger)' : '#B7950B'};">${h.severity === 'danger' ? '🔴' : '🟡'} ${escapeHtml(h.id)}</div>
+                    <div style="font-size:14px;">${escapeHtml(h.content)}</div>
+                    <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">${escapeHtml(h.suggestion)}</div>
+                </div>
+            `).join('');
+        }
+
+        // ---------- 打字机效果 ----------
+        let typewriterTimer = null;
+
+        function startTypewriter(text) {
+            const container = $('typewriter');
+            if (typewriterTimer) { clearTimeout(typewriterTimer); typewriterTimer = null; }
+
+            container.innerHTML = '';
+            let index = 0;
+
+            function typeNext() {
+                if (index < text.length) {
+                    const char = text.charAt(index);
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    container.insertBefore(span, container.querySelector('.cursor'));
+                    index++;
+                    typewriterTimer = setTimeout(typeNext, 30 + Math.random() * 30);
+                }
+            }
+            // 延迟启动
+            typewriterTimer = setTimeout(typeNext, 600);
+        }
+
+        // ---------- 从 URL 参数或 localStorage 加载数据 ----------
+        function loadData() {
+            // 方案1：从 URL 参数获取 session_id 或 job_id
+            const params = new URLSearchParams(window.location.search);
+            const sessionId = params.get('session');
+            const jobId = params.get('job');
+
+            if (sessionId) {
+                fetch(`/api/sessions/${sessionId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        // 查找最近的辩论结果
+                        const msgs = data.messages || [];
+                        for (let i = msgs.length - 1; i >= 0; i--) {
+                            const msg = msgs[i];
+                            if (msg.role === 'assistant' && msg.content.includes('final_schema')) {
+                                try {
+                                    const parsed = JSON.parse(msg.content);
+                                    if (parsed.final_schema) {
+                                        renderDashboard(parsed);
+                                        return;
+                                    }
+                                } catch (e) {}
+                            }
+                        }
+                        // 没找到，显示提示
+                        document.querySelector('.app-header h1').textContent = '未找到辩论数据';
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        document.querySelector('.app-header h1').textContent = '加载失败';
+                    });
+                return;
+            }
+
+            if (jobId) {
+                // 轮询任务结果
+                let attempts = 0;
+                const maxAttempts = 30;
+
+                function pollJob() {
+                    fetch(`/api/jobs/${jobId}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.status === 'done' && data.result?.final_schema) {
+                                renderDashboard(data.result);
+                            } else if (data.status === 'error') {
+                                document.querySelector('.app-header h1').textContent = '任务失败';
+                            } else if (attempts < maxAttempts) {
+                                attempts++;
+                                setTimeout(pollJob, 1500);
+                            } else {
+                                document.querySelector('.app-header h1').textContent = '等待超时';
+                            }
+                        })
+                        .catch(() => {
+                            if (attempts < maxAttempts) {
+                                attempts++;
+                                setTimeout(pollJob, 1500);
+                            }
+                        });
+                }
+                pollJob();
+                return;
+            }
+
+            // 方案2：从 localStorage 读取最近一次辩论结果
+            const cached = localStorage.getItem('lastDebateResult');
+            if (cached) {
+                try {
+                    const data = JSON.parse(cached);
+                    if (data.final_schema) {
+                        renderDashboard(data);
+                        return;
+                    }
+                } catch (e) {}
+            }
+
+            // 方案3：从 /api/assets 获取基础信息，并显示等待输入
+            fetch('/api/assets')
+                .then(res => res.json())
+                .then(assets => {
+                    const count = assets.counts?.total || 0;
+                    $('reportDate').textContent = new Date().toLocaleDateString('zh-CN');
+                    $('roundCount').textContent = '?';
+                    $('roleCount').textContent = '?';
+                    $('statAdopted').textContent = '—';
+                    $('statDeferred').textContent = '—';
+                    $('statRejected').textContent = '—';
+                    $('statCrystals').textContent = count;
+                    $('statCrystalIds').textContent = `系统共 ${count} 条晶体`;
+                    $('boardVerdict').innerHTML = `<span style="font-size:16px;font-weight:400;">等待辩论数据...</span>`;
+                    $('roundsContainer').innerHTML = `<div style="color:var(--text-muted);">暂无辩论记录，请先运行一次深度推理</div>`;
+                    $('judgeTableBody').innerHTML = `<tr><td colspan="4" style="color:var(--text-muted);">暂无裁决数据</td></tr>`;
+                    $('finalVerdict').textContent = '等待裁决...';
+                    $('matrixGrid').innerHTML = `<div style="grid-column:1/-1;color:var(--text-muted);">暂无评分数据</div>`;
+                    $('holeContainer').innerHTML = `
+                        <div style="grid-column:1/-1;background:var(--bg);padding:16px 20px;border-radius:var(--radius-sm);text-align:center;color:var(--text-muted);">
+                            📌 运行一次深度推理后，将在此处生成孔洞追踪
+                        </div>
+                    `;
+                    startTypewriter('等待您的第一个问题，开启一场高质量的认知辩论。');
+                })
+                .catch(err => {
+                    document.querySelector('.app-header h1').textContent = '⚠️ 无法连接后端服务';
+                    console.error(err);
+                });
+        }
+
+        // ============================================================
+        // 启动
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>

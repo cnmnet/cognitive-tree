@@ -1,0 +1,29 @@
+{
+  "primitive_states": {
+    "active_gap_detection": {
+      "last_run": "2026-07-30T14:18:10.974117",
+      "status": "idle"
+    },
+    "temporal_aware_escalation": {
+      "last_run": "2026-07-30T14:18:10.989631",
+      "status": "idle"
+    },
+    "layer_aware_calibration": {
+      "last_run": null,
+      "status": "active"
+    },
+    "sleep_consolidation": {
+      "last_run": null,
+      "status": "idle"
+    },
+    "distributed_metacognition": {
+      "last_run": null,
+      "status": "disabled"
+    },
+    "validation_gated_self_evolution": {
+      "last_run": "2026-07-30T14:18:19.794691",
+      "status": "active"
+    }
+  },
+  "last_saved": "2026-07-30T14:18:19.794691"
+}

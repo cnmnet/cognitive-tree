@@ -1,0 +1,27 @@
+{
+  "defense_lines": {
+    "knowledge_poverty": {
+      "threshold": 0.5,
+      "description": "晶体引用率低于50%触发"
+    },
+    "bias_inflation": {
+      "threshold": 0.3,
+      "description": "偏见强化指数超过0.3触发"
+    },
+    "information_starvation": {
+      "threshold": 3,
+      "description": "连续3轮无新外部数据触发"
+    },
+    "thought_stagnation": {
+      "threshold": 0.8,
+      "consecutive": 3,
+      "description": "连续3轮Jaccard>0.8触发"
+    }
+  },
+  "meta_primitives": {},
+  "layer_rules": {
+    "L1_max": 47,
+    "L2_to_L3_heat": 0.1,
+    "L2_to_L3_days": 30
+  }
+}

@@ -1,0 +1,927 @@
+{
+  "usage_history": [
+    {
+      "crystal_id": "C055",
+      "timestamp": "2026-07-15T14:56:23.503753",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C068",
+      "timestamp": "2026-07-15T14:56:23.503753",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C070",
+      "timestamp": "2026-07-15T14:56:23.503753",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C088",
+      "timestamp": "2026-07-15T14:56:23.503753",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C061",
+      "timestamp": "2026-07-15T14:56:23.503753",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C073",
+      "timestamp": "2026-07-15T15:05:25.694439",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C068",
+      "timestamp": "2026-07-15T15:05:25.694439",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C055",
+      "timestamp": "2026-07-15T15:05:25.694439",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C033",
+      "timestamp": "2026-07-15T15:05:25.694439",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C082",
+      "timestamp": "2026-07-15T15:05:25.694439",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C067",
+      "timestamp": "2026-07-15T15:26:11.264800",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C094",
+      "timestamp": "2026-07-15T15:26:11.264800",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C007",
+      "timestamp": "2026-07-15T15:26:11.264800",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C040",
+      "timestamp": "2026-07-15T15:26:11.264800",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C015",
+      "timestamp": "2026-07-15T15:26:11.264800",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C067",
+      "timestamp": "2026-07-15T15:37:13.817250",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C094",
+      "timestamp": "2026-07-15T15:37:13.817250",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C007",
+      "timestamp": "2026-07-15T15:37:13.817250",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C040",
+      "timestamp": "2026-07-15T15:37:13.817250",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C015",
+      "timestamp": "2026-07-15T15:37:13.817250",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C097",
+      "timestamp": "2026-07-15T16:31:41.656137",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C098",
+      "timestamp": "2026-07-15T16:31:41.656137",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C072",
+      "timestamp": "2026-07-15T16:31:41.656137",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C092",
+      "timestamp": "2026-07-15T16:31:41.656137",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C075",
+      "timestamp": "2026-07-15T16:31:41.656137",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C072",
+      "timestamp": "2026-07-16T12:11:46.563485",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C018",
+      "timestamp": "2026-07-16T12:11:46.563485",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C007",
+      "timestamp": "2026-07-16T12:11:46.563485",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C095",
+      "timestamp": "2026-07-16T12:11:46.563485",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C027",
+      "timestamp": "2026-07-16T12:11:46.563485",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C080",
+      "timestamp": "2026-07-16T14:15:17.014074",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C061",
+      "timestamp": "2026-07-16T14:15:17.014074",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C011",
+      "timestamp": "2026-07-16T14:15:17.014074",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C094",
+      "timestamp": "2026-07-16T14:15:17.014074",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C070",
+      "timestamp": "2026-07-16T14:15:17.014074",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C072",
+      "timestamp": "2026-07-16T14:49:49.802725",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C067",
+      "timestamp": "2026-07-16T14:49:49.802725",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C093",
+      "timestamp": "2026-07-16T14:49:49.802725",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C095",
+      "timestamp": "2026-07-16T14:49:49.802725",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C034",
+      "timestamp": "2026-07-16T14:49:49.802725",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C072",
+      "timestamp": "2026-07-16T15:38:45.037349",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C055",
+      "timestamp": "2026-07-16T15:38:45.037349",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C095",
+      "timestamp": "2026-07-16T15:38:45.037349",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C002",
+      "timestamp": "2026-07-16T15:38:45.037349",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C067",
+      "timestamp": "2026-07-16T15:38:45.037349",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C070",
+      "timestamp": "2026-07-17T18:19:01.071778",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C068",
+      "timestamp": "2026-07-17T18:19:01.071778",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C027",
+      "timestamp": "2026-07-17T18:19:01.071778",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C061",
+      "timestamp": "2026-07-17T18:19:01.071778",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C066",
+      "timestamp": "2026-07-17T18:19:01.071778",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C058",
+      "timestamp": "2026-07-19T21:37:17.449328",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C088",
+      "timestamp": "2026-07-19T21:37:17.449328",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C069",
+      "timestamp": "2026-07-19T21:37:17.449328",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C052",
+      "timestamp": "2026-07-19T21:37:17.449328",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C070",
+      "timestamp": "2026-07-19T21:37:17.449328",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C093",
+      "timestamp": "2026-07-20T16:08:40.757309",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C014",
+      "timestamp": "2026-07-20T16:08:40.757309",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C068",
+      "timestamp": "2026-07-20T16:08:40.757309",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C011",
+      "timestamp": "2026-07-20T16:08:40.757309",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C061",
+      "timestamp": "2026-07-20T16:08:40.757309",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C042",
+      "timestamp": "2026-07-21T19:47:48.966457",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C070",
+      "timestamp": "2026-07-21T19:47:48.966457",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C068",
+      "timestamp": "2026-07-21T19:47:48.966457",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C052",
+      "timestamp": "2026-07-21T19:47:48.966457",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C093",
+      "timestamp": "2026-07-21T19:47:48.966457",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C068",
+      "timestamp": "2026-07-23T13:34:01.959613",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C091",
+      "timestamp": "2026-07-23T13:34:01.959613",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C027",
+      "timestamp": "2026-07-23T13:34:01.959613",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C095",
+      "timestamp": "2026-07-23T13:34:01.959613",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C083",
+      "timestamp": "2026-07-23T13:34:01.959613",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C061",
+      "timestamp": "2026-07-26T15:51:32.664071",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C027",
+      "timestamp": "2026-07-26T15:51:32.664071",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C077",
+      "timestamp": "2026-07-26T15:51:32.664071",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C087",
+      "timestamp": "2026-07-26T15:51:32.664071",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C083",
+      "timestamp": "2026-07-26T15:51:32.664071",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C067",
+      "timestamp": "2026-07-26T15:57:46.142641",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C093",
+      "timestamp": "2026-07-26T15:57:46.142641",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C091",
+      "timestamp": "2026-07-26T15:57:46.142641",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C027",
+      "timestamp": "2026-07-26T15:57:46.142641",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C065",
+      "timestamp": "2026-07-26T15:57:46.142641",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C032",
+      "timestamp": "2026-07-26T15:59:27.214419",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C091",
+      "timestamp": "2026-07-26T15:59:27.214419",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C052",
+      "timestamp": "2026-07-26T15:59:27.214419",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C033",
+      "timestamp": "2026-07-26T15:59:27.214419",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C055",
+      "timestamp": "2026-07-26T15:59:27.214419",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C066",
+      "timestamp": "2026-07-26T16:00:57.756315",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C055",
+      "timestamp": "2026-07-26T16:00:57.756315",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C088",
+      "timestamp": "2026-07-26T16:00:57.756315",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C076",
+      "timestamp": "2026-07-26T16:00:57.756315",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C091",
+      "timestamp": "2026-07-26T16:00:57.756315",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C091",
+      "timestamp": "2026-07-26T16:02:13.165665",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C088",
+      "timestamp": "2026-07-26T16:02:13.165665",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C037",
+      "timestamp": "2026-07-26T16:02:13.165665",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C071",
+      "timestamp": "2026-07-26T16:02:13.165665",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C083",
+      "timestamp": "2026-07-26T16:02:13.165665",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C061",
+      "timestamp": "2026-07-26T16:10:25.263763",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C027",
+      "timestamp": "2026-07-26T16:10:25.263763",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C077",
+      "timestamp": "2026-07-26T16:10:25.263763",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C087",
+      "timestamp": "2026-07-26T16:10:25.263763",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C083",
+      "timestamp": "2026-07-26T16:10:25.263763",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C067",
+      "timestamp": "2026-07-26T16:28:52.361395",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C093",
+      "timestamp": "2026-07-26T16:28:52.361395",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C091",
+      "timestamp": "2026-07-26T16:28:52.361395",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C027",
+      "timestamp": "2026-07-26T16:28:52.361395",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C065",
+      "timestamp": "2026-07-26T16:28:52.361395",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C032",
+      "timestamp": "2026-07-26T16:45:27.056315",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C091",
+      "timestamp": "2026-07-26T16:45:27.056315",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C052",
+      "timestamp": "2026-07-26T16:45:27.056315",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C033",
+      "timestamp": "2026-07-26T16:45:27.056315",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C055",
+      "timestamp": "2026-07-26T16:45:27.056315",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C066",
+      "timestamp": "2026-07-26T17:01:09.364481",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C055",
+      "timestamp": "2026-07-26T17:01:09.364481",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C088",
+      "timestamp": "2026-07-26T17:01:09.364481",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C076",
+      "timestamp": "2026-07-26T17:01:09.364481",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C091",
+      "timestamp": "2026-07-26T17:01:09.364481",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C091",
+      "timestamp": "2026-07-26T17:16:42.439583",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C088",
+      "timestamp": "2026-07-26T17:16:42.439583",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C037",
+      "timestamp": "2026-07-26T17:16:42.439583",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C071",
+      "timestamp": "2026-07-26T17:16:42.439583",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C083",
+      "timestamp": "2026-07-26T17:16:42.439583",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C061",
+      "timestamp": "2026-07-26T18:55:55.196456",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C027",
+      "timestamp": "2026-07-26T18:55:55.196456",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C077",
+      "timestamp": "2026-07-26T18:55:55.196456",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C087",
+      "timestamp": "2026-07-26T18:55:55.196456",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C083",
+      "timestamp": "2026-07-26T18:55:55.196456",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C067",
+      "timestamp": "2026-07-26T19:13:25.126485",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C093",
+      "timestamp": "2026-07-26T19:13:25.126485",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C091",
+      "timestamp": "2026-07-26T19:13:25.126485",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C027",
+      "timestamp": "2026-07-26T19:13:25.126485",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C065",
+      "timestamp": "2026-07-26T19:13:25.126485",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C032",
+      "timestamp": "2026-07-26T19:27:09.973187",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C091",
+      "timestamp": "2026-07-26T19:27:09.973187",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C052",
+      "timestamp": "2026-07-26T19:27:09.973187",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C033",
+      "timestamp": "2026-07-26T19:27:09.973187",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C055",
+      "timestamp": "2026-07-26T19:27:09.973187",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C066",
+      "timestamp": "2026-07-26T19:41:38.346777",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C055",
+      "timestamp": "2026-07-26T19:41:38.346777",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C088",
+      "timestamp": "2026-07-26T19:41:38.346777",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C076",
+      "timestamp": "2026-07-26T19:41:38.346777",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C091",
+      "timestamp": "2026-07-26T19:41:38.346777",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C091",
+      "timestamp": "2026-07-26T19:55:47.487361",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C088",
+      "timestamp": "2026-07-26T19:55:47.487361",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C037",
+      "timestamp": "2026-07-26T19:55:47.487361",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C071",
+      "timestamp": "2026-07-26T19:55:47.487361",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C083",
+      "timestamp": "2026-07-26T19:55:47.487361",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C093",
+      "timestamp": "2026-07-28T12:22:09.078429",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C088",
+      "timestamp": "2026-07-28T12:22:09.078429",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C055",
+      "timestamp": "2026-07-28T12:22:09.078429",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C033",
+      "timestamp": "2026-07-28T12:22:09.078429",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C052",
+      "timestamp": "2026-07-28T12:22:09.078429",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C055",
+      "timestamp": "2026-07-29T11:14:36.072892",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C088",
+      "timestamp": "2026-07-29T11:14:36.072892",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C093",
+      "timestamp": "2026-07-29T11:14:36.072892",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C091",
+      "timestamp": "2026-07-29T11:14:36.072892",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C076",
+      "timestamp": "2026-07-29T11:14:36.072892",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C072",
+      "timestamp": "2026-07-29T11:40:54.235659",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C093",
+      "timestamp": "2026-07-29T11:40:54.235659",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C055",
+      "timestamp": "2026-07-29T11:40:54.235659",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C086",
+      "timestamp": "2026-07-29T11:40:54.235659",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C070",
+      "timestamp": "2026-07-29T11:40:54.235659",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C067",
+      "timestamp": "2026-07-30T13:39:54.678189",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C093",
+      "timestamp": "2026-07-30T13:39:54.678189",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C072",
+      "timestamp": "2026-07-30T13:39:54.678189",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C034",
+      "timestamp": "2026-07-30T13:39:54.678189",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C099",
+      "timestamp": "2026-07-30T13:39:54.678189",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C041",
+      "timestamp": "2026-07-30T14:12:22.693187",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C086",
+      "timestamp": "2026-07-30T14:12:22.693187",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C076",
+      "timestamp": "2026-07-30T14:12:22.693187",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C081",
+      "timestamp": "2026-07-30T14:12:22.693187",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C095",
+      "timestamp": "2026-07-30T14:12:22.693187",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C088",
+      "timestamp": "2026-07-30T14:14:34.177821",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C055",
+      "timestamp": "2026-07-30T14:14:34.177821",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C086",
+      "timestamp": "2026-07-30T14:14:34.177821",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C070",
+      "timestamp": "2026-07-30T14:14:34.177821",
+      "context": "debate_context"
+    },
+    {
+      "crystal_id": "C041",
+      "timestamp": "2026-07-30T14:14:34.177821",
+      "context": "debate_context"
+    }
+  ],
+  "total_usage": {
+    "C055": 13,
+    "C068": 6,
+    "C070": 7,
+    "C088": 11,
+    "C061": 7,
+    "C073": 1,
+    "C033": 5,
+    "C082": 1,
+    "C067": 8,
+    "C094": 3,
+    "C007": 3,
+    "C040": 2,
+    "C015": 2,
+    "C097": 1,
+    "C098": 1,
+    "C072": 6,
+    "C092": 1,
+    "C075": 1,
+    "C018": 1,
+    "C095": 5,
+    "C027": 9,
+    "C080": 1,
+    "C011": 2,
+    "C093": 10,
+    "C034": 2,
+    "C002": 1,
+    "C066": 4,
+    "C058": 1,
+    "C069": 1,
+    "C052": 6,
+    "C014": 1,
+    "C042": 1,
+    "C091": 14,
+    "C083": 7,
+    "C077": 3,
+    "C087": 3,
+    "C065": 3,
+    "C032": 3,
+    "C076": 5,
+    "C037": 3,
+    "C071": 3,
+    "C086": 3,
+    "C099": 1,
+    "C041": 2,
+    "C081": 1
+  },
+  "last_updated": "2026-07-30T14:14:34.177821"
+}

@@ -1,0 +1,81 @@
+{
+  "last_updated": "2026-07-27T15:18:11.730595",
+  "total": 3,
+  "crystals": [
+    {
+      "id": "GHT-20260727-4127",
+      "content": "**核心洞察**：通过可组合的抽象层将LLM能力模块化，实现认知架构的灵活搭建与快速迭代。  \n**关联晶体**：认知架构、接口思维、生长优于堆积",
+      "links": [],
+      "input_conditions": [
+        "GitHub Trending 自动抓取"
+      ],
+      "execution_logic": "从 langchain-ai/langchain 提取认知模式",
+      "output_format": "晶体摘要",
+      "validation_criteria": [
+        "内容非空",
+        "长度<=80字"
+      ],
+      "source": "github_trending",
+      "repo": {
+        "name": "langchain-ai/langchain",
+        "url": "https://github.com/langchain-ai/langchain",
+        "description": "Building applications with LLMs through composability",
+        "language": "Python",
+        "stars": "82.5k",
+        "forks": "12.3k",
+        "today_stars": "256",
+        "fetched_at": "2026-07-27T15:18:08.421749"
+      }
+    },
+    {
+      "id": "GHT-20260727-7244",
+      "content": "**核心洞察**：多智能体协作框架，让LLM通过对话自主编排认知任务流。  \n**关联晶体**：认知架构、接口思维",
+      "links": [],
+      "input_conditions": [
+        "GitHub Trending 自动抓取"
+      ],
+      "execution_logic": "从 microsoft/autogen 提取认知模式",
+      "output_format": "晶体摘要",
+      "validation_criteria": [
+        "内容非空",
+        "长度<=80字"
+      ],
+      "source": "github_trending",
+      "repo": {
+        "name": "microsoft/autogen",
+        "url": "https://github.com/microsoft/autogen",
+        "description": "A framework that enables the development of LLM applications",
+        "language": "Python",
+        "stars": "25.1k",
+        "forks": "3.2k",
+        "today_stars": "142",
+        "fetched_at": "2026-07-27T15:18:08.421749"
+      }
+    },
+    {
+      "id": "GHT-20260727-7308",
+      "content": "**晶体**：OpenAI API的认知脚手架，通过可复现的范例将接口能力转化为可生长的应用思维。  \n**关联**：接口思维 + 生长优于堆积",
+      "links": [],
+      "input_conditions": [
+        "GitHub Trending 自动抓取"
+      ],
+      "execution_logic": "从 openai/openai-cookbook 提取认知模式",
+      "output_format": "晶体摘要",
+      "validation_criteria": [
+        "内容非空",
+        "长度<=80字"
+      ],
+      "source": "github_trending",
+      "repo": {
+        "name": "openai/openai-cookbook",
+        "url": "https://github.com/openai/openai-cookbook",
+        "description": "Examples and guides for using the OpenAI API",
+        "language": "Jupyter Notebook",
+        "stars": "56.8k",
+        "forks": "9.1k",
+        "today_stars": "87",
+        "fetched_at": "2026-07-27T15:18:08.421749"
+      }
+    }
+  ]
+}

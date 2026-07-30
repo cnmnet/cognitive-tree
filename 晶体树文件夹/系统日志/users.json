@@ -1,0 +1,74 @@
+{
+  "testuser": {
+    "username": "testuser",
+    "password_hash": "50ccd6df6295b8cf7c99c418000b08282d194039eb56572dbda5f55892add771",
+    "tier": "pro",
+    "trial_used": 3,
+    "max_trials": 20,
+    "created_at": "2026-07-27T14:39:36.933674",
+    "updated_at": "2026-07-27T14:39:36.982351"
+  },
+  "string": {
+    "username": "string",
+    "password_hash": "e763482558f5ebdae6279d9c4a4ccc6dbf251dc9ae7393d3e7da11f117e6c4f6",
+    "tier": "free",
+    "trial_used": 0,
+    "max_trials": 20,
+    "created_at": "2026-07-27T15:51:24.718689",
+    "updated_at": "2026-07-27T15:51:24.718689"
+  },
+  "康迈乐": {
+    "username": "康迈乐",
+    "password_hash": "62ef791e84cff4a342e6a69a16b37f998e75fab759bb57d90b1524d0eb2ef441",
+    "tier": "pro",
+    "trial_used": 0,
+    "max_trials": 20,
+    "created_at": "2026-07-27T15:53:17.201418",
+    "updated_at": "2026-07-27T17:11:22.924442"
+  },
+  "派龙": {
+    "username": "派龙",
+    "password_hash": "4ea583597a46c71359dca690546fe56796c824c4aa531607c9fa4838aaf146e4",
+    "tier": "pro",
+    "trial_used": 0,
+    "max_trials": 20,
+    "created_at": "2026-07-28T10:57:56.524539",
+    "updated_at": "2026-07-28T11:07:42.213411"
+  },
+  "云南铭洋": {
+    "username": "云南铭洋",
+    "password_hash": "4ea583597a46c71359dca690546fe56796c824c4aa531607c9fa4838aaf146e4",
+    "tier": "pro",
+    "trial_used": 0,
+    "max_trials": 20,
+    "created_at": "2026-07-28T11:14:30.567790",
+    "updated_at": "2026-07-28T11:15:10.840171"
+  },
+  "testuser2": {
+    "username": "testuser2",
+    "password_hash": "18f75062ff3a883948229edab190ef23fb2feff4a582fc2e2e5efec88395500e",
+    "tier": "free",
+    "trial_used": 20,
+    "max_trials": 20,
+    "created_at": "2026-07-28T15:52:35.873072",
+    "updated_at": "2026-07-28T15:52:35.885028"
+  },
+  "testuser3": {
+    "username": "testuser3",
+    "password_hash": "18f75062ff3a883948229edab190ef23fb2feff4a582fc2e2e5efec88395500e",
+    "tier": "pro",
+    "trial_used": 0,
+    "max_trials": 20,
+    "created_at": "2026-07-28T15:52:35.892027",
+    "updated_at": "2026-07-28T17:38:15.235826"
+  },
+  "testuser_1785231495": {
+    "username": "testuser_1785231495",
+    "password_hash": "18f75062ff3a883948229edab190ef23fb2feff4a582fc2e2e5efec88395500e",
+    "tier": "free",
+    "trial_used": 0,
+    "max_trials": 20,
+    "created_at": "2026-07-28T17:38:15.219826",
+    "updated_at": "2026-07-28T17:38:15.219826"
+  }
+}

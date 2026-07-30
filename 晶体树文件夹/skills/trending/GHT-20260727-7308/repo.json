@@ -1,0 +1,10 @@
+{
+  "name": "openai/openai-cookbook",
+  "url": "https://github.com/openai/openai-cookbook",
+  "description": "Examples and guides for using the OpenAI API",
+  "language": "Jupyter Notebook",
+  "stars": "56.8k",
+  "forks": "9.1k",
+  "today_stars": "87",
+  "fetched_at": "2026-07-27T15:18:08.421749"
+}

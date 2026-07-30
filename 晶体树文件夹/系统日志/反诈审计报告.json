@@ -1,0 +1,29 @@
+[
+  {
+    "timestamp": "2026-07-16T15:12:04.255155",
+    "result": {
+      "persona_detection": {
+        "passed": true,
+        "risk_level": "low",
+        "records": [],
+        "reason": "未检测到明显伪装特征",
+        "risk_score": 0
+      },
+      "starlink_fingerprint": {
+        "passed": true,
+        "records": []
+      },
+      "cross_lingual": {
+        "passed": false,
+        "zh_meaning": "你好，我是认知晶体树的用户，我想了解更多关于AI的知识",
+        "en_meaning": "Hello, I am a user of Cognitive Crystal Tree, I wa",
+        "overlap_ratio": 0.0,
+        "confidence": 0.5,
+        "reason": "关键词重叠度低 (0.00)，可能存在语义偏差",
+        "is_consistent": false
+      },
+      "overall_passed": false,
+      "timestamp": "2026-07-16T15:12:02.129565"
+    }
+  }
+]

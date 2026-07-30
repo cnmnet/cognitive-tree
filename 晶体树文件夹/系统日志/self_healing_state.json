@@ -1,0 +1,17 @@
+{
+  "consecutive_low_count": 0,
+  "last_repair_time": "2026-07-23T13:50:07.062332",
+  "repair_history": [
+    {
+      "timestamp": "2026-07-23T13:50:07.062332",
+      "actions": [
+        {
+          "weak_point": "认知连续性偏低",
+          "applied": true,
+          "details": "执行每日计划"
+        }
+      ],
+      "health_score": 7.0
+    }
+  ]
+}

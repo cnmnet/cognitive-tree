@@ -1,0 +1,39 @@
+[
+  {
+    "id": "INSP-001",
+    "source": "对话",
+    "content": "将八道防线与沉思式反思融合，形成免疫+智慧的协同效应",
+    "status": "已评估",
+    "created_at": "2026-07-09T17:09:06.714618",
+    "evaluation": {
+      "importance": 0.052,
+      "urgency": 0,
+      "alignment": 0.5,
+      "resource_hours": 1,
+      "total_score": 0.176,
+      "level": "rejected"
+    }
+  },
+  {
+    "id": "INSP-002",
+    "source": "对话",
+    "content": "实现跨用户认知贡献层，让用户共享高质量晶体",
+    "status": "已评估",
+    "created_at": "2026-07-09T17:09:06.714618",
+    "evaluation": {
+      "importance": 0.042,
+      "urgency": 0,
+      "alignment": 0.5,
+      "resource_hours": 1,
+      "total_score": 0.17099999999999999,
+      "level": "rejected"
+    }
+  },
+  {
+    "id": "INSP-003",
+    "source": "对话",
+    "content": "优化向量检索性能，减少查询延迟",
+    "status": "已采纳",
+    "created_at": "2026-07-09T17:09:06.714618"
+  }
+]

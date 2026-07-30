@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-07-14T10:56:54.945912",
+  "domain_scores": {
+    "reasoning": {
+      "accuracy": 0.7,
+      "efficiency": 1.0,
+      "diversity": 0.1,
+      "count": 1
+    },
+    "knowledge": {
+      "accuracy": 0.7,
+      "efficiency": 1.0,
+      "diversity": 0.1,
+      "count": 1
+    },
+    "creative": {
+      "accuracy": 0.7,
+      "efficiency": 1.0,
+      "diversity": 0.1,
+      "count": 1
+    }
+  },
+  "summary": {
+    "total_tasks": 3,
+    "overall_accuracy": 0.7,
+    "overall_efficiency": 1.0,
+    "overall_diversity": 0.1,
+    "composite_score": 0.6
+  },
+  "details": [
+    {
+      "domain": "reasoning",
+      "task": "如果A比B高30%，B比C高20%，那么A比C高百分之几？",
+      "accuracy": 0.7,
+      "efficiency": 1.0,
+      "diversity": 0.1,
+      "response": "这是一个模拟的回答。\n                1. 首先，需要明确目标。\n                2. 其次，制定详细计划。\n                3. 最后，执行并反馈。\n                \n                预计效果提升30%左右。",
+      "elapsed_seconds": 0.0,
+      "timestamp": "2026-07-14T10:56:54.941911"
+    },
+    {
+      "domain": "knowledge",
+      "task": "什么是认知晶体树的核心操作原则？",
+      "accuracy": 0.7,
+      "efficiency": 1.0,
+      "diversity": 0.1,
+      "response": "这是一个模拟的回答。\n                1. 首先，需要明确目标。\n                2. 其次，制定详细计划。\n                3. 最后，执行并反馈。\n                \n                预计效果提升30%左右。",
+      "elapsed_seconds": 0.0,
+      "timestamp": "2026-07-14T10:56:54.942911"
+    },
+    {
+      "domain": "creative",
+      "task": "设计一个结合AI和冥想的新产品概念。",
+      "accuracy": 0.7,
+      "efficiency": 1.0,
+      "diversity": 0.1,
+      "response": "这是一个模拟的回答。\n                1. 首先，需要明确目标。\n                2. 其次，制定详细计划。\n                3. 最后，执行并反馈。\n                \n                预计效果提升30%左右。",
+      "elapsed_seconds": 0.0,
+      "timestamp": "2026-07-14T10:56:54.944913"
+    }
+  ]
+}

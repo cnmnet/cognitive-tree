@@ -1,0 +1,1770 @@
+好的，我将按照模块分批为全部类和独立函数提供完善的 Docstring（Google Style）。由于内容庞大，我尽量精炼但完整，每个类都包含：摘要、详细描述、职责范围、关键依赖、副作用、Args、Returns、Raises（如适用），并添加 `[CATEGORY]` 等标签方便拆包。
+
+> **使用说明**：直接将每个 Docstring 复制到对应类/函数的定义下方（`class ClassName:` 或 `def function_name():` 之后，缩进与代码块对齐）。原有的 `#` 注释可以删除。
+
+---
+
+## 第一批：配置与数据模型（Config, Crystal, Hole, Conflict, TaskCard, HealthCheckResult）
+
+### 1. `Config`
+
+```python
+class Config:
+    """
+    [CATEGORY: Config]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    集中管理所有配置常量、路径和环境变量。
+
+    详细描述：
+        此类为静态类（所有方法均为 classmethod），提供统一的配置访问点。
+        包括文件路径映射、API 端点、超时设置、界面颜色、向量检索参数等。
+        配置值优先从环境变量读取，其次使用硬编码默认值。
+
+    职责范围（Responsibilities）：
+        - 定义所有文件路径（通过 PATHS 字典）
+        - 管理 API Key 和超时重试策略
+        - 提供各模块所需的阈值和开关
+        - 动态检测数据根目录（_determine_data_root）
+
+    关键依赖（Dependencies）：
+        - os, pathlib, dotenv（可选）
+
+    副作用（Side Effects）：
+        - 写入环境变量（如 HF_ENDPOINT, SENTENCE_TRANSFORMERS_HOME）
+        - 创建缓存目录（model_cache）
+
+    Methods:
+        get_path(key): 返回指定文件的绝对路径
+        get_db_path(): 返回 SQLite 数据库路径
+        get_api_key(): 返回 DeepSeek API Key
+    """
+```
+
+### 2. `Crystal`
+
+```python
+@dataclass
+class Crystal:
+    """
+    [CATEGORY: Data]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    认知晶体的数据结构。
+
+    详细描述：
+        代表一条可复用的认知模式或原则。包含内容、与其他晶体的链接关系、
+        当前层级（L1/L2/L3）、热度（基于引用和语义相似度）、最后访问时间，
+        以及代码化字段（输入条件、执行逻辑、输出格式、验证标准）。
+
+    Attributes:
+        id (str): 唯一标识，如 "C001"
+        content (str): 晶体核心内容（不超过80字）
+        links (List[str]): 关联的晶体 ID 列表
+        layer (Layer): 层级枚举（L1/L2/L3）
+        heat (float): 热度值 (0~∞)
+        last_accessed (Optional[date]): 最近访问日期
+        input_conditions (List[str]): 适用条件
+        execution_logic (str): 执行逻辑描述
+        output_format (str): 输出格式规范
+        validation_criteria (List[str]): 验证标准
+    """
+```
+
+### 3. `Hole`
+
+```python
+@dataclass
+class Hole:
+    """
+    [CATEGORY: Data]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    认知孔洞（待验证的问题或未知领域）的数据结构。
+
+    Attributes:
+        id (str): 唯一标识，如 "H001"
+        content (str): 孔洞描述
+        urgency (float): 紧迫度 (0~1)
+        layer (int): 层级（1/2/3），对应孔洞分层
+    """
+```
+
+### 4. `Conflict`
+
+```python
+@dataclass
+class Conflict:
+    """
+    [CATEGORY: Data]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    晶体冲突（高度相似或矛盾）的数据结构。
+
+    Attributes:
+        crystal_a (str): 晶体 A 的 ID
+        crystal_b (str): 晶体 B 的 ID
+        similarity (float): 相似度 (0~1)
+        content_a (str): 晶体 A 的内容
+        content_b (str): 晶体 B 的内容
+    """
+```
+
+### 5. `TaskCard`
+
+```python
+@dataclass
+class TaskCard:
+    """
+    [CATEGORY: Data]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    任务卡片（由冲突或待办事项生成）的数据结构。
+
+    Attributes:
+        id (str): 唯一标识，如 "TASK-20260101-001"
+        type (str): 任务类型，如 "conflict", "action"
+        title (str): 任务标题
+        content (str): 详细内容
+        source (str): 来源描述
+        links (List[str]): 关联的晶体/孔洞 ID
+        suggested_action (str): 建议处理方式
+        status (str): 状态 "pending" / "done" / "ignored"
+    """
+```
+
+### 6. `HealthCheckResult`
+
+```python
+@dataclass
+class HealthCheckResult:
+    """
+    [CATEGORY: Data]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    健康检查结果的数据结构。
+
+    Attributes:
+        level (str): 级别 "error" / "warning" / "info"
+        file (str): 相关文件路径
+        message (str): 描述信息
+        suggested_fix (str, optional): 修复建议
+    """
+```
+
+---
+
+## 第二批：存储与数据库（FileIO, HealthChecker, DBManager）
+
+### 7. `FileIO`
+
+```python
+class FileIO:
+    """
+    [CATEGORY: Storage]
+    [IO_BOUND: Yes (File)]
+    [THREAD_SAFE: No (共享文件锁需外部保证)]
+
+    统一文件读写接口，封装所有磁盘 I/O 操作。
+
+    详细描述：
+        提供对配置中所有数据文件的读写、追加、存在性检查等操作。
+        所有路径通过 Config.PATHS 解析，确保一致性。
+        支持自动创建目录和默认文件初始化。
+
+    职责范围（Responsibilities）：
+        - 解析相对路径为绝对路径（resolve）
+        - 读写文本文件（UTF-8）
+        - 管理认知指纹 JSON 的读写
+        - 确保必要的目录和默认文件存在
+
+    关键依赖（Dependencies）：
+        - Config: 获取路径映射
+
+    副作用（Side Effects）：
+        - 所有方法都可能创建或修改磁盘文件
+        - 写入时覆盖原有内容（write）或追加（append）
+
+    Methods:
+        read(path): 读取文件内容
+        write(path, content): 写入文件
+        append(path, content): 追加内容
+        exists(path): 检查文件是否存在
+        ensure_directories(): 创建所有必需目录
+        read_fingerprint() / write_fingerprint(): 认知指纹专用
+    """
+```
+
+### 8. `HealthChecker`
+
+```python
+class HealthChecker:
+    """
+    [CATEGORY: Storage]
+    [IO_BOUND: Yes (File)]
+    [THREAD_SAFE: Yes]
+
+    系统健康检查工具，验证数据文件的完整性和编码。
+
+    职责范围：
+        - 检查所有配置目录是否存在
+        - 检查关键文件是否存在且可读
+        - 验证 JSON 文件的合法性
+        - 检查 Markdown 表格结构是否符合预期
+
+    副作用：
+        - 无修改，只读操作
+
+    Methods:
+        run(): 执行完整检查，返回 HealthCheckResult 列表
+    """
+```
+
+### 9. `DBManager`
+
+```python
+class DBManager:
+    """
+    [CATEGORY: Storage]
+    [IO_BOUND: Yes (SQLite)]
+    [THREAD_SAFE: No (SQLite 连接非线程安全)]
+
+    管理会话数据库（SQLite）的连接和操作。
+
+    详细描述：
+        负责会话（session）的创建、查询、更新、删除。
+        会话消息存储为 JSON 数组，包含 role, content, label 字段。
+
+    职责范围：
+        - 初始化数据库表（sessions）
+        - CRUD 操作会话
+        - 获取会话消息历史
+
+    副作用：
+        - 读写 SQLite 数据库文件（默认 chat_sessions.db）
+
+    Args:
+        db_path (Path, optional): 数据库文件路径，默认从 Config 获取
+
+    Methods:
+        create_session, update_session, get_session, list_sessions,
+        delete_session, rename_session
+    """
+```
+
+---
+
+## 第三批：认知指纹（CognitiveFingerprint, FingerprintExtractionResult, FingerprintExtractor）
+
+### 10. `CognitiveFingerprint`（两个定义合并为一个，此处只写一个 Docstring）
+
+```python
+@dataclass
+class CognitiveFingerprint:
+    """
+    [CATEGORY: Core]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    用户认知指纹，量化用户的思维模式与偏好。
+
+    详细描述：
+        通过分析对话历史、辩论参与、角色采纳等行为，动态提取用户的：
+        - 决策偏好（风险容忍度、创新偏好、决策果断值）
+        - 角色倾向（最常采纳的角色）
+        - 冲突解决风格
+        - 注意力模式
+        - 认知风格（推理方式、类比偏好、输出风格）
+        - 语言风格偏好（文白比例、隐喻偏好、文化根基）
+
+    职责范围：
+        - 存储所有维度的量化值
+        - 提供 to_dict / from_dict 方法用于序列化
+
+    副作用：
+        - 无
+
+    Attributes:
+        risk_tolerance, innovation_preference, decisiveness, preferred_role,
+        role_adoption_history, conflict_resolution_style, attention_span,
+        context_preference, reasoning_style, analogy_preference, output_style,
+        language_style, last_updated, total_interactions, confidence, evolution_log
+    """
+```
+
+### 11. `FingerprintExtractionResult`
+
+```python
+@dataclass
+class FingerprintExtractionResult:
+    """
+    [CATEGORY: Core]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    指纹提取结果，包含新指纹、分析源、变更列表和置信度变化。
+
+    Attributes:
+        fingerprint (CognitiveFingerprint): 提取后的指纹
+        source_analysis (Dict): 分析细节
+        changes (List[Dict]): 相比上次的变更
+        confidence_delta (float): 置信度增量
+    """
+```
+
+### 12. `FingerprintExtractor`
+
+```python
+class FingerprintExtractor:
+    """
+    [CATEGORY: Core]
+    [IO_BOUND: Yes (File)]
+    [THREAD_SAFE: No]
+
+    从对话历史和辩论日志中提取认知指纹。
+
+    详细描述：
+        分析用户消息中的关键词、角色采纳、决策风格等，更新或初始化指纹。
+        采用平滑更新策略，避免指纹突变。
+
+    职责范围：
+        - 从历史消息中提取各维度分数
+        - 平滑合并到现有指纹
+        - 保存指纹到 user_profile.json
+        - 生成认知操作符描述
+
+    关键依赖：
+        - engine (CrystalEngine): 用于获取晶体数据
+        - file_io (FileIO): 读写指纹文件
+
+    副作用：
+        - 修改 system_logs/user_profile.json
+        - 记录指纹变更到 evolution_log
+
+    Args:
+        engine (CrystalEngine): 引擎实例
+        file_io (FileIO): 文件操作
+
+    Methods:
+        extract(history, debate_logs, increment_interactions) -> CognitiveFingerprint
+        get_fingerprint() -> CognitiveFingerprint
+        get_cognitive_operators(fingerprint) -> str
+        get_language_style_description(fingerprint) -> str
+    """
+```
+
+---
+
+## 第四批：网络与外部抓取（NetworkManager, ExternalFetcher, SearchService）
+
+### 13. `NetworkManager`
+
+```python
+class NetworkManager:
+    """
+    [CATEGORY: External]
+    [IO_BOUND: Yes (Network)]
+    [THREAD_SAFE: Yes (类方法共享会话)]
+
+    网络请求管理器，封装重试、User-Agent 轮换和超时。
+
+    职责范围：
+        - 提供共享 Session 和重试策略
+        - 随机 User-Agent
+        - 安全 GET 请求（带镜像支持）
+
+    副作用：
+        - 无（仅发送网络请求）
+
+    Methods:
+        safe_request(url, use_mirror, log_callback, **kwargs) -> Response or None
+    """
+```
+
+### 14. `ExternalFetcher`
+
+```python
+class ExternalFetcher:
+    """
+    [CATEGORY: External]
+    [IO_BOUND: Yes (Network + File Cache)]
+    [THREAD_SAFE: No (内部状态未加锁)]
+
+    外部信息抓取器，从 arXiv、HuggingFace、百度新闻等获取实时数据。
+
+    详细描述：
+        支持多信源并发抓取，内置缓存（12小时有效期）。
+        提供结构化洞察和自然语言摘要。
+
+    职责范围：
+        - 抓取 arXiv 论文（按关键词）
+        - 抓取 HuggingFace 论文
+        - 抓取百度新闻
+        - 翻译（借助 MyMemory API）
+        - 缓存管理
+
+    副作用：
+        - 读写 external_cache.json
+
+    Args:
+        log_callback (Callable, optional): 日志回调
+
+    Methods:
+        fetch_arxiv_papers, fetch_hf_papers, fetch_baidu_news, fetch_all,
+        fetch_by_source, fetch_scheduled, fetch_and_store,
+        build_insights, build_structured_insights
+    """
+```
+
+### 15. `SearchService`
+
+```python
+class SearchService:
+    """
+    [CATEGORY: External]
+    [IO_BOUND: Yes (File)]
+    [THREAD_SAFE: Yes]
+
+    本地文档全文搜索服务（基于分词和 BM25 风格的评分）。
+
+    职责范围：
+        - 在指定的数据目录中搜索关键词
+        - 支持正则表达式
+        - 返回匹配文件、行号和内容
+
+    副作用：
+        - 只读操作
+
+    Methods:
+        search_documents(keyword, dirs, regex) -> List[Tuple[str, int, str]]
+    """
+```
+
+---
+
+## 第五批：AI 客户端与 Prompt 管理（AIClient, PromptTemplate, PromptTemplateManager, GödelAgent）
+
+### 16. `AIClient`
+
+```python
+class AIClient:
+    """
+    [CATEGORY: AI]
+    [IO_BOUND: Yes (Network)]
+    [THREAD_SAFE: No (内部 Session 非线程安全)]
+
+    DeepSeek API 客户端，封装聊天、JSON 输出、流式调用。
+
+    详细描述：
+        提供统一的 API 调用接口，自动处理重试、超时、错误解析。
+        内置埋点统计（调用次数、Token 估算、耗时）。
+
+    职责范围：
+        - 构建请求 payload
+        - 处理流式与非流式响应
+        - 解析 JSON 响应
+        - 记录埋点数据
+
+    关键依赖：
+        - requests（可选）
+        - Config: 获取 API Key 和 URL
+
+    副作用：
+        - 写入系统日志/埋点数据.json（每10次调用）
+
+    Args:
+        api_key (str, optional): API Key，默认从 Config 获取
+        api_url (str, optional): API 端点，默认使用 DeepSeek
+
+    Methods:
+        chat(prompt, system, temperature) -> str
+        chat_with_history(history, system, context) -> str
+        chat_json(prompt, temperature) -> Dict
+        chat_stream(prompt, system, callback) -> str
+    """
+```
+
+### 17. `PromptTemplate`
+
+```python
+@dataclass
+class PromptTemplate:
+    """
+    [CATEGORY: AI]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    Prompt 模板数据结构，包含系统提示和用户模板。
+
+    Attributes:
+        name (str): 模板名称（角色名）
+        system_prompt (str): 系统提示词
+        user_prompt_template (str): 用户提示模板（含 {question} 占位符）
+        version (int): 版本号
+        created_at (str): 创建时间
+        performance_score (float): 性能评分
+        is_active (bool): 是否激活
+        parent_version (Optional[int]): 父版本号
+        improvement_delta (float): 改进幅度
+    """
+```
+
+### 18. `PromptTemplateManager`
+
+```python
+class PromptTemplateManager:
+    """
+    [CATEGORY: AI]
+    [IO_BOUND: Yes (File)]
+    [THREAD_SAFE: No]
+
+    热加载 Prompt 模板管理器，支持版本控制和回滚。
+
+    详细描述：
+        管理核心配置/辩论角色模板.json，提供模板的 CRUD 和版本管理。
+
+    职责范围：
+        - 加载/保存模板到 JSON
+        - 获取/更新/回滚模板
+
+    副作用：
+        - 读写 核心配置/辩论角色模板.json
+
+    Args:
+        file_io (FileIO): 文件操作
+
+    Methods:
+        get_template(name), update_template, rollback, get_all_templates
+    """
+```
+
+### 19. `GödelAgent`
+
+```python
+class GödelAgent:
+    """
+    [CATEGORY: AI]
+    [IO_BOUND: Yes (File + Network)]
+    [THREAD_SAFE: No]
+
+    Gödel Agent —— 递归自我改进核心（策略层 + 技能层 + 手册层）。
+
+    详细描述：
+        实现「让系统自己改进自己」的机制。分析进化日志中的失败模式，
+        生成 Prompt 改进候选，通过八道防线验证门控后自动应用。
+        同时具备技能层（生成新晶体）和手册层（优化工作流程）。
+
+    职责范围：
+        - 分析失败模式（analyze_failure_patterns）
+        - 生成 Prompt 改进候选（generate_prompt_candidates）
+        - 评估候选（evaluate_candidate，运行八道防线）
+        - 运行完整进化循环（run_evolution_cycle）
+        - 技能层：从轨迹生成晶体（generate_crystal_candidates）
+        - 手册层：优化工作流程（optimize_workflow）
+        - 递归进化闭环（run_recursive_evolution_cycle）
+
+    关键依赖：
+        - engine (CrystalEngine): 晶体操作
+        - ai_client (AIClient): LLM 调用
+        - template_manager (PromptTemplateManager): 模板管理
+
+    副作用：
+        - 修改辩论角色模板.json（应用新 Prompt）
+        - 创建新晶体（写入晶体卡片.md 和 skills/）
+        - 记录进化日志
+        - 修改系统配置（如每日计划权重）
+
+    Args:
+        engine (CrystalEngine): 晶体引擎
+        ai_client (AIClient): AI 客户端
+        template_manager (PromptTemplateManager): 模板管理器
+
+    Methods:
+        run_evolution_cycle, generate_crystal_candidates,
+        validate_crystal_candidate, commit_crystal_candidate,
+        optimize_workflow, run_recursive_evolution_cycle,
+        analyze_failure_patterns, get_evolution_status
+    """
+```
+
+---
+
+## 第六批：反诈模块（AIPersonaDetector, StarlinkFingerprintDB, CrossLingualAuditor）
+
+### 20. `AIPersonaDetector`
+
+```python
+class AIPersonaDetector:
+    """
+    [CATEGORY: Security]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    AI 人设检测器，识别对话中的多角色伪装。
+
+    职责范围：
+        - 检测 AI 自曝模式（"我是助手"等）
+        - 检测发言模式是否过于规整
+        - 检测语义连贯性异常
+
+    Methods:
+        detect(dialogue) -> Dict 包含 passed, risk_level, records, reason
+    """
+```
+
+### 21. `StarlinkFingerprintDB`
+
+```python
+class StarlinkFingerprintDB:
+    """
+    [CATEGORY: Security]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    星链信号指纹库，记录已知诈骗园区的 IP 段。
+
+    职责范围：
+        - 检查 IP 是否匹配黑名单
+        - 支持添加新园区
+
+    Methods:
+        check(ip) -> Dict 包含 passed, matched_camp, risk_level, reason
+        add_camp(name, ip_ranges, risk_level)
+    """
+```
+
+### 22. `CrossLingualAuditor`
+
+```python
+class CrossLingualAuditor:
+    """
+    [CATEGORY: Security]
+    [IO_BOUND: No (可选的 AI 客户端用于翻译)]
+    [THREAD_SAFE: Yes]
+
+    跨语言语义一致性审计，检测中英文翻译差异。
+
+    职责范围：
+        - 提取中英文关键词
+        - 计算语义重叠度（利用语义映射表）
+        - 判断是否一致
+
+    Args:
+        ai_client (AIClient, optional): 用于辅助翻译（当前未使用）
+
+    Methods:
+        audit(text_zh, text_en) -> Dict 包含 passed, overlap_ratio, is_consistent
+    """
+```
+
+---
+
+## 第七批：核心引擎与元层（CrystalEngine, MetaLayer, ForceExplorer, RUMADController, LayerContribution, AuditReport, LayerAuditService）
+
+### 23. `CrystalEngine`（已在前面给出完整示例，此处略，但可复用）
+
+### 24. `MetaLayer`（前面已给出完整示例）
+
+### 25. `ForceExplorer`
+
+```python
+class ForceExplorer:
+    """
+    [CATEGORY: Core]
+    [IO_BOUND: Yes (File + Network)]
+    [THREAD_SAFE: No]
+
+    强制探索调度器，自动对超时未解决的高优先级孔洞进行强制探索。
+
+    详细描述：
+        定期检查孔洞进度，对 urgency >= 0.7 且超过 7 天无进展的孔洞，
+        自动分配计算资源，尝试生成新晶体填补。
+
+    职责范围：
+        - 检测需要升级的孔洞（check_holes_for_escalation）
+        - 强制探索一个孔洞（force_explore）
+        - 运行定时探索（run_scheduled_exploration）
+        - 创建 Skill 目录（_create_skill_from_crystal）
+
+    关键依赖：
+        - engine (CrystalEngine): 晶体/孔洞操作
+        - ai_client (AIClient): 用于生成晶体内容
+
+    副作用：
+        - 修改系统日志/exploration_state.json
+        - 创建 skills/ 目录下的新 Skill
+        - 追加晶体卡片.md
+        - 记录进化日志
+
+    Args:
+        engine (CrystalEngine): 晶体引擎
+        log_callback (Callable, optional): 日志回调
+        ai_client (AIClient, optional): AI 客户端
+
+    Methods:
+        check_holes_for_escalation, force_explore, run_scheduled_exploration,
+        get_exploration_status
+    """
+```
+
+### 26. `RUMADController`
+
+```python
+class RUMADController:
+    """
+    [CATEGORY: AI]
+    [IO_BOUND: No]
+    [THREAD_SAFE: No]
+
+    RUMAD 拓扑控制原型，基于 Q-learning 优化辩论发言顺序。
+
+    详细描述：
+        将辩论中的角色发言顺序建模为强化学习问题：
+        状态 = 角色立场向量 + 轮次 + 质量评分
+        动作 = 选择下一轮谁对谁发言
+        奖励 = 辩论质量变化（Jaccard 下降 + 审计提升 + 多样性）
+
+    职责范围：
+        - 维护 Q-table
+        - epsilon-greedy 策略选择动作
+        - 更新 Q 值
+
+    参数：
+        role_names (List[str]): 角色名称列表
+        learning_rate (float): 学习率
+        discount_factor (float): 折扣因子
+        epsilon (float): 探索率
+
+    Methods:
+        get_topology_decision(debate_answers, round_num, audit_result) -> action
+        update_with_result(previous_answers, current_answers, previous_audit, current_audit)
+        get_stats() -> Dict
+        enable/disable/reset
+    """
+```
+
+### 27. `LayerContribution`（数据类）
+
+```python
+@dataclass
+class LayerContribution:
+    """
+    [CATEGORY: Data]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    层级贡献数据，用于审计报告。
+
+    Attributes:
+        layer_name (str): "L1" / "L2" / "L3"
+        crystal_count (int): 该层级晶体数量
+        contribution_percent (float): 贡献占比
+        trend (str): "up" / "down" / "stable"
+        trend_value (float): 变化百分比
+        heat_avg (float): 平均热度
+        last_updated (str): 更新时间
+    """
+```
+
+### 28. `AuditReport`（数据类）
+
+```python
+@dataclass
+class AuditReport:
+    """
+    [CATEGORY: Data]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    层级审计报告数据结构。
+
+    Attributes:
+        timestamp (str): 报告时间
+        layers (List[LayerContribution]): 各层级贡献
+        total_crystals (int): 晶体总数
+        health_score (float): 健康评分 (0-10)
+        components_status (Dict[str, bool]): 组件状态
+        cognitive_continuity_score (float): 认知连续性评分
+        fingerprint_change_rate (float): 指纹变化率
+        recommendations (List[str]): 改进建议
+        version (str): 报告版本
+    """
+```
+
+### 29. `LayerAuditService`
+
+```python
+class LayerAuditService:
+    """
+    [CATEGORY: Core]
+    [IO_BOUND: Yes (File)]
+    [THREAD_SAFE: No]
+
+    Harness 分解审计服务（常驻后台），每周自动运行审计。
+
+    详细描述：
+        定期检查四个组件完整性、认知连续性、层级贡献分布，
+        生成系统层级贡献报告.json。
+
+    职责范围：
+        - 执行审计（run_audit）
+        - 计算各层级贡献趋势
+        - 生成健康评分和建议
+        - 后台循环调度
+
+    关键依赖：
+        - engine (CrystalEngine): 获取晶体和分层数据
+        - file_io (FileIO): 读写报告
+
+    副作用：
+        - 修改系统日志/层级贡献报告.json
+        - 记录进化日志
+
+    Methods:
+        run_audit() -> AuditReport
+        start_background(), stop_background()
+        get_latest_report(), get_audit_history()
+    """
+```
+
+---
+
+## 第八批：便宜门与检索（CheapGate, VectorStore）
+
+### 30. `CheapGate`
+
+```python
+class CheapGate:
+    """
+    [CATEGORY: Core]
+    [IO_BOUND: No]
+    [THREAD_SAFE: No]
+
+    便宜门规则引擎，在调用 LLM 前用低成本规则过滤请求。
+
+    详细描述：
+        根据问题长度、关键词、历史上下文等因素，判断问题复杂度，
+        决定是走规则引擎直接回答、走便宜门预筛选后 LLM，还是直接调用 LLM。
+
+    职责范围：
+        - 评估问题复杂度（_estimate_complexity）
+        - 返回路由决策（action, token_budget, cost_estimate）
+        - 检查简单模式、情绪、搜索频率
+
+    关键依赖：
+        - engine (CrystalEngine): 用于获取晶体上下文（可选）
+
+    副作用：
+        - 无（只做决策，不修改状态）
+
+    Args:
+        engine (CrystalEngine): 引擎实例
+        file_io (FileIO): 文件操作（未使用）
+        log_callback (Callable, optional): 日志回调
+
+    Methods:
+        check(user_input, history) -> Dict
+    """
+```
+
+### 31. `VectorStore`
+
+```python
+class VectorStore:
+    """
+    [CATEGORY: Core]
+    [IO_BOUND: Yes (File + Network)]
+    [THREAD_SAFE: No]
+
+    向量存储引擎，基于 ChromaDB 实现语义检索。
+
+    详细描述：
+        将晶体卡片向量化（使用 all-MiniLM-L6-v2），
+        支持语义相似度查询，检索失败时自动降级到 BM25（由调用方处理）。
+
+    职责范围：
+        - 初始化 ChromaDB 持久化客户端
+        - 批量添加晶体（add_crystals）
+        - 语义查询（query）
+        - 删除单个晶体（delete_crystal）
+        - 重置向量库（reset）
+
+    关键依赖：
+        - sentence_transformers（可选）
+        - chromadb（可选）
+
+    副作用：
+        - 读写 model_cache/chroma_db/ 目录
+        - 首次使用时自动下载模型
+
+    Args:
+        file_io (FileIO): 文件操作（未直接使用）
+        model_name (str): 模型名称
+
+    Methods:
+        is_available(), count(), query(), add_crystals(), delete_crystal(), reset()
+    """
+```
+
+---
+
+## 第九批：辩论引擎与输出编排（DebateRole, DebateEngine, OutputOrchestrator, RoleViewpoint, RoundDynamics, FinalOutputSchema, SynapseStore, compute_dashboard_stats）
+
+### 32. `DebateRole`（数据类）
+
+```python
+@dataclass
+class DebateRole:
+    """
+    [CATEGORY: Data]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    辩论角色数据结构。
+
+    Attributes:
+        key (str): 角色键名，如 "radical"
+        name (str): 显示名称，如 "激进者"
+        instruction (str): 角色指令（系统提示的一部分）
+    """
+```
+
+### 33. `DebateEngine`（前面已给出完整示例）
+
+### 34. `OutputOrchestrator`
+
+```python
+class OutputOrchestrator:
+    """
+    [CATEGORY: AI]
+    [IO_BOUND: Yes (Network)]
+    [THREAD_SAFE: No]
+
+    输出编排器，将辩论轮次、法官裁决、首席发言人叙事整合为结构化输出。
+
+    详细描述：
+        接收原始辩论轮次（含各角色回答和审计结果），
+        调用大法官角色生成 7 项 KPI 评分矩阵，
+        调用首席发言人生成老板/员工/新人/专家四个版本，
+        并生成儒雅笔谈（可选）。
+        最终输出符合 FinalOutputSchema 契约。
+
+    职责范围：
+        - 从辩论轮次提取原子数据（_extract_atomic）
+        - 运行大法官裁决（_run_judge）
+        - 运行首席发言人叙事（_run_spokesperson）
+        - 生成四个版本（_render_*）
+        - 更新突触权重（_update_synapses_from_judge）
+
+    关键依赖：
+        - ai_client (AIClient): 调用 AI 生成各版本
+        - engine (CrystalEngine): 用于读取突触权重
+
+    副作用：
+        - 更新角色突触.json（通过 SynapseStore）
+
+    Args:
+        ai_client (AIClient): AI 客户端
+        engine (CrystalEngine): 晶体引擎
+
+    Methods:
+        generate(question, debate_rounds, wise_echo) -> FinalOutputSchema
+    """
+```
+
+### 35. `RoleViewpoint`（数据类）
+
+```python
+@dataclass
+class RoleViewpoint:
+    """
+    [CATEGORY: Data]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    角色观点数据，用于最终输出契约。
+
+    Attributes:
+        role_name (str): 角色名称
+        viewpoints (List[str]): 核心观点列表
+        evidence_links (List[str]): 引用的晶体/孔洞 ID
+        synapse_activation (float): 突触激活值 (0~1)
+    """
+```
+
+### 36. `RoundDynamics`（数据类）
+
+```python
+@dataclass
+class RoundDynamics:
+    """
+    [CATEGORY: Data]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    单轮辩论动态数据。
+
+    Attributes:
+        round (int): 轮次编号
+        dynamics (str): 动态描述
+        absorptions (List[str]): 观点吸收记录
+    """
+```
+
+### 37. `FinalOutputSchema`（数据类）
+
+```python
+class FinalOutputSchema(BaseModel):
+    """
+    [CATEGORY: Data]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    最终输出契约 —— V3.0 融合版。
+
+    包含：
+        - meta (Dict): 元数据
+        - role_contributions (Dict[str, RoleViewpoint]): 各角色贡献
+        - judge_performance_board (List[Dict]): 绩效看板
+        - judge_final_verdict (str): 终审裁决
+        - judge_rejected_details (str): 驳回明细
+        - round_by_round (List[RoundDynamics]): 轮次动态
+        - board_version (str): 老板版（决策摘要）
+        - employee_version (str): 员工版（SOP）
+        - novice_version (str): 新人版（通俗）
+        - expert_version (str): 专家版（详细）
+        - elegant_epilogue (str): 儒雅笔谈
+        - dashboard_stats (Dict[str, int]): 看板统计
+
+    属性方法：
+        judge_audit, final_verdict, dict()
+    """
+```
+
+### 38. `SynapseStore`
+
+```python
+class SynapseStore:
+    """
+    [CATEGORY: Core]
+    [IO_BOUND: Yes (File)]
+    [THREAD_SAFE: No]
+
+    突触存储工具类，封装角色突触的读写。
+
+    职责范围：
+        - 获取某个角色对某个晶体的突触权重
+        - 更新突触权重（采用 +0.08 采纳，-0.05 驳回）
+
+    关键依赖：
+        - engine (CrystalEngine): 用于调用底层突触方法
+
+    Methods:
+        get_synapse(engine, role_key, crystal_id) -> float
+        update_synapse(engine, role_key, crystal_id, delta) -> float
+    """
+```
+
+### 39. `compute_dashboard_stats`（独立函数）
+
+```python
+def compute_dashboard_stats(judge_audit: Dict) -> Dict[str, int]:
+    """
+    [CATEGORY: Utils]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    从法官审计结果中统计各状态数量。
+
+    Args:
+        judge_audit (Dict): 包含 'role_scorecard' 或 'by_rule' 的字典
+
+    Returns:
+        Dict[str, int]: 包含 'adopted', 'conditional', 'deferred', 'rejected', 'total'
+    """
+```
+
+---
+
+## 第十批：计划与批处理（DailyPlanner, BatchProcessor, BaselineRunner, MetaSearchEngine）
+
+### 40. `DailyPlanner`
+
+```python
+class DailyPlanner:
+    """
+    [CATEGORY: Planning]
+    [IO_BOUND: Yes (File + Network)]
+    [THREAD_SAFE: No]
+
+    自主每日计划器，执行高价值知识管理任务。
+
+    详细描述：
+        在 15 分钟预算内，完成以下阶段：
+        1. 更新晶体分层
+        2. 外部信息采集（arXiv, 新闻等）
+        3. 价值评分筛选
+        4. 生成待确认卡片
+        5. 冲突预警（生成任务卡）
+        6. 孔洞进展评估
+        7. 生成 Wondering 和日报
+
+    职责范围：
+        - 协调各子模块完成每日知识整理
+        - 支持关键词定制和进度回调
+        - 生成日报和待办卡片
+
+    关键依赖：
+        - engine (CrystalEngine): 晶体操作
+        - ai_client (AIClient): 摘要生成
+        - fetcher (ExternalFetcher): 外部抓取
+
+    副作用：
+        - 修改晶体分层、孔洞进度、PENDING 卡片、任务卡、日报文件
+        - 记录进化日志
+
+    Args:
+        engine (CrystalEngine): 晶体引擎
+        ai_client (AIClient): AI 客户端
+        fetcher (ExternalFetcher): 外部抓取器
+        log_callback (Callable): 日志回调
+        update_status_callback (Callable): 状态更新回调
+
+    Methods:
+        run(intent_keywords, time_budget_seconds, stop_flag, progress_callback) -> Dict
+    """
+```
+
+### 41. `BatchProcessor`
+
+```python
+class BatchProcessor:
+    """
+    [CATEGORY: Utils]
+    [IO_BOUND: Yes (File)]
+    [THREAD_SAFE: No]
+
+    批量文件处理工具，支持多种文档格式的文本提取和 AI 处理。
+
+    职责范围：
+        - 从各种文件（txt, md, docx, pdf, xlsx, pptx 等）提取文本
+        - 按指定模式（聊天/晶体化）处理每个文件或文件夹
+
+    关键依赖：
+        - ai_client (AIClient): AI 处理
+        - pandas, python-docx, pypdf, pptx（可选）
+
+    副作用：
+        - 可能将结果注入当前会话（通过回调）
+
+    Args:
+        ai_client (AIClient): AI 客户端
+        log_callback (Callable): 日志回调
+
+    Methods:
+        extract_text_from_file(file_path) -> List[str]
+        process_folder(folder_path, mode, skip_search, progress_callback, stop_flag, history_callback)
+    """
+```
+
+### 42. `BaselineRunner`
+
+```python
+class BaselineRunner:
+    """
+    [CATEGORY: Utils]
+    [IO_BOUND: Yes (Network + File)]
+    [THREAD_SAFE: No]
+
+    基线采集运行器，在标准测试集上运行辩论，生成基线 JSON。
+
+    详细描述：
+        用于代码修改前的对比评估。运行 10 个标准问题，
+        提取 Jaccard 相似度、晶体引用率、审计反馈长度等指标。
+
+    职责范围：
+        - 顺序运行所有测试问题
+        - 提取指标（_extract_metrics）
+        - 聚合统计（_aggregate）
+        - 保存 JSON 到 系统日志/辩论基线.json
+
+    关键依赖：
+        - engine (CrystalEngine): 晶体引擎
+        - ai_client (AIClient): AI 客户端
+        - roles (List[Dict]): 角色定义
+
+    副作用：
+        - 生成系统日志/辩论基线.json
+
+    Methods:
+        run(max_rounds) -> Dict
+    """
+```
+
+### 43. `MetaSearchEngine`
+
+```python
+class MetaSearchEngine:
+    """
+    [CATEGORY: Core]
+    [IO_BOUND: No]
+    [THREAD_SAFE: No]
+
+    Meta-Harness 式自动搜索的局部原型，对同一问题生成多条认知路径并评分。
+
+    详细描述：
+        生成三种路径：标准（向量+BM25）、激进（热度优先）、保守（固定+L1），
+        用规则引擎快速评分（晶体数量、层级权重、指纹匹配、多样性），
+        选择最优路径。
+
+    职责范围：
+        - 生成认知路径（generate_paths）
+        - 评分路径（score_paths）
+        - 选择最佳（select_best_path）
+
+    关键依赖：
+        - engine (CrystalEngine): 获取晶体和指纹
+
+    副作用：
+        - 无
+
+    Methods:
+        run_comparison(question) -> Dict
+    """
+```
+
+---
+
+## 第十一批：可验证主张与沙盒（VerifiableClaim, ClaimExtractor, SVRMADValidator, SandboxExecutor, M3MADBenchResult, M3MADBench, Day12Integration）
+
+### 44. `VerifiableClaim`（数据类）
+
+```python
+@dataclass
+class VerifiableClaim:
+    """
+    [CATEGORY: Data]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    可验证主张的数据结构。
+
+    Attributes:
+        claim_id (str): 唯一标识
+        original_text (str): 原始文本
+        claim_type (str): "comparative", "absolute", "threshold"
+        entity_a, entity_b (Optional[str]): 比较实体
+        metric (Optional[str]): 指标名称
+        value (Optional[float]): 数值
+        comparison (Optional[str]): 比较运算符
+        test_code (str): 生成的测试代码
+        verified (bool): 是否通过验证
+        result (Dict): 执行结果详情
+    """
+```
+
+### 45. `ClaimExtractor`
+
+```python
+class ClaimExtractor:
+    """
+    [CATEGORY: Utils]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    从文本中提取可验证的主张（数字+比较级模式）。
+
+    详细描述：
+        使用正则表达式匹配三种类型的主张：
+        - 比较级（A 比 B 高 X%）
+        - 绝对值（X 达到 Y%）
+        - 阈值（成本低于 100 元）
+        并生成对应的 Python 测试代码骨架。
+
+    职责范围：
+        - 提取主张（extract_from_text）
+        - 过滤无效主张（_filter_valid_claims）
+        - 生成测试代码（_generate_test_code）
+
+    副作用：
+        - 无
+
+    Methods:
+        extract_from_text(text) -> List[VerifiableClaim]
+    """
+```
+
+### 46. `SVRMADValidator`
+
+```python
+class SVRMADValidator:
+    """
+    [CATEGORY: AI]
+    [IO_BOUND: Yes (File)]
+    [THREAD_SAFE: No]
+
+    SVR-MAD 贝叶斯后验验证引擎。
+
+    详细描述：
+        基于进化日志中的历史事件，计算每个角色的先验概率，
+        结合当前辩论的证据评分（似然），利用贝叶斯公式计算后验概率，
+        从而找出最可靠的角色。
+
+    职责范围：
+        - 加载先验历史（_load_prior_history）
+        - 计算先验（compute_prior）
+        - 计算似然（compute_likelihood）
+        - 计算后验（compute_posterior）
+        - 验证所有角色（validate_all_roles）
+
+    关键依赖：
+        - engine (CrystalEngine): 用于读取进化日志
+
+    副作用：
+        - 读取 evolution_log.json
+
+    Methods:
+        validate_all_roles(debate_rounds) -> Dict[str, float]
+        get_most_reliable_role(debate_rounds) -> Tuple[str, float]
+    """
+```
+
+### 47. `SandboxExecutor`
+
+```python
+class SandboxExecutor:
+    """
+    [CATEGORY: Utils]
+    [IO_BOUND: Yes (File + Subprocess)]
+    [THREAD_SAFE: No]
+
+    沙盒执行引擎，在隔离环境中运行验证代码。
+
+    详细描述：
+        为每个主张创建临时 Python 文件，在子进程中执行，
+        捕获输出和错误，返回执行结果。
+
+    职责范围：
+        - 执行单个主张（execute_claim）
+        - 批量执行（execute_claims）
+        - 生成执行摘要（get_execution_summary）
+
+    副作用：
+        - 创建/删除临时目录
+        - 执行子进程
+
+    Methods:
+        execute_claim(claim) -> Dict
+        execute_claims(claims) -> List[Dict]
+        get_execution_summary() -> Dict
+    """
+```
+
+### 48. `M3MADBenchResult`（数据类）
+
+```python
+@dataclass
+class M3MADBenchResult:
+    """
+    [CATEGORY: Data]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    M3MAD-Bench 评估结果数据结构。
+
+    属性：
+        reasoning_score, knowledge_score, creativity_score,
+        text_score, file_score, dialogue_score,
+        accuracy_score, efficiency_score, diversity_score
+
+    属性方法：
+        overall_score, to_dict()
+    """
+```
+
+### 49. `M3MADBench`
+
+```python
+class M3MADBench:
+    """
+    [CATEGORY: AI]
+    [IO_BOUND: No]
+    [THREAD_SAFE: No]
+
+    M3MAD-Bench 标准化评估引擎。
+
+    详细描述：
+        从三个维度评估单次辩论：
+        1. 多域任务（推理、知识、创意）
+        2. 多模态输入（文本、文件、对话）
+        3. 多维指标（准确性、效率、多样性）
+
+    职责范围：
+        - 评估辩论结果（evaluate）
+
+    关键依赖：
+        - engine (CrystalEngine): 获取晶体数据
+        - ai_client (AIClient): 未直接使用
+
+    副作用：
+        - 无
+
+    Methods:
+        evaluate(debate_result) -> M3MADBenchResult
+    """
+```
+
+### 50. `Day12Integration`
+
+```python
+class Day12Integration:
+    """
+    [CATEGORY: Integration]
+    [IO_BOUND: Yes (File + Subprocess)]
+    [THREAD_SAFE: No]
+
+    Day 12 功能集成类，将主张提取、SVR-MAD、沙盒执行、M3MAD-Bench 整合为一条流水线。
+
+    职责范围：
+        - 处理文本（process_text）
+        - 处理辩论结果（process_debate_result）
+        - 生成验证摘要
+
+    关键依赖：
+        - engine (CrystalEngine): 用于记录日志
+        - ai_client (AIClient): 可选
+
+    副作用：
+        - 记录进化日志
+
+    Methods:
+        process_text(text, debate_rounds) -> Dict
+        process_debate_result(debate_result) -> Dict
+    """
+```
+
+---
+
+## 第十二批：替身与沉思（TwinProfile, TwinWorkbench, ContemplativeEngine）
+
+### 51. `TwinProfile`（数据类）
+
+```python
+@dataclass
+class TwinProfile:
+    """
+    [CATEGORY: Data]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes]
+
+    替身认知指纹和对话历史的数据结构。
+
+    Attributes:
+        name (str): 替身名称
+        role (str): "决策替身" / "学习替身" / "社交替身"
+        fingerprint (Dict): 认知指纹
+        history (List[Tuple[str, str]]): 对话历史
+        crystals (List[str]): 关联的晶体 ID
+        created_at, last_active (str): 时间戳
+    """
+```
+
+### 52. `TwinWorkbench`
+
+```python
+class TwinWorkbench:
+    """
+    [CATEGORY: AI]
+    [IO_BOUND: Yes (File)]
+    [THREAD_SAFE: No]
+
+    多替身并行工作台，管理多个独立替身的对话和整合。
+
+    详细描述：
+        用户可创建三个替身（决策/学习/社交），每个替身独立积累对话和指纹。
+        支持跨替身整合（由结构主义者角色完成）。
+
+    职责范围：
+        - 创建/获取替身（create_twin, get_twin）
+        - 与替身对话（chat_with_twin）
+        - 跨替身整合（integrate_twins）
+        - 持久化保存/加载（_save_twins, _load_twins）
+
+    关键依赖：
+        - engine (CrystalEngine): 用于记录
+        - ai_client (AIClient): 对话和整合
+
+    副作用：
+        - 读写系统日志/twin_profiles.json
+        - 更新 last_active 等状态
+
+    Methods:
+        create_twin(name, role) -> TwinProfile
+        chat_with_twin(twin_name, message) -> str
+        integrate_twins() -> Dict
+        get_twin_status() -> Dict
+    """
+```
+
+### 53. `ContemplativeEngine`
+
+```python
+class ContemplativeEngine:
+    """
+    [CATEGORY: AI]
+    [IO_BOUND: Yes (Network)]
+    [THREAD_SAFE: No]
+
+    沉思式反思引擎，为 AI 增加四个维度指令：正念、空性、非二元性、无边关怀。
+
+    详细描述：
+        基于普林斯顿大学的《Contemplative Wisdom for Superalignment》论文，
+        在辩论结束后生成「智慧回响」，融合中国传统文化意象。
+
+    职责范围：
+        - 提取辩论摘要
+        - 分别生成四个维度的反思
+        - 整合生成最终智慧回响（wise_echo）
+
+    关键依赖：
+        - ai_client (AIClient): 生成反思文本
+
+    副作用：
+        - 记录反思历史到内存
+
+    Methods:
+        reflect(question, debate_rounds) -> Dict
+    """
+```
+
+---
+
+## 第十三批：GUI 应用（CrystalTreeApp）
+
+### 54. `CrystalTreeApp`
+
+```python
+class CrystalTreeApp:
+    """
+    [CATEGORY: UI]
+    [IO_BOUND: Yes (File + Network + GUI Event Loop)]
+    [THREAD_SAFE: No]
+
+    Tkinter 图形界面主应用，提供完整的用户交互界面。
+
+    详细描述：
+        整合所有核心功能（聊天、晶体化、深度推理、每日计划、任务管理、健康检查等），
+        以图形化方式呈现。包含会话管理、日志显示、结果面板、认知画像等组件。
+
+    职责范围：
+        - 初始化所有 GUI 组件和布局
+        - 响应用户点击和输入事件
+        - 启动后台线程执行耗时任务
+        - 更新界面状态（进度条、日志、结果面板）
+
+    关键依赖：
+        - 几乎所有的核心类和工具类（engine, ai, fetcher, planner, etc.）
+
+    副作用：
+        - 修改所有数据文件（通过引擎）
+        - 启动子进程（如启动 Web 后端）
+
+    Args:
+        (无参，自动初始化)
+
+    Methods:
+        _init_app, _create_widgets, _do_chat, _do_crystal, _do_deep_reasoning,
+        _show_status, _open_task_panel, _manual_run_daily_plan, etc.
+    """
+```
+
+---
+
+## 第十四批：Web API 独立函数（_job, _set_job, _log_job, _run_job, register_day12_api, generate_session_title_from_content, main, apply_v3_patches, verify_day0_startup_assertions, verify_day1）
+
+### 55. `_job`, `_set_job`, `_log_job`, `_run_job`
+
+这四个函数是 FastAPI 后台任务管理的辅助函数，放在一起说明：
+
+```python
+def _job(job_type: str) -> str:
+    """
+    [CATEGORY: API]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes (使用锁)]
+
+    创建一个新任务记录并返回 job_id。
+
+    Args:
+        job_type (str): 任务类型，如 "chat", "crystallize"
+
+    Returns:
+        str: 唯一的 job_id
+    """
+
+def _set_job(job_id: str, **kwargs):
+    """
+    [CATEGORY: API]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes (使用锁)]
+
+    更新指定任务的属性（状态、进度、结果等）。
+
+    Args:
+        job_id (str): 任务 ID
+        **kwargs: 要更新的键值对
+    """
+
+def _log_job(job_id: str, message: str, level: str = "system"):
+    """
+    [CATEGORY: API]
+    [IO_BOUND: No]
+    [THREAD_SAFE: Yes (使用锁)]
+
+    向任务的日志列表追加一条消息。
+
+    Args:
+        job_id (str): 任务 ID
+        message (str): 日志内容
+        level (str): 日志级别，默认 "system"
+    """
+
+def _run_job(job_id: str, fn: Callable[[], Any]):
+    """
+    [CATEGORY: API]
+    [IO_BOUND: Yes (取决于 fn)]
+    [THREAD_SAFE: No (应串行执行)]
+
+    在后台线程中执行一个任务函数，并更新任务状态。
+
+    Args:
+        job_id (str): 任务 ID
+        fn (Callable): 要执行的函数，无参数，返回任意值
+    """
+```
+
+### 56. `register_day12_api`
+
+```python
+def register_day12_api(app):
+    """
+    [CATEGORY: API]
+    [IO_BOUND: Yes (Network + Subprocess)]
+    [THREAD_SAFE: No]
+
+    为 FastAPI 应用注册 Day 12 相关路由（主张验证、沙盒执行、M3MAD 状态）。
+
+    Args:
+        app (FastAPI): FastAPI 应用实例
+
+    Side Effects:
+        修改 app.routes，注册三个端点：
+        - POST /api/verify/claims
+        - POST /api/sandbox/execute
+        - GET /api/m3mad/status
+    """
+```
+
+### 57. `generate_session_title_from_content`
+
+```python
+def generate_session_title_from_content(content: str, api_key: str = None) -> str:
+    """
+    [CATEGORY: Utils]
+    [IO_BOUND: Yes (Network)]
+    [THREAD_SAFE: Yes]
+
+    调用 AI 为会话生成精炼标题（≤8 字），失败时降级为截取前 8 个字符。
+
+    Args:
+        content (str): 用户输入或对话摘要（建议不超过 300 字符）
+        api_key (str, optional): DeepSeek API Key
+
+    Returns:
+        str: 标题
+    """
+```
+
+### 58. `main`
+
+```python
+def main():
+    """
+    [CATEGORY: Entry]
+    [IO_BOUND: Yes (File, Network, GUI/Web)]
+    [THREAD_SAFE: N/A]
+
+    程序入口，解析命令行参数并启动相应模式（Web / GUI / 基线采集）。
+
+    Command-line arguments:
+        --web: 启动 FastAPI Web 服务
+        --gui: 启动 Tkinter 图形界面
+        --baseline: 运行基线采集（Day 0 标准测试）
+        --baseline-rounds: 指定基线辩论轮次
+
+    Side Effects:
+        根据模式启动服务或运行测试。
+    """
+```
+
+### 59. `apply_v3_patches`
+
+```python
+def apply_v3_patches():
+    """
+    [CATEGORY: Init]
+    [IO_BOUND: Yes (File)]
+    [THREAD_SAFE: Yes]
+
+    应用 V3.0 融合版补丁，主要是确保角色突触文件存在。
+
+    Side Effects:
+        创建 系统日志/角色突触.json（如果不存在）。
+    """
+```
+
+### 60. `verify_day0_startup_assertions`
+
+```python
+def verify_day0_startup_assertions() -> bool:
+    """
+    [CATEGORY: Init]
+    [IO_BOUND: Yes (File)]
+    [THREAD_SAFE: Yes]
+
+    执行 Day 0 启动自检断言，检查核心组件、配置项、必需文件是否存在。
+
+    Returns:
+        bool: 所有断言是否通过
+    """
+```
+
+### 61. `verify_day1`
+
+```python
+def verify_day1() -> bool:
+    """
+    [CATEGORY: Init]
+    [IO_BOUND: Yes (File)]
+    [THREAD_SAFE: Yes]
+
+    执行 Day 1 验收检查，验证认知指纹、元层配置、MetaLayer 实例化等。
+
+    Returns:
+        bool: 是否全部通过
+    """
+```
+
+---
+
+## 总结
+
+以上为**全部 61 个类/独立函数**的完整 Docstring（含标签、职责、依赖、副作用、参数、返回等）。你可以直接复制替换现有代码中的 Docstring 部分。剩余未列出的内部嵌套函数（如 `DebateEngine._call_role_with_retry` 等）可参照同一模板简化，但核心类均已覆盖。
+
+最后，建议在文件顶部添加模块级文档字符串，明确说明拆包规划和模块映射，以便后续 AI 和开发者快速定位。

@@ -1,0 +1,41 @@
+{
+  "fingerprint": {
+    "risk_tolerance": 0.5,
+    "innovation_preference": 0.5,
+    "decisiveness": 0.5,
+    "preferred_role": "structural",
+    "role_adoption_history": {},
+    "conflict_resolution_style": "integrative",
+    "attention_span": 0.5,
+    "context_preference": 3,
+    "reasoning_style": "balanced",
+    "analogy_preference": "balanced",
+    "output_style": "balanced",
+    "language_style": {
+      "wenbai_ratio": "balanced",
+      "metaphor_preference": "nature",
+      "rhythm_preference": "balanced",
+      "cultural_roots": [
+        "儒家",
+        "道家"
+      ]
+    },
+    "last_updated": "2026-07-29T10:47:58.232412",
+    "total_interactions": 1,
+    "confidence": 0.31,
+    "evolution_log": [
+      {
+        "timestamp": "2026-07-29T10:47:58.232412",
+        "changes": [],
+        "total_interactions": 1
+      }
+    ]
+  },
+  "extraction_metadata": {
+    "last_extraction": "2026-07-29T10:47:58.232412",
+    "messages_analyzed": 1,
+    "debates_analyzed": 0,
+    "crystals_created": 0,
+    "version": "1.0"
+  }
+}

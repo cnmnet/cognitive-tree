@@ -1,0 +1,663 @@
+{
+  "last_audit": "2026-07-17T11:38:23.615798",
+  "history": [
+    {
+      "timestamp": "2026-07-17T10:50:07.400269",
+      "layers": [
+        {
+          "layer_name": "L1",
+          "crystal_count": 47,
+          "contribution_percent": 73.4,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.86,
+          "last_updated": "2026-07-17T10:50:07.400269"
+        },
+        {
+          "layer_name": "L2",
+          "crystal_count": 1,
+          "contribution_percent": 1.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:07.400269"
+        },
+        {
+          "layer_name": "L3",
+          "crystal_count": 48,
+          "contribution_percent": 25.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:07.400269"
+        }
+      ],
+      "total_crystals": 96,
+      "health_score": 6.5,
+      "components_status": {
+        "CrystalEngine": true,
+        "DebateEngine": true,
+        "MetaLayer": true,
+        "CheapGate": true
+      },
+      "cognitive_continuity_score": 5.0,
+      "fingerprint_change_rate": 0.0,
+      "recommendations": [
+        "📉 认知连续性偏低，建议减少剧烈偏好调整，保持一致性",
+        "📊 L1晶体少于L3，建议提升核心晶体质量，或手动固定高价值晶体到L1"
+      ],
+      "version": "1.0"
+    },
+    {
+      "timestamp": "2026-07-17T10:50:07.431434",
+      "layers": [
+        {
+          "layer_name": "L1",
+          "crystal_count": 47,
+          "contribution_percent": 73.4,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.86,
+          "last_updated": "2026-07-17T10:50:07.431434"
+        },
+        {
+          "layer_name": "L2",
+          "crystal_count": 1,
+          "contribution_percent": 1.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:07.431434"
+        },
+        {
+          "layer_name": "L3",
+          "crystal_count": 48,
+          "contribution_percent": 25.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:07.431434"
+        }
+      ],
+      "total_crystals": 96,
+      "health_score": 6.5,
+      "components_status": {
+        "CrystalEngine": true,
+        "DebateEngine": true,
+        "MetaLayer": true,
+        "CheapGate": true
+      },
+      "cognitive_continuity_score": 5.0,
+      "fingerprint_change_rate": 0.0,
+      "recommendations": [
+        "📉 认知连续性偏低，建议减少剧烈偏好调整，保持一致性",
+        "📊 L1晶体少于L3，建议提升核心晶体质量，或手动固定高价值晶体到L1"
+      ],
+      "version": "1.0"
+    },
+    {
+      "timestamp": "2026-07-17T10:50:07.431434",
+      "layers": [
+        {
+          "layer_name": "L1",
+          "crystal_count": 47,
+          "contribution_percent": 73.4,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.86,
+          "last_updated": "2026-07-17T10:50:07.431434"
+        },
+        {
+          "layer_name": "L2",
+          "crystal_count": 1,
+          "contribution_percent": 1.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:07.431434"
+        },
+        {
+          "layer_name": "L3",
+          "crystal_count": 48,
+          "contribution_percent": 25.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:07.431434"
+        }
+      ],
+      "total_crystals": 96,
+      "health_score": 6.5,
+      "components_status": {
+        "CrystalEngine": true,
+        "DebateEngine": true,
+        "MetaLayer": true,
+        "CheapGate": true
+      },
+      "cognitive_continuity_score": 5.0,
+      "fingerprint_change_rate": 0.0,
+      "recommendations": [
+        "📉 认知连续性偏低，建议减少剧烈偏好调整，保持一致性",
+        "📊 L1晶体少于L3，建议提升核心晶体质量，或手动固定高价值晶体到L1"
+      ],
+      "version": "1.0"
+    },
+    {
+      "timestamp": "2026-07-17T10:50:07.457965",
+      "layers": [
+        {
+          "layer_name": "L1",
+          "crystal_count": 47,
+          "contribution_percent": 73.4,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.86,
+          "last_updated": "2026-07-17T10:50:07.457965"
+        },
+        {
+          "layer_name": "L2",
+          "crystal_count": 1,
+          "contribution_percent": 1.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:07.457965"
+        },
+        {
+          "layer_name": "L3",
+          "crystal_count": 48,
+          "contribution_percent": 25.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:07.457965"
+        }
+      ],
+      "total_crystals": 96,
+      "health_score": 6.5,
+      "components_status": {
+        "CrystalEngine": true,
+        "DebateEngine": true,
+        "MetaLayer": true,
+        "CheapGate": true
+      },
+      "cognitive_continuity_score": 5.0,
+      "fingerprint_change_rate": 0.0,
+      "recommendations": [
+        "📉 认知连续性偏低，建议减少剧烈偏好调整，保持一致性",
+        "📊 L1晶体少于L3，建议提升核心晶体质量，或手动固定高价值晶体到L1"
+      ],
+      "version": "1.0"
+    },
+    {
+      "timestamp": "2026-07-17T10:50:09.522902",
+      "layers": [
+        {
+          "layer_name": "L1",
+          "crystal_count": 47,
+          "contribution_percent": 73.4,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.86,
+          "last_updated": "2026-07-17T10:50:09.522902"
+        },
+        {
+          "layer_name": "L2",
+          "crystal_count": 1,
+          "contribution_percent": 1.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:09.522902"
+        },
+        {
+          "layer_name": "L3",
+          "crystal_count": 48,
+          "contribution_percent": 25.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:09.522902"
+        }
+      ],
+      "total_crystals": 96,
+      "health_score": 6.5,
+      "components_status": {
+        "CrystalEngine": true,
+        "DebateEngine": true,
+        "MetaLayer": true,
+        "CheapGate": true
+      },
+      "cognitive_continuity_score": 5.0,
+      "fingerprint_change_rate": 0.0,
+      "recommendations": [
+        "📉 认知连续性偏低，建议减少剧烈偏好调整，保持一致性",
+        "📊 L1晶体少于L3，建议提升核心晶体质量，或手动固定高价值晶体到L1"
+      ],
+      "version": "1.0"
+    },
+    {
+      "timestamp": "2026-07-17T10:50:09.522902",
+      "layers": [
+        {
+          "layer_name": "L1",
+          "crystal_count": 47,
+          "contribution_percent": 73.4,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.86,
+          "last_updated": "2026-07-17T10:50:09.522902"
+        },
+        {
+          "layer_name": "L2",
+          "crystal_count": 1,
+          "contribution_percent": 1.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:09.522902"
+        },
+        {
+          "layer_name": "L3",
+          "crystal_count": 48,
+          "contribution_percent": 25.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:09.522902"
+        }
+      ],
+      "total_crystals": 96,
+      "health_score": 6.5,
+      "components_status": {
+        "CrystalEngine": true,
+        "DebateEngine": true,
+        "MetaLayer": true,
+        "CheapGate": true
+      },
+      "cognitive_continuity_score": 5.0,
+      "fingerprint_change_rate": 0.0,
+      "recommendations": [
+        "📉 认知连续性偏低，建议减少剧烈偏好调整，保持一致性",
+        "📊 L1晶体少于L3，建议提升核心晶体质量，或手动固定高价值晶体到L1"
+      ],
+      "version": "1.0"
+    },
+    {
+      "timestamp": "2026-07-17T10:50:09.542948",
+      "layers": [
+        {
+          "layer_name": "L1",
+          "crystal_count": 47,
+          "contribution_percent": 73.4,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.86,
+          "last_updated": "2026-07-17T10:50:09.542948"
+        },
+        {
+          "layer_name": "L2",
+          "crystal_count": 1,
+          "contribution_percent": 1.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:09.542948"
+        },
+        {
+          "layer_name": "L3",
+          "crystal_count": 48,
+          "contribution_percent": 25.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:09.542948"
+        }
+      ],
+      "total_crystals": 96,
+      "health_score": 6.5,
+      "components_status": {
+        "CrystalEngine": true,
+        "DebateEngine": true,
+        "MetaLayer": true,
+        "CheapGate": true
+      },
+      "cognitive_continuity_score": 5.0,
+      "fingerprint_change_rate": 0.0,
+      "recommendations": [
+        "📉 认知连续性偏低，建议减少剧烈偏好调整，保持一致性",
+        "📊 L1晶体少于L3，建议提升核心晶体质量，或手动固定高价值晶体到L1"
+      ],
+      "version": "1.0"
+    },
+    {
+      "timestamp": "2026-07-17T10:50:09.542948",
+      "layers": [
+        {
+          "layer_name": "L1",
+          "crystal_count": 47,
+          "contribution_percent": 73.4,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.86,
+          "last_updated": "2026-07-17T10:50:09.542948"
+        },
+        {
+          "layer_name": "L2",
+          "crystal_count": 1,
+          "contribution_percent": 1.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:09.542948"
+        },
+        {
+          "layer_name": "L3",
+          "crystal_count": 48,
+          "contribution_percent": 25.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:09.542948"
+        }
+      ],
+      "total_crystals": 96,
+      "health_score": 6.5,
+      "components_status": {
+        "CrystalEngine": true,
+        "DebateEngine": true,
+        "MetaLayer": true,
+        "CheapGate": true
+      },
+      "cognitive_continuity_score": 5.0,
+      "fingerprint_change_rate": 0.0,
+      "recommendations": [
+        "📉 认知连续性偏低，建议减少剧烈偏好调整，保持一致性",
+        "📊 L1晶体少于L3，建议提升核心晶体质量，或手动固定高价值晶体到L1"
+      ],
+      "version": "1.0"
+    },
+    {
+      "timestamp": "2026-07-17T10:50:09.568159",
+      "layers": [
+        {
+          "layer_name": "L1",
+          "crystal_count": 47,
+          "contribution_percent": 73.4,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.86,
+          "last_updated": "2026-07-17T10:50:09.568159"
+        },
+        {
+          "layer_name": "L2",
+          "crystal_count": 1,
+          "contribution_percent": 1.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:09.568159"
+        },
+        {
+          "layer_name": "L3",
+          "crystal_count": 48,
+          "contribution_percent": 25.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:09.568159"
+        }
+      ],
+      "total_crystals": 96,
+      "health_score": 6.5,
+      "components_status": {
+        "CrystalEngine": true,
+        "DebateEngine": true,
+        "MetaLayer": true,
+        "CheapGate": true
+      },
+      "cognitive_continuity_score": 5.0,
+      "fingerprint_change_rate": 0.0,
+      "recommendations": [
+        "📉 认知连续性偏低，建议减少剧烈偏好调整，保持一致性",
+        "📊 L1晶体少于L3，建议提升核心晶体质量，或手动固定高价值晶体到L1"
+      ],
+      "version": "1.0"
+    },
+    {
+      "timestamp": "2026-07-17T10:50:09.568159",
+      "layers": [
+        {
+          "layer_name": "L1",
+          "crystal_count": 47,
+          "contribution_percent": 73.4,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.86,
+          "last_updated": "2026-07-17T10:50:09.568159"
+        },
+        {
+          "layer_name": "L2",
+          "crystal_count": 1,
+          "contribution_percent": 1.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:09.568159"
+        },
+        {
+          "layer_name": "L3",
+          "crystal_count": 48,
+          "contribution_percent": 25.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:09.568159"
+        }
+      ],
+      "total_crystals": 96,
+      "health_score": 6.5,
+      "components_status": {
+        "CrystalEngine": true,
+        "DebateEngine": true,
+        "MetaLayer": true,
+        "CheapGate": true
+      },
+      "cognitive_continuity_score": 5.0,
+      "fingerprint_change_rate": 0.0,
+      "recommendations": [
+        "📉 认知连续性偏低，建议减少剧烈偏好调整，保持一致性",
+        "📊 L1晶体少于L3，建议提升核心晶体质量，或手动固定高价值晶体到L1"
+      ],
+      "version": "1.0"
+    },
+    {
+      "timestamp": "2026-07-17T10:50:09.621181",
+      "layers": [
+        {
+          "layer_name": "L1",
+          "crystal_count": 47,
+          "contribution_percent": 73.4,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.86,
+          "last_updated": "2026-07-17T10:50:09.621181"
+        },
+        {
+          "layer_name": "L2",
+          "crystal_count": 1,
+          "contribution_percent": 1.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:09.621181"
+        },
+        {
+          "layer_name": "L3",
+          "crystal_count": 48,
+          "contribution_percent": 25.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:09.621181"
+        }
+      ],
+      "total_crystals": 96,
+      "health_score": 6.5,
+      "components_status": {
+        "CrystalEngine": true,
+        "DebateEngine": true,
+        "MetaLayer": true,
+        "CheapGate": true
+      },
+      "cognitive_continuity_score": 5.0,
+      "fingerprint_change_rate": 0.0,
+      "recommendations": [
+        "📉 认知连续性偏低，建议减少剧烈偏好调整，保持一致性",
+        "📊 L1晶体少于L3，建议提升核心晶体质量，或手动固定高价值晶体到L1"
+      ],
+      "version": "1.0"
+    },
+    {
+      "timestamp": "2026-07-17T10:50:10.634958",
+      "layers": [
+        {
+          "layer_name": "L1",
+          "crystal_count": 47,
+          "contribution_percent": 73.4,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.86,
+          "last_updated": "2026-07-17T10:50:10.634958"
+        },
+        {
+          "layer_name": "L2",
+          "crystal_count": 1,
+          "contribution_percent": 1.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:10.634958"
+        },
+        {
+          "layer_name": "L3",
+          "crystal_count": 48,
+          "contribution_percent": 25.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T10:50:10.634958"
+        }
+      ],
+      "total_crystals": 96,
+      "health_score": 6.5,
+      "components_status": {
+        "CrystalEngine": true,
+        "DebateEngine": true,
+        "MetaLayer": true,
+        "CheapGate": true
+      },
+      "cognitive_continuity_score": 5.0,
+      "fingerprint_change_rate": 0.0,
+      "recommendations": [
+        "📉 认知连续性偏低，建议减少剧烈偏好调整，保持一致性",
+        "📊 L1晶体少于L3，建议提升核心晶体质量，或手动固定高价值晶体到L1"
+      ],
+      "version": "1.0"
+    },
+    {
+      "timestamp": "2026-07-17T11:38:23.615798",
+      "layers": [
+        {
+          "layer_name": "L1",
+          "crystal_count": 47,
+          "contribution_percent": 73.4,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.86,
+          "last_updated": "2026-07-17T11:38:23.615798"
+        },
+        {
+          "layer_name": "L2",
+          "crystal_count": 1,
+          "contribution_percent": 1.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T11:38:23.615798"
+        },
+        {
+          "layer_name": "L3",
+          "crystal_count": 48,
+          "contribution_percent": 25.0,
+          "trend": "stable",
+          "trend_value": 0.0,
+          "heat_avg": 0.01,
+          "last_updated": "2026-07-17T11:38:23.615798"
+        }
+      ],
+      "total_crystals": 96,
+      "health_score": 6.5,
+      "components_status": {
+        "CrystalEngine": true,
+        "DebateEngine": true,
+        "MetaLayer": true,
+        "CheapGate": true
+      },
+      "cognitive_continuity_score": 5.0,
+      "fingerprint_change_rate": 0.0,
+      "recommendations": [
+        "📉 认知连续性偏低，建议减少剧烈偏好调整，保持一致性",
+        "📊 L1晶体少于L3，建议提升核心晶体质量，或手动固定高价值晶体到L1"
+      ],
+      "version": "1.0"
+    }
+  ],
+  "latest": {
+    "timestamp": "2026-07-17T11:38:23.615798",
+    "layers": [
+      {
+        "layer_name": "L1",
+        "crystal_count": 47,
+        "contribution_percent": 73.4,
+        "trend": "stable",
+        "trend_value": 0.0,
+        "heat_avg": 0.86,
+        "last_updated": "2026-07-17T11:38:23.615798"
+      },
+      {
+        "layer_name": "L2",
+        "crystal_count": 1,
+        "contribution_percent": 1.0,
+        "trend": "stable",
+        "trend_value": 0.0,
+        "heat_avg": 0.01,
+        "last_updated": "2026-07-17T11:38:23.615798"
+      },
+      {
+        "layer_name": "L3",
+        "crystal_count": 48,
+        "contribution_percent": 25.0,
+        "trend": "stable",
+        "trend_value": 0.0,
+        "heat_avg": 0.01,
+        "last_updated": "2026-07-17T11:38:23.615798"
+      }
+    ],
+    "total_crystals": 96,
+    "health_score": 6.5,
+    "components_status": {
+      "CrystalEngine": true,
+      "DebateEngine": true,
+      "MetaLayer": true,
+      "CheapGate": true
+    },
+    "cognitive_continuity_score": 5.0,
+    "fingerprint_change_rate": 0.0,
+    "recommendations": [
+      "📉 认知连续性偏低，建议减少剧烈偏好调整，保持一致性",
+      "📊 L1晶体少于L3，建议提升核心晶体质量，或手动固定高价值晶体到L1"
+    ],
+    "version": "1.0"
+  }
+}

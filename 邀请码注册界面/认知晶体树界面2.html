@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>认知晶体树 · 邀请码</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            width: 100%;
+            min-height: 100vh;
+            background: #0b0a12;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        .container {
+            max-width: 420px;
+            width: 100%;
+            position: relative;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            background: #0b0a12;
+        }
+
+        /* ===== 背景图（简洁版） ===== */
+        .bg-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ===== 交互层（毛玻璃，浮在底部） ===== */
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 18px 20px 28px;
+            background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            pointer-events: none;
+        }
+        .overlay > * {
+            pointer-events: auto;
+        }
+
+        /* ===== 通用控件宽度 ===== */
+        .input-group,
+        .btn-submit {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        /* ===== 手机号行（输入框 + 按钮） ===== */
+        .phone-row {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            max-width: 300px;
+        }
+        .phone-row .input-group {
+            flex: 1;
+            max-width: none;
+        }
+        .phone-row .btn-otp {
+            flex-shrink: 0;
+            padding: 0 16px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            color: #d4af37;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: 0.3s;
+            white-space: nowrap;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .phone-row .btn-otp:active {
+            background: rgba(212, 175, 55, 0.15);
+        }
+        .phone-row .btn-otp:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* ===== 输入框统一风格 ===== */
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 15px;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 2px;
+            outline: none;
+            transition: 0.3s;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        .input-group input:focus {
+            border-color: rgba(212, 175, 55, 0.5);
+            background: rgba(255, 255, 255, 0.14);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.04);
+        }
+
+        /* ===== 金色开启按钮 ===== */
+        .btn-submit {
+            padding: 14px 0;
+            background: linear-gradient(135deg, #f6e05e 0%, #d4af37 50%, #b8942a 100%);
+            border: none;
+            border-radius: 14px;
+            color: #0b0a12;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        .btn-submit:active {
+            transform: scale(0.96);
+        }
+        .btn-submit::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 30%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: rotate(25deg);
+            transition: 0.7s;
+        }
+        .btn-submit:hover::after {
+            left: 120%;
+        }
+
+        /* ===== 底部小字 ===== */
+        .footer-text {
+            font-size: 11px;
+            color: rgba(180, 170, 220, 0.15);
+            letter-spacing: 2px;
+            margin-top: 4px;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 420px) {
+            .overlay { padding: 14px 14px 20px; gap: 10px; }
+            .input-group input { padding: 10px 14px; font-size: 14px; }
+            .phone-row .btn-otp { height: 44px; font-size: 12px; padding: 0 12px; }
+            .btn-submit { padding: 12px 0; font-size: 16px; letter-spacing: 3px; }
+        }
+        @media (max-width: 360px) {
+            .input-group input { font-size: 13px; padding: 8px 12px; }
+            .phone-row .btn-otp { height: 40px; font-size: 11px; padding: 0 10px; }
+            .btn-submit { font-size: 14px; padding: 10px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 背景图（简洁版，只有标题+邀请码） -->
+    <img class="bg-image" src="晶体树.png" alt="认知晶体树">
+
+    <!-- 交互层 -->
+    <div class="overlay">
+        <!-- 1. 手机号 + 获取验证码 -->
+        <div class="phone-row">
+            <div class="input-group">
+                <input type="tel" id="phoneInput" placeholder="手机号" maxlength="11">
+            </div>
+            <button class="btn-otp" id="otpBtn">获取验证码</button>
+        </div>
+
+        <!-- 2. 验证码 -->
+        <div class="input-group">
+            <input type="text" id="codeInput" placeholder="验证码" maxlength="6">
+        </div>
+
+        <!-- 3. 邀请码 -->
+        <div class="input-group">
+            <input type="text" id="inviteInput" placeholder="邀请码" maxlength="20" autofocus>
+        </div>
+
+        <!-- 4. 开启按钮 -->
+        <button class="btn-submit" id="submitBtn">✦ 开启认知之旅 ✦</button>
+
+        <!-- 5. 底部 -->
+        <div class="footer-text">认知晶体树 v2.2</div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const phoneInput = document.getElementById('phoneInput');
+        const codeInput = document.getElementById('codeInput');
+        const inviteInput = document.getElementById('inviteInput');
+        const otpBtn = document.getElementById('otpBtn');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // 手机号只允许数字
+        phoneInput.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '');
+        });
+
+        // 验证码只允许数字
+        codeInput.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '');
+        });
+
+        // 邀请码自动大写
+        inviteInput.addEventListener('input', function() {
+            this.value = this.value.toUpperCase();
+        });
+
+        // 获取验证码倒计时
+        let countdown = 0;
+        let timer = null;
+        otpBtn.addEventListener('click', function() {
+            const phone = phoneInput.value.trim();
+            if (phone.length < 11) {
+                alert('请输入正确的手机号');
+                phoneInput.focus();
+                return;
+            }
+            if (countdown > 0) return;
+
+            this.textContent = '发送中…';
+            this.disabled = true;
+
+            setTimeout(() => {
+                alert('✅ 验证码已发送至您的手机（演示）');
+                countdown = 60;
+                this.textContent = `${countdown}s 后重试`;
+                timer = setInterval(() => {
+                    countdown--;
+                    if (countdown <= 0) {
+                        clearInterval(timer);
+                        timer = null;
+                        this.textContent = '获取验证码';
+                        this.disabled = false;
+                    } else {
+                        this.textContent = `${countdown}s 后重试`;
+                    }
+                }, 1000);
+            }, 800);
+        });
+
+        // 开启验证
+        submitBtn.addEventListener('click', function() {
+            const phone = phoneInput.value.trim();
+            const code = codeInput.value.trim();
+            const invite = inviteInput.value.trim();
+
+            if (phone.length < 11) {
+                alert('请输入正确的手机号');
+                phoneInput.focus();
+                return;
+            }
+            if (code.length < 4) {
+                alert('请输入验证码');
+                codeInput.focus();
+                return;
+            }
+            if (!invite) {
+                alert('请输入邀请码');
+                inviteInput.focus();
+                return;
+            }
+
+            // 验证邀请码
+            const isValid = invite.toUpperCase() === 'CRYSTAL-25K';
+            if (isValid) {
+                alert('🎉 验证成功！\n手机号已绑定，您已获得 2 次深度认知淬炼权限。');
+                // 可跳转
+            } else {
+                alert('❌ 邀请码无效，请重新输入。\n提示：CRYSTAL-25K');
+                inviteInput.value = '';
+                inviteInput.focus();
+            }
+        });
+
+        // 回车提交
+        inviteInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') submitBtn.click();
+        });
+    })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-07-28T12:16:50.714518",
+  "data": {
+    "ai_papers": [
+      "ClinFusion: A Vision-Centric Multimodal LLM System for Holistic Medical Understanding (发布于: 2026-07-27)",
+      "Certified Parallel-in-Time Sinkhorn for Dynamic Entropic Optimal Transport (发布于: 2026-07-27)",
+      "Learning Distributions from Multiple Data Providers (发布于: 2026-07-27)",
+      "Rethinking Classifier-Free Guidance in On-Policy Diffusion Distillation (发布于: 2026-07-27)",
+      "KANEx: Translating Kolmogorov-Arnold Networks' Interpretability to Medical Explainability (发布于: 2026-07-27)"
+    ],
+    "hf_papers": [
+      "(HF页面结构可能已更新)"
+    ],
+    "llm_news": {
+      "面壁智能 新模型": [
+        "面向千行百业,面壁智能邀你共赴下一场产业变革",
+        "直击WAIC 2026:面壁智能携手学术与产业伙伴共启新章"
+      ],
+      "智谱AI 最新进展": [
+        "从“模型公司”到“全栈巨头”:智谱收购中科加禾的深意与算账",
+        "智谱万亿市值下,藏着什么?"
+      ],
+      "阿里通义 大模型": [
+        "阿里通义实验室发布Wan-Streamer v0.2模型",
+        "阿里通义实验室发布Wan-Streamer v0.2模型"
+      ]
+    },
+    "neuro_papers": [
+      "Synaptic clustering emerges from learning and supports covariance discrimination (发布于: 2026-07-27)",
+      "From read-out geometry to in-silico stimulation: a distributed functional-connectivity signature of Alzheimer's disease (发布于: 2026-07-27)",
+      "Dynamic sampling of non-stationary spontaneous activity in dissociated neuronal networks (发布于: 2026-07-27)",
+      "Reality Monitoring in Large Language Models: Self-Knowledge That Transforms with Conversation Memory (发布于: 2026-07-27)"
+    ],
+    "timestamp": "2026-07-28T12:16:50.714518"
+  }
+}

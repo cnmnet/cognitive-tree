@@ -1,0 +1,797 @@
+{
+  "timestamp": "2026-07-06T21:28:52.558085",
+  "total_questions": 10,
+  "configs": [
+    "full",
+    "no_vector",
+    "no_auditor",
+    "no_cheapgate"
+  ],
+  "summary": {
+    "full": {
+      "is_ablation": 0.0,
+      "jaccard_similarity": 0.16429686325457898,
+      "crystal_reference_rate": 5.658333333333333,
+      "audit_feedback_avg_len": 59.03636363636364,
+      "executable_actions": 8.2,
+      "bias_amplification": 0.0,
+      "position_bias": 0.03643294285943197,
+      "token_consumption": 14804.2,
+      "user_rating": 3.68125
+    },
+    "no_vector": {
+      "is_ablation": 1.0,
+      "jaccard_similarity": 0.1689607866869722,
+      "crystal_reference_rate": 5.775,
+      "audit_feedback_avg_len": 58.86363636363636,
+      "executable_actions": 9.9,
+      "bias_amplification": 0.0,
+      "position_bias": 0.032145113076310246,
+      "token_consumption": 14536.8,
+      "user_rating": 3.5787500000000003
+    },
+    "no_auditor": {
+      "is_ablation": 1.0,
+      "jaccard_similarity": 0.161216074442207,
+      "crystal_reference_rate": 5.616666666666666,
+      "audit_feedback_avg_len": 57.409090909090914,
+      "executable_actions": 9.4,
+      "bias_amplification": 0.0,
+      "position_bias": 0.035040030633698406,
+      "token_consumption": 14573.0,
+      "user_rating": 3.74375
+    },
+    "no_cheapgate": {
+      "is_ablation": 1.0,
+      "jaccard_similarity": 0.1618740620816262,
+      "crystal_reference_rate": 5.541666666666666,
+      "audit_feedback_avg_len": 58.95454545454545,
+      "executable_actions": 8.3,
+      "bias_amplification": 0.0,
+      "position_bias": 0.03545824991713962,
+      "token_consumption": 14609.8,
+      "user_rating": 3.64375
+    }
+  },
+  "details": {
+    "full": [
+      {
+        "question": "如何在不增加预算的前提下，提升一个 20 人研发团队的技术决策质量？",
+        "timestamp": "2026-07-06T17:05:41.721168",
+        "is_ablation": false,
+        "jaccard_similarity": 0.16720017197986192,
+        "jaccard_per_round": [
+          0.1421299451991063,
+          0.16624098308570467,
+          0.1932295876547748
+        ],
+        "crystal_reference_rate": 4.666666666666667,
+        "audit_feedback_avg_len": 60.0,
+        "executable_actions": 5,
+        "bias_amplification": 0.0,
+        "position_bias": 0.051099642455668504,
+        "token_consumption": 14350,
+        "user_rating": 3.5
+      },
+      {
+        "question": "AI 辅助编程工具会让初级程序员丧失独立解决问题的能力吗？请给出平衡方案。",
+        "timestamp": "2026-07-06T17:29:57.783382",
+        "is_ablation": false,
+        "jaccard_similarity": 0.17323845838168436,
+        "jaccard_per_round": [
+          0.15329015773883783,
+          0.17782839674718487,
+          0.18859682065903038
+        ],
+        "crystal_reference_rate": 7.75,
+        "audit_feedback_avg_len": 53.18181818181818,
+        "executable_actions": 6,
+        "bias_amplification": 0.0,
+        "position_bias": 0.03530666292019255,
+        "token_consumption": 14704,
+        "user_rating": 3.875
+      },
+      {
+        "question": "一家传统制造企业想转型数据驱动，但管理层年龄偏大且抵触新技术，最关键的三个切入点是什么？",
+        "timestamp": "2026-07-06T17:55:44.033589",
+        "is_ablation": false,
+        "jaccard_similarity": 0.15752878506327353,
+        "jaccard_per_round": [
+          0.13577590011806637,
+          0.16358701437732623,
+          0.17322344069442805
+        ],
+        "crystal_reference_rate": 5.5,
+        "audit_feedback_avg_len": 50.54545454545455,
+        "executable_actions": 17,
+        "bias_amplification": 0.0,
+        "position_bias": 0.03744754057636168,
+        "token_consumption": 14949,
+        "user_rating": 3.875
+      },
+      {
+        "question": "在资源有限的情况下，应该优先修复技术债务还是优先开发新功能？给出决策框架。",
+        "timestamp": "2026-07-06T18:24:29.700822",
+        "is_ablation": false,
+        "jaccard_similarity": 0.16995881306806637,
+        "jaccard_per_round": [
+          0.14633458182898296,
+          0.18175191787756373,
+          0.18178993949765243
+        ],
+        "crystal_reference_rate": 5.166666666666667,
+        "audit_feedback_avg_len": 63.81818181818182,
+        "executable_actions": 14,
+        "bias_amplification": 0.0,
+        "position_bias": 0.035455357668669474,
+        "token_consumption": 13997,
+        "user_rating": 3.4375
+      },
+      {
+        "question": "如何判断一个创新想法是「真正有潜力」还是「伪需求」？请给出 3 个检验标准。",
+        "timestamp": "2026-07-06T18:50:38.632074",
+        "is_ablation": false,
+        "jaccard_similarity": 0.15653360675464834,
+        "jaccard_per_round": [
+          0.12499909531398934,
+          0.1620418450957614,
+          0.18255987985419428
+        ],
+        "crystal_reference_rate": 4.416666666666667,
+        "audit_feedback_avg_len": 60.81818181818182,
+        "executable_actions": 17,
+        "bias_amplification": 0.0,
+        "position_bias": 0.05756078454020494,
+        "token_consumption": 16195,
+        "user_rating": 3.875
+      },
+      {
+        "question": "远程办公环境下，如何建立有效的「非正式沟通」机制以减少信息孤岛？",
+        "timestamp": "2026-07-06T19:16:27.948435",
+        "is_ablation": false,
+        "jaccard_similarity": 0.16404063069957728,
+        "jaccard_per_round": [
+          0.146541475610344,
+          0.17138388127621743,
+          0.17419653521217038
+        ],
+        "crystal_reference_rate": 5.5,
+        "audit_feedback_avg_len": 55.0,
+        "executable_actions": 3,
+        "bias_amplification": 0.0,
+        "position_bias": 0.027655059601826376,
+        "token_consumption": 13781,
+        "user_rating": 3.625
+      },
+      {
+        "question": "面对一个高度不确定的市场，应该采用「精益创业」快速试错，还是「深度调研」后再出手？",
+        "timestamp": "2026-07-06T19:46:13.016401",
+        "is_ablation": false,
+        "jaccard_similarity": 0.16025524731877502,
+        "jaccard_per_round": [
+          0.14097742044841666,
+          0.16500488081382111,
+          0.17478344069408722
+        ],
+        "crystal_reference_rate": 7.0,
+        "audit_feedback_avg_len": 71.9090909090909,
+        "executable_actions": 3,
+        "bias_amplification": 0.0,
+        "position_bias": 0.03380602024567056,
+        "token_consumption": 16319,
+        "user_rating": 3.2499999999999996
+      },
+      {
+        "question": "个人知识管理系统中，「信息囤积」和「深度消化」的平衡点在哪里？",
+        "timestamp": "2026-07-06T20:12:15.147185",
+        "is_ablation": false,
+        "jaccard_similarity": 0.1778979818910016,
+        "jaccard_per_round": [
+          0.1510543506078621,
+          0.1789425484495811,
+          0.20369704661556154
+        ],
+        "crystal_reference_rate": 4.916666666666667,
+        "audit_feedback_avg_len": 69.0,
+        "executable_actions": 1,
+        "bias_amplification": 0.0,
+        "position_bias": 0.05264269600769944,
+        "token_consumption": 14679,
+        "user_rating": 3.875
+      },
+      {
+        "question": "如何设计一个「自我修正」的 OKR 体系，使团队不偏离长期目标？",
+        "timestamp": "2026-07-06T20:39:44.287413",
+        "is_ablation": false,
+        "jaccard_similarity": 0.15839750081628548,
+        "jaccard_per_round": [
+          0.14350035270511066,
+          0.16834453381158657,
+          0.1633476159321592
+        ],
+        "crystal_reference_rate": 5.0,
+        "audit_feedback_avg_len": 49.36363636363637,
+        "executable_actions": 15,
+        "bias_amplification": 0.0,
+        "position_bias": 0.01984726322704855,
+        "token_consumption": 14190,
+        "user_rating": 3.8125
+      },
+      {
+        "question": "当行业颠覆性技术出现时，现有领军企业的「路径依赖」如何打破？",
+        "timestamp": "2026-07-06T21:08:08.517818",
+        "is_ablation": false,
+        "jaccard_similarity": 0.1579174365726158,
+        "jaccard_per_round": [
+          0.151458921084273,
+          0.15732606619832387,
+          0.1649673224352506
+        ],
+        "crystal_reference_rate": 6.666666666666667,
+        "audit_feedback_avg_len": 56.72727272727273,
+        "executable_actions": 1,
+        "bias_amplification": 0.0,
+        "position_bias": 0.013508401350977611,
+        "token_consumption": 14878,
+        "user_rating": 3.6874999999999996
+      }
+    ],
+    "no_vector": [
+      {
+        "question": "如何在不增加预算的前提下，提升一个 20 人研发团队的技术决策质量？",
+        "timestamp": "2026-07-06T17:11:41.310754",
+        "is_ablation": true,
+        "jaccard_similarity": 0.15637352220091544,
+        "jaccard_per_round": [
+          0.13868022242141975,
+          0.1641445735195787,
+          0.1662957706617479
+        ],
+        "crystal_reference_rate": 5.083333333333333,
+        "audit_feedback_avg_len": 57.36363636363637,
+        "executable_actions": 3,
+        "bias_amplification": 0.0,
+        "position_bias": 0.027615548240328136,
+        "token_consumption": 13710,
+        "user_rating": 3.8749999999999996
+      },
+      {
+        "question": "AI 辅助编程工具会让初级程序员丧失独立解决问题的能力吗？请给出平衡方案。",
+        "timestamp": "2026-07-06T17:36:02.052175",
+        "is_ablation": true,
+        "jaccard_similarity": 0.16957321939805725,
+        "jaccard_per_round": [
+          0.1404506601025948,
+          0.1739160742440088,
+          0.19435292384756822
+        ],
+        "crystal_reference_rate": 8.166666666666666,
+        "audit_feedback_avg_len": 49.09090909090909,
+        "executable_actions": 17,
+        "bias_amplification": 0.0,
+        "position_bias": 0.05390226374497342,
+        "token_consumption": 14544,
+        "user_rating": 3.5
+      },
+      {
+        "question": "一家传统制造企业想转型数据驱动，但管理层年龄偏大且抵触新技术，最关键的三个切入点是什么？",
+        "timestamp": "2026-07-06T18:04:06.901969",
+        "is_ablation": true,
+        "jaccard_similarity": 0.16972511775903099,
+        "jaccard_per_round": [
+          0.1569411543467749,
+          0.1596432612589123,
+          0.19259093767140578
+        ],
+        "crystal_reference_rate": 5.0,
+        "audit_feedback_avg_len": 56.63636363636363,
+        "executable_actions": 10,
+        "bias_amplification": 0.0,
+        "position_bias": 0.03564978332463087,
+        "token_consumption": 16138,
+        "user_rating": 3.2499999999999996
+      },
+      {
+        "question": "在资源有限的情况下，应该优先修复技术债务还是优先开发新功能？给出决策框架。",
+        "timestamp": "2026-07-06T18:31:08.787524",
+        "is_ablation": true,
+        "jaccard_similarity": 0.165383675943116,
+        "jaccard_per_round": [
+          0.14642755979492042,
+          0.18043623622839974,
+          0.1692872318060279
+        ],
+        "crystal_reference_rate": 3.9166666666666665,
+        "audit_feedback_avg_len": 58.36363636363637,
+        "executable_actions": 6,
+        "bias_amplification": 0.0,
+        "position_bias": 0.022859672011107474,
+        "token_consumption": 13886,
+        "user_rating": 3.5
+      },
+      {
+        "question": "如何判断一个创新想法是「真正有潜力」还是「伪需求」？请给出 3 个检验标准。",
+        "timestamp": "2026-07-06T18:56:57.601913",
+        "is_ablation": true,
+        "jaccard_similarity": 0.165411218550658,
+        "jaccard_per_round": [
+          0.12710563606622127,
+          0.1857980944656231,
+          0.18332992512012955
+        ],
+        "crystal_reference_rate": 5.166666666666667,
+        "audit_feedback_avg_len": 65.81818181818181,
+        "executable_actions": 5,
+        "bias_amplification": 0.0,
+        "position_bias": 0.05622428905390828,
+        "token_consumption": 14250,
+        "user_rating": 3.375
+      },
+      {
+        "question": "远程办公环境下，如何建立有效的「非正式沟通」机制以减少信息孤岛？",
+        "timestamp": "2026-07-06T19:22:59.724445",
+        "is_ablation": true,
+        "jaccard_similarity": 0.1673792128320546,
+        "jaccard_per_round": [
+          0.15943627306804706,
+          0.16944604677921024,
+          0.1732553186489065
+        ],
+        "crystal_reference_rate": 6.0,
+        "audit_feedback_avg_len": 64.27272727272727,
+        "executable_actions": 18,
+        "bias_amplification": 0.0,
+        "position_bias": 0.013819045580859446,
+        "token_consumption": 13860,
+        "user_rating": 3.5
+      },
+      {
+        "question": "面对一个高度不确定的市场，应该采用「精益创业」快速试错，还是「深度调研」后再出手？",
+        "timestamp": "2026-07-06T19:54:07.030352",
+        "is_ablation": true,
+        "jaccard_similarity": 0.1709549005137088,
+        "jaccard_per_round": [
+          0.1576337775499563,
+          0.17060705068051696,
+          0.18462387331065314
+        ],
+        "crystal_reference_rate": 6.083333333333333,
+        "audit_feedback_avg_len": 60.36363636363637,
+        "executable_actions": 15,
+        "bias_amplification": 0.0,
+        "position_bias": 0.02699009576069683,
+        "token_consumption": 15081,
+        "user_rating": 3.3749999999999996
+      },
+      {
+        "question": "个人知识管理系统中，「信息囤积」和「深度消化」的平衡点在哪里？",
+        "timestamp": "2026-07-06T20:18:12.249107",
+        "is_ablation": true,
+        "jaccard_similarity": 0.1716660467810397,
+        "jaccard_per_round": [
+          0.15866455623626533,
+          0.1744065555309878,
+          0.18192702857586596
+        ],
+        "crystal_reference_rate": 6.5,
+        "audit_feedback_avg_len": 55.09090909090909,
+        "executable_actions": 11,
+        "bias_amplification": 0.0,
+        "position_bias": 0.02326247233960063,
+        "token_consumption": 14076,
+        "user_rating": 3.875
+      },
+      {
+        "question": "如何设计一个「自我修正」的 OKR 体系，使团队不偏离长期目标？",
+        "timestamp": "2026-07-06T20:47:43.578576",
+        "is_ablation": true,
+        "jaccard_similarity": 0.182272162374049,
+        "jaccard_per_round": [
+          0.16502360674631353,
+          0.18152416275583796,
+          0.2002687176199955
+        ],
+        "crystal_reference_rate": 5.416666666666667,
+        "audit_feedback_avg_len": 57.09090909090909,
+        "executable_actions": 13,
+        "bias_amplification": 0.0,
+        "position_bias": 0.035245110873681984,
+        "token_consumption": 14589,
+        "user_rating": 3.9750000000000005
+      },
+      {
+        "question": "当行业颠覆性技术出现时，现有领军企业的「路径依赖」如何打破？",
+        "timestamp": "2026-07-06T21:14:47.540020",
+        "is_ablation": true,
+        "jaccard_similarity": 0.17086879051709195,
+        "jaccard_per_round": [
+          0.1542749859449793,
+          0.17817354982800185,
+          0.1801578357782947
+        ],
+        "crystal_reference_rate": 6.416666666666667,
+        "audit_feedback_avg_len": 64.54545454545455,
+        "executable_actions": 1,
+        "bias_amplification": 0.0,
+        "position_bias": 0.025882849833315402,
+        "token_consumption": 15234,
+        "user_rating": 3.5624999999999996
+      }
+    ],
+    "no_auditor": [
+      {
+        "question": "如何在不增加预算的前提下，提升一个 20 人研发团队的技术决策质量？",
+        "timestamp": "2026-07-06T17:18:24.710031",
+        "is_ablation": true,
+        "jaccard_similarity": 0.16423194483399026,
+        "jaccard_per_round": [
+          0.1428190158413796,
+          0.16732381269359095,
+          0.18255300596700022
+        ],
+        "crystal_reference_rate": 5.583333333333333,
+        "audit_feedback_avg_len": 63.27272727272727,
+        "executable_actions": 21,
+        "bias_amplification": 0.0,
+        "position_bias": 0.03973399012562062,
+        "token_consumption": 14128,
+        "user_rating": 3.875
+      },
+      {
+        "question": "AI 辅助编程工具会让初级程序员丧失独立解决问题的能力吗？请给出平衡方案。",
+        "timestamp": "2026-07-06T17:41:49.081268",
+        "is_ablation": true,
+        "jaccard_similarity": 0.17053590312516978,
+        "jaccard_per_round": [
+          0.1567576427558741,
+          0.17399418376047812,
+          0.1808558828591572
+        ],
+        "crystal_reference_rate": 6.75,
+        "audit_feedback_avg_len": 64.0909090909091,
+        "executable_actions": 6,
+        "bias_amplification": 0.0,
+        "position_bias": 0.024098240103283125,
+        "token_consumption": 14606,
+        "user_rating": 3.875
+      },
+      {
+        "question": "一家传统制造企业想转型数据驱动，但管理层年龄偏大且抵触新技术，最关键的三个切入点是什么？",
+        "timestamp": "2026-07-06T18:11:03.038953",
+        "is_ablation": true,
+        "jaccard_similarity": 0.1609194082492661,
+        "jaccard_per_round": [
+          0.1514493956955897,
+          0.1638582136816429,
+          0.16745061537056563
+        ],
+        "crystal_reference_rate": 5.583333333333333,
+        "audit_feedback_avg_len": 54.63636363636363,
+        "executable_actions": 12,
+        "bias_amplification": 0.0,
+        "position_bias": 0.01600121967497592,
+        "token_consumption": 13358,
+        "user_rating": 3.5624999999999996
+      },
+      {
+        "question": "在资源有限的情况下，应该优先修复技术债务还是优先开发新功能？给出决策框架。",
+        "timestamp": "2026-07-06T18:37:52.880392",
+        "is_ablation": true,
+        "jaccard_similarity": 0.170129037018109,
+        "jaccard_per_round": [
+          0.15210389037913138,
+          0.173436593056961,
+          0.18484662761823467
+        ],
+        "crystal_reference_rate": 5.333333333333333,
+        "audit_feedback_avg_len": 66.27272727272727,
+        "executable_actions": 9,
+        "bias_amplification": 0.0,
+        "position_bias": 0.03274273723910329,
+        "token_consumption": 13725,
+        "user_rating": 3.4375
+      },
+      {
+        "question": "如何判断一个创新想法是「真正有潜力」还是「伪需求」？请给出 3 个检验标准。",
+        "timestamp": "2026-07-06T19:03:46.005021",
+        "is_ablation": true,
+        "jaccard_similarity": 0.14988493102191094,
+        "jaccard_per_round": [
+          0.11512072577904059,
+          0.17230988079374385,
+          0.16222418649294842
+        ],
+        "crystal_reference_rate": 4.5,
+        "audit_feedback_avg_len": 61.45454545454545,
+        "executable_actions": 6,
+        "bias_amplification": 0.0,
+        "position_bias": 0.047103460713907835,
+        "token_consumption": 15791,
+        "user_rating": 3.875
+      },
+      {
+        "question": "远程办公环境下，如何建立有效的「非正式沟通」机制以减少信息孤岛？",
+        "timestamp": "2026-07-06T19:29:47.190469",
+        "is_ablation": true,
+        "jaccard_similarity": 0.15197963125643602,
+        "jaccard_per_round": [
+          0.1241119760913687,
+          0.16603132370374818,
+          0.16579559397419116
+        ],
+        "crystal_reference_rate": 4.5,
+        "audit_feedback_avg_len": 58.18181818181818,
+        "executable_actions": 11,
+        "bias_amplification": 0.0,
+        "position_bias": 0.04168361788282246,
+        "token_consumption": 14498,
+        "user_rating": 4.0
+      },
+      {
+        "question": "面对一个高度不确定的市场，应该采用「精益创业」快速试错，还是「深度调研」后再出手？",
+        "timestamp": "2026-07-06T20:00:32.043166",
+        "is_ablation": true,
+        "jaccard_similarity": 0.16156305547574676,
+        "jaccard_per_round": [
+          0.14328518147310695,
+          0.16596374677861678,
+          0.17544023817551654
+        ],
+        "crystal_reference_rate": 7.083333333333333,
+        "audit_feedback_avg_len": 51.0,
+        "executable_actions": 3,
+        "bias_amplification": 0.0,
+        "position_bias": 0.03215505670240959,
+        "token_consumption": 16202,
+        "user_rating": 3.6250000000000004
+      },
+      {
+        "question": "个人知识管理系统中，「信息囤积」和「深度消化」的平衡点在哪里？",
+        "timestamp": "2026-07-06T20:24:22.096172",
+        "is_ablation": true,
+        "jaccard_similarity": 0.1627529932017406,
+        "jaccard_per_round": [
+          0.13729988931202977,
+          0.1651304906927836,
+          0.18582859960040846
+        ],
+        "crystal_reference_rate": 6.166666666666667,
+        "audit_feedback_avg_len": 50.63636363636363,
+        "executable_actions": 8,
+        "bias_amplification": 0.0,
+        "position_bias": 0.048528710288378685,
+        "token_consumption": 13074,
+        "user_rating": 3.4375
+      },
+      {
+        "question": "如何设计一个「自我修正」的 OKR 体系，使团队不偏离长期目标？",
+        "timestamp": "2026-07-06T20:54:13.852079",
+        "is_ablation": true,
+        "jaccard_similarity": 0.1571817888492266,
+        "jaccard_per_round": [
+          0.12135314791268319,
+          0.17761196611796762,
+          0.17258025251702894
+        ],
+        "crystal_reference_rate": 3.6666666666666665,
+        "audit_feedback_avg_len": 51.45454545454545,
+        "executable_actions": 8,
+        "bias_amplification": 0.0,
+        "position_bias": 0.05122710460434575,
+        "token_consumption": 14660,
+        "user_rating": 3.875
+      },
+      {
+        "question": "当行业颠覆性技术出现时，现有领军企业的「路径依赖」如何打破？",
+        "timestamp": "2026-07-06T21:21:29.982916",
+        "is_ablation": true,
+        "jaccard_similarity": 0.16298205139047403,
+        "jaccard_per_round": [
+          0.14830369472519045,
+          0.1752125957189045,
+          0.16542986372732718
+        ],
+        "crystal_reference_rate": 7.0,
+        "audit_feedback_avg_len": 53.09090909090909,
+        "executable_actions": 10,
+        "bias_amplification": 0.0,
+        "position_bias": 0.017126169002136732,
+        "token_consumption": 15688,
+        "user_rating": 3.875
+      }
+    ],
+    "no_cheapgate": [
+      {
+        "question": "如何在不增加预算的前提下，提升一个 20 人研发团队的技术决策质量？",
+        "timestamp": "2026-07-06T17:24:12.243510",
+        "is_ablation": true,
+        "jaccard_similarity": 0.16282062777114722,
+        "jaccard_per_round": [
+          0.15240331477428737,
+          0.17111129044888185,
+          0.16494727809027243
+        ],
+        "crystal_reference_rate": 5.333333333333333,
+        "audit_feedback_avg_len": 56.36363636363637,
+        "executable_actions": 9,
+        "bias_amplification": 0.0,
+        "position_bias": 0.012543963315985063,
+        "token_consumption": 14532,
+        "user_rating": 3.5624999999999996
+      },
+      {
+        "question": "AI 辅助编程工具会让初级程序员丧失独立解决问题的能力吗？请给出平衡方案。",
+        "timestamp": "2026-07-06T17:48:11.016085",
+        "is_ablation": true,
+        "jaccard_similarity": 0.16971167687859975,
+        "jaccard_per_round": [
+          0.1580304475898049,
+          0.16749686769838043,
+          0.18360771534761386
+        ],
+        "crystal_reference_rate": 6.25,
+        "audit_feedback_avg_len": 54.45454545454545,
+        "executable_actions": 7,
+        "bias_amplification": 0.0,
+        "position_bias": 0.02557726775780897,
+        "token_consumption": 15017,
+        "user_rating": 3.875
+      },
+      {
+        "question": "一家传统制造企业想转型数据驱动，但管理层年龄偏大且抵触新技术，最关键的三个切入点是什么？",
+        "timestamp": "2026-07-06T18:17:54.561168",
+        "is_ablation": true,
+        "jaccard_similarity": 0.1575322035409632,
+        "jaccard_per_round": [
+          0.12265707333655496,
+          0.1704724974194286,
+          0.17946703986690601
+        ],
+        "crystal_reference_rate": 5.583333333333333,
+        "audit_feedback_avg_len": 54.45454545454545,
+        "executable_actions": 10,
+        "bias_amplification": 0.0,
+        "position_bias": 0.05680996653035106,
+        "token_consumption": 14188,
+        "user_rating": 3.5624999999999996
+      },
+      {
+        "question": "在资源有限的情况下，应该优先修复技术债务还是优先开发新功能？给出决策框架。",
+        "timestamp": "2026-07-06T18:44:01.021960",
+        "is_ablation": true,
+        "jaccard_similarity": 0.16423317549874555,
+        "jaccard_per_round": [
+          0.14845171037095453,
+          0.16655197259154667,
+          0.17769584353373546
+        ],
+        "crystal_reference_rate": 6.583333333333333,
+        "audit_feedback_avg_len": 48.72727272727273,
+        "executable_actions": 7,
+        "bias_amplification": 0.0,
+        "position_bias": 0.029244133162780933,
+        "token_consumption": 12879,
+        "user_rating": 3.5624999999999996
+      },
+      {
+        "question": "如何判断一个创新想法是「真正有潜力」还是「伪需求」？请给出 3 个检验标准。",
+        "timestamp": "2026-07-06T19:10:21.314779",
+        "is_ablation": true,
+        "jaccard_similarity": 0.14901119851285685,
+        "jaccard_per_round": [
+          0.12835398707366205,
+          0.1544459478108148,
+          0.16423366065409367
+        ],
+        "crystal_reference_rate": 4.5,
+        "audit_feedback_avg_len": 68.81818181818181,
+        "executable_actions": 8,
+        "bias_amplification": 0.0,
+        "position_bias": 0.03587967358043162,
+        "token_consumption": 15607,
+        "user_rating": 3.8125
+      },
+      {
+        "question": "远程办公环境下，如何建立有效的「非正式沟通」机制以减少信息孤岛？",
+        "timestamp": "2026-07-06T19:37:10.153840",
+        "is_ablation": true,
+        "jaccard_similarity": 0.15921969893279742,
+        "jaccard_per_round": [
+          0.13985842615711527,
+          0.159127602521453,
+          0.17867306811982395
+        ],
+        "crystal_reference_rate": 3.4166666666666665,
+        "audit_feedback_avg_len": 60.54545454545455,
+        "executable_actions": 4,
+        "bias_amplification": 0.0,
+        "position_bias": 0.038814641962708674,
+        "token_consumption": 14187,
+        "user_rating": 3.3749999999999996
+      },
+      {
+        "question": "面对一个高度不确定的市场，应该采用「精益创业」快速试错，还是「深度调研」后再出手？",
+        "timestamp": "2026-07-06T20:06:44.805191",
+        "is_ablation": true,
+        "jaccard_similarity": 0.17164486601409454,
+        "jaccard_per_round": [
+          0.1417696123494528,
+          0.18877639820990325,
+          0.18438858748292755
+        ],
+        "crystal_reference_rate": 5.666666666666667,
+        "audit_feedback_avg_len": 53.45454545454545,
+        "executable_actions": 7,
+        "bias_amplification": 0.0,
+        "position_bias": 0.04261897513347476,
+        "token_consumption": 15866,
+        "user_rating": 3.5624999999999996
+      },
+      {
+        "question": "个人知识管理系统中，「信息囤积」和「深度消化」的平衡点在哪里？",
+        "timestamp": "2026-07-06T20:31:38.712609",
+        "is_ablation": true,
+        "jaccard_similarity": 0.16494640206902503,
+        "jaccard_per_round": [
+          0.14420109509624782,
+          0.16105565211492898,
+          0.1895824589958983
+        ],
+        "crystal_reference_rate": 5.166666666666667,
+        "audit_feedback_avg_len": 65.0909090909091,
+        "executable_actions": 7,
+        "bias_amplification": 0.0,
+        "position_bias": 0.04538136389965047,
+        "token_consumption": 15554,
+        "user_rating": 3.5
+      },
+      {
+        "question": "如何设计一个「自我修正」的 OKR 体系，使团队不偏离长期目标？",
+        "timestamp": "2026-07-06T21:00:50.235745",
+        "is_ablation": true,
+        "jaccard_similarity": 0.157961935705907,
+        "jaccard_per_round": [
+          0.13519619508162586,
+          0.16773472372994128,
+          0.17095488830615388
+        ],
+        "crystal_reference_rate": 5.666666666666667,
+        "audit_feedback_avg_len": 61.63636363636363,
+        "executable_actions": 13,
+        "bias_amplification": 0.0,
+        "position_bias": 0.035758693224528015,
+        "token_consumption": 13380,
+        "user_rating": 3.75
+      },
+      {
+        "question": "当行业颠覆性技术出现时，现有领军企业的「路径依赖」如何打破？",
+        "timestamp": "2026-07-06T21:28:52.549355",
+        "is_ablation": true,
+        "jaccard_similarity": 0.16165883589212549,
+        "jaccard_per_round": [
+          0.13969895913876965,
+          0.1736247687951605,
+          0.1716527797424463
+        ],
+        "crystal_reference_rate": 7.25,
+        "audit_feedback_avg_len": 66.0,
+        "executable_actions": 11,
+        "bias_amplification": 0.0,
+        "position_bias": 0.03195382060367666,
+        "token_consumption": 14888,
+        "user_rating": 3.875
+      }
+    ]
+  },
+  "analysis": {
+    "overloaded_layers": [
+      "向量检索",
+      "便宜门"
+    ],
+    "core_weaknesses": [
+      "no_vector (评分3.58, 引用率5.78)",
+      "no_cheapgate (评分3.64, 引用率5.54)",
+      "no_auditor (评分3.74, 引用率5.62)"
+    ]
+  }
+}

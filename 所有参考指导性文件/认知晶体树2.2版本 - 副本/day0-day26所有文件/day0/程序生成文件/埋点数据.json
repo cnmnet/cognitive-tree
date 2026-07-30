@@ -1,0 +1,1946 @@
+{
+  "TTQ": [
+    {
+      "timestamp": "2026-07-06T16:52:03.861760",
+      "call_count": 10,
+      "total_tokens": 7594,
+      "avg_tokens_per_call": 759.4
+    },
+    {
+      "timestamp": "2026-07-06T16:55:18.396559",
+      "call_count": 20,
+      "total_tokens": 58197,
+      "avg_tokens_per_call": 2909.85
+    },
+    {
+      "timestamp": "2026-07-06T17:01:10.865918",
+      "call_count": 10,
+      "total_tokens": 7961,
+      "avg_tokens_per_call": 796.1
+    },
+    {
+      "timestamp": "2026-07-06T17:03:46.989356",
+      "call_count": 20,
+      "total_tokens": 60183,
+      "avg_tokens_per_call": 3009.15
+    },
+    {
+      "timestamp": "2026-07-06T17:06:23.930272",
+      "call_count": 30,
+      "total_tokens": 90372,
+      "avg_tokens_per_call": 3012.4
+    },
+    {
+      "timestamp": "2026-07-06T17:07:59.872233",
+      "call_count": 40,
+      "total_tokens": 108656,
+      "avg_tokens_per_call": 2716.4
+    },
+    {
+      "timestamp": "2026-07-06T17:10:40.000716",
+      "call_count": 50,
+      "total_tokens": 161804,
+      "avg_tokens_per_call": 3236.08
+    },
+    {
+      "timestamp": "2026-07-06T17:12:55.201143",
+      "call_count": 60,
+      "total_tokens": 183011,
+      "avg_tokens_per_call": 3050.18
+    },
+    {
+      "timestamp": "2026-07-06T17:14:56.684876",
+      "call_count": 70,
+      "total_tokens": 212488,
+      "avg_tokens_per_call": 3035.54
+    },
+    {
+      "timestamp": "2026-07-06T17:17:21.134180",
+      "call_count": 80,
+      "total_tokens": 264632,
+      "avg_tokens_per_call": 3307.9
+    },
+    {
+      "timestamp": "2026-07-06T17:19:36.607959",
+      "call_count": 90,
+      "total_tokens": 272781,
+      "avg_tokens_per_call": 3030.9
+    },
+    {
+      "timestamp": "2026-07-06T17:21:55.470194",
+      "call_count": 100,
+      "total_tokens": 314568,
+      "avg_tokens_per_call": 3145.68
+    },
+    {
+      "timestamp": "2026-07-06T17:24:14.607446",
+      "call_count": 110,
+      "total_tokens": 352998,
+      "avg_tokens_per_call": 3209.07
+    },
+    {
+      "timestamp": "2026-07-06T17:25:50.460808",
+      "call_count": 120,
+      "total_tokens": 364172,
+      "avg_tokens_per_call": 3034.77
+    },
+    {
+      "timestamp": "2026-07-06T17:28:10.141096",
+      "call_count": 130,
+      "total_tokens": 413241,
+      "avg_tokens_per_call": 3178.78
+    },
+    {
+      "timestamp": "2026-07-06T17:30:38.711371",
+      "call_count": 140,
+      "total_tokens": 442502,
+      "avg_tokens_per_call": 3160.73
+    },
+    {
+      "timestamp": "2026-07-06T17:32:17.741414",
+      "call_count": 150,
+      "total_tokens": 462654,
+      "avg_tokens_per_call": 3084.36
+    },
+    {
+      "timestamp": "2026-07-06T17:34:44.530174",
+      "call_count": 160,
+      "total_tokens": 514595,
+      "avg_tokens_per_call": 3216.22
+    },
+    {
+      "timestamp": "2026-07-06T17:37:06.609121",
+      "call_count": 170,
+      "total_tokens": 536069,
+      "avg_tokens_per_call": 3153.35
+    },
+    {
+      "timestamp": "2026-07-06T17:38:47.031894",
+      "call_count": 180,
+      "total_tokens": 561997,
+      "avg_tokens_per_call": 3122.21
+    },
+    {
+      "timestamp": "2026-07-06T17:41:13.107441",
+      "call_count": 190,
+      "total_tokens": 614230,
+      "avg_tokens_per_call": 3232.79
+    },
+    {
+      "timestamp": "2026-07-06T17:43:22.625402",
+      "call_count": 200,
+      "total_tokens": 629382,
+      "avg_tokens_per_call": 3146.91
+    },
+    {
+      "timestamp": "2026-07-06T17:45:27.677382",
+      "call_count": 210,
+      "total_tokens": 665291,
+      "avg_tokens_per_call": 3168.05
+    },
+    {
+      "timestamp": "2026-07-06T17:48:11.015082",
+      "call_count": 220,
+      "total_tokens": 708135,
+      "avg_tokens_per_call": 3218.8
+    },
+    {
+      "timestamp": "2026-07-06T17:50:11.535756",
+      "call_count": 230,
+      "total_tokens": 719238,
+      "avg_tokens_per_call": 3127.12
+    },
+    {
+      "timestamp": "2026-07-06T17:53:00.934360",
+      "call_count": 240,
+      "total_tokens": 764153,
+      "avg_tokens_per_call": 3183.97
+    },
+    {
+      "timestamp": "2026-07-06T17:55:47.644615",
+      "call_count": 250,
+      "total_tokens": 800032,
+      "avg_tokens_per_call": 3200.13
+    },
+    {
+      "timestamp": "2026-07-06T17:57:55.164689",
+      "call_count": 260,
+      "total_tokens": 812672,
+      "avg_tokens_per_call": 3125.66
+    },
+    {
+      "timestamp": "2026-07-06T18:01:21.213956",
+      "call_count": 270,
+      "total_tokens": 863583,
+      "avg_tokens_per_call": 3198.46
+    },
+    {
+      "timestamp": "2026-07-06T18:05:07.304861",
+      "call_count": 280,
+      "total_tokens": 895566,
+      "avg_tokens_per_call": 3198.45
+    },
+    {
+      "timestamp": "2026-07-06T18:07:07.151130",
+      "call_count": 290,
+      "total_tokens": 915295,
+      "avg_tokens_per_call": 3156.19
+    },
+    {
+      "timestamp": "2026-07-06T18:09:49.998960",
+      "call_count": 300,
+      "total_tokens": 966812,
+      "avg_tokens_per_call": 3222.71
+    },
+    {
+      "timestamp": "2026-07-06T18:12:28.670455",
+      "call_count": 310,
+      "total_tokens": 988088,
+      "avg_tokens_per_call": 3187.38
+    },
+    {
+      "timestamp": "2026-07-06T18:14:10.517821",
+      "call_count": 320,
+      "total_tokens": 1011027,
+      "avg_tokens_per_call": 3159.46
+    },
+    {
+      "timestamp": "2026-07-06T18:17:01.025485",
+      "call_count": 330,
+      "total_tokens": 1061089,
+      "avg_tokens_per_call": 3215.42
+    },
+    {
+      "timestamp": "2026-07-06T18:19:06.629285",
+      "call_count": 340,
+      "total_tokens": 1077963,
+      "avg_tokens_per_call": 3170.48
+    },
+    {
+      "timestamp": "2026-07-06T18:21:01.662498",
+      "call_count": 350,
+      "total_tokens": 1108684,
+      "avg_tokens_per_call": 3167.67
+    },
+    {
+      "timestamp": "2026-07-06T18:23:29.117876",
+      "call_count": 360,
+      "total_tokens": 1159125,
+      "avg_tokens_per_call": 3219.79
+    },
+    {
+      "timestamp": "2026-07-06T18:25:52.023533",
+      "call_count": 370,
+      "total_tokens": 1166822,
+      "avg_tokens_per_call": 3153.57
+    },
+    {
+      "timestamp": "2026-07-06T18:27:58.051502",
+      "call_count": 380,
+      "total_tokens": 1202050,
+      "avg_tokens_per_call": 3163.29
+    },
+    {
+      "timestamp": "2026-07-06T18:30:40.498423",
+      "call_count": 390,
+      "total_tokens": 1246015,
+      "avg_tokens_per_call": 3194.91
+    },
+    {
+      "timestamp": "2026-07-06T18:32:44.389190",
+      "call_count": 400,
+      "total_tokens": 1253711,
+      "avg_tokens_per_call": 3134.28
+    },
+    {
+      "timestamp": "2026-07-06T18:35:37.287675",
+      "call_count": 410,
+      "total_tokens": 1299551,
+      "avg_tokens_per_call": 3169.64
+    },
+    {
+      "timestamp": "2026-07-06T18:38:19.308729",
+      "call_count": 420,
+      "total_tokens": 1334733,
+      "avg_tokens_per_call": 3177.94
+    },
+    {
+      "timestamp": "2026-07-06T18:39:53.661955",
+      "call_count": 430,
+      "total_tokens": 1349521,
+      "avg_tokens_per_call": 3138.42
+    },
+    {
+      "timestamp": "2026-07-06T18:42:23.809360",
+      "call_count": 440,
+      "total_tokens": 1397332,
+      "avg_tokens_per_call": 3175.75
+    },
+    {
+      "timestamp": "2026-07-06T18:45:07.561999",
+      "call_count": 450,
+      "total_tokens": 1420457,
+      "avg_tokens_per_call": 3156.57
+    },
+    {
+      "timestamp": "2026-07-06T18:46:56.389737",
+      "call_count": 460,
+      "total_tokens": 1442424,
+      "avg_tokens_per_call": 3135.7
+    },
+    {
+      "timestamp": "2026-07-06T18:49:27.839633",
+      "call_count": 470,
+      "total_tokens": 1497479,
+      "avg_tokens_per_call": 3186.13
+    },
+    {
+      "timestamp": "2026-07-06T18:51:46.761148",
+      "call_count": 480,
+      "total_tokens": 1519266,
+      "avg_tokens_per_call": 3165.14
+    },
+    {
+      "timestamp": "2026-07-06T18:53:33.833429",
+      "call_count": 490,
+      "total_tokens": 1545577,
+      "avg_tokens_per_call": 3154.24
+    },
+    {
+      "timestamp": "2026-07-06T18:56:00.309247",
+      "call_count": 500,
+      "total_tokens": 1599210,
+      "avg_tokens_per_call": 3198.42
+    },
+    {
+      "timestamp": "2026-07-06T18:58:37.610738",
+      "call_count": 510,
+      "total_tokens": 1615566,
+      "avg_tokens_per_call": 3167.78
+    },
+    {
+      "timestamp": "2026-07-06T19:00:36.107695",
+      "call_count": 520,
+      "total_tokens": 1647844,
+      "avg_tokens_per_call": 3168.93
+    },
+    {
+      "timestamp": "2026-07-06T19:02:55.950843",
+      "call_count": 530,
+      "total_tokens": 1697749,
+      "avg_tokens_per_call": 3203.3
+    },
+    {
+      "timestamp": "2026-07-06T19:05:28.005611",
+      "call_count": 540,
+      "total_tokens": 1710492,
+      "avg_tokens_per_call": 3167.58
+    },
+    {
+      "timestamp": "2026-07-06T19:07:40.581571",
+      "call_count": 550,
+      "total_tokens": 1746326,
+      "avg_tokens_per_call": 3175.14
+    },
+    {
+      "timestamp": "2026-07-06T19:10:21.314779",
+      "call_count": 560,
+      "total_tokens": 1795161,
+      "avg_tokens_per_call": 3205.64
+    },
+    {
+      "timestamp": "2026-07-06T19:11:56.167480",
+      "call_count": 570,
+      "total_tokens": 1803255,
+      "avg_tokens_per_call": 3163.61
+    },
+    {
+      "timestamp": "2026-07-06T19:14:32.369258",
+      "call_count": 580,
+      "total_tokens": 1852102,
+      "avg_tokens_per_call": 3193.28
+    },
+    {
+      "timestamp": "2026-07-06T19:17:17.943091",
+      "call_count": 590,
+      "total_tokens": 1882820,
+      "avg_tokens_per_call": 3191.22
+    },
+    {
+      "timestamp": "2026-07-06T19:19:00.678933",
+      "call_count": 600,
+      "total_tokens": 1902679,
+      "avg_tokens_per_call": 3171.13
+    },
+    {
+      "timestamp": "2026-07-06T19:21:41.001049",
+      "call_count": 610,
+      "total_tokens": 1957145,
+      "avg_tokens_per_call": 3208.43
+    },
+    {
+      "timestamp": "2026-07-06T19:24:15.579966",
+      "call_count": 620,
+      "total_tokens": 1978917,
+      "avg_tokens_per_call": 3191.8
+    },
+    {
+      "timestamp": "2026-07-06T19:26:03.484386",
+      "call_count": 630,
+      "total_tokens": 2004683,
+      "avg_tokens_per_call": 3182.04
+    },
+    {
+      "timestamp": "2026-07-06T19:28:45.278455",
+      "call_count": 640,
+      "total_tokens": 2057959,
+      "avg_tokens_per_call": 3215.56
+    },
+    {
+      "timestamp": "2026-07-06T19:31:14.182633",
+      "call_count": 650,
+      "total_tokens": 2069525,
+      "avg_tokens_per_call": 3183.88
+    },
+    {
+      "timestamp": "2026-07-06T19:33:46.451072",
+      "call_count": 660,
+      "total_tokens": 2104423,
+      "avg_tokens_per_call": 3188.52
+    },
+    {
+      "timestamp": "2026-07-06T19:37:10.151840",
+      "call_count": 670,
+      "total_tokens": 2148945,
+      "avg_tokens_per_call": 3207.38
+    },
+    {
+      "timestamp": "2026-07-06T19:39:18.328219",
+      "call_count": 680,
+      "total_tokens": 2159625,
+      "avg_tokens_per_call": 3175.92
+    },
+    {
+      "timestamp": "2026-07-06T19:43:01.530766",
+      "call_count": 690,
+      "total_tokens": 2207925,
+      "avg_tokens_per_call": 3199.89
+    },
+    {
+      "timestamp": "2026-07-06T19:46:15.488829",
+      "call_count": 700,
+      "total_tokens": 2244625,
+      "avg_tokens_per_call": 3206.61
+    },
+    {
+      "timestamp": "2026-07-06T19:48:32.379635",
+      "call_count": 710,
+      "total_tokens": 2256700,
+      "avg_tokens_per_call": 3178.45
+    },
+    {
+      "timestamp": "2026-07-06T19:51:43.306108",
+      "call_count": 720,
+      "total_tokens": 2305665,
+      "avg_tokens_per_call": 3202.31
+    },
+    {
+      "timestamp": "2026-07-06T19:54:46.072472",
+      "call_count": 730,
+      "total_tokens": 2338567,
+      "avg_tokens_per_call": 3203.52
+    },
+    {
+      "timestamp": "2026-07-06T19:56:33.321052",
+      "call_count": 740,
+      "total_tokens": 2356955,
+      "avg_tokens_per_call": 3185.07
+    },
+    {
+      "timestamp": "2026-07-06T19:59:12.216492",
+      "call_count": 750,
+      "total_tokens": 2411369,
+      "avg_tokens_per_call": 3215.16
+    },
+    {
+      "timestamp": "2026-07-06T20:01:51.371933",
+      "call_count": 760,
+      "total_tokens": 2436845,
+      "avg_tokens_per_call": 3206.38
+    },
+    {
+      "timestamp": "2026-07-06T20:03:43.888688",
+      "call_count": 770,
+      "total_tokens": 2461155,
+      "avg_tokens_per_call": 3196.31
+    },
+    {
+      "timestamp": "2026-07-06T20:06:08.235314",
+      "call_count": 780,
+      "total_tokens": 2516018,
+      "avg_tokens_per_call": 3225.66
+    },
+    {
+      "timestamp": "2026-07-06T20:07:59.393406",
+      "call_count": 790,
+      "total_tokens": 2535335,
+      "avg_tokens_per_call": 3209.28
+    },
+    {
+      "timestamp": "2026-07-06T20:09:41.646416",
+      "call_count": 800,
+      "total_tokens": 2563443,
+      "avg_tokens_per_call": 3204.3
+    },
+    {
+      "timestamp": "2026-07-06T20:11:40.657900",
+      "call_count": 810,
+      "total_tokens": 2611672,
+      "avg_tokens_per_call": 3224.29
+    },
+    {
+      "timestamp": "2026-07-06T20:13:27.862272",
+      "call_count": 820,
+      "total_tokens": 2619294,
+      "avg_tokens_per_call": 3194.26
+    },
+    {
+      "timestamp": "2026-07-06T20:15:54.113984",
+      "call_count": 830,
+      "total_tokens": 2667103,
+      "avg_tokens_per_call": 3213.38
+    },
+    {
+      "timestamp": "2026-07-06T20:18:16.302689",
+      "call_count": 840,
+      "total_tokens": 2699863,
+      "avg_tokens_per_call": 3214.12
+    },
+    {
+      "timestamp": "2026-07-06T20:19:44.764649",
+      "call_count": 850,
+      "total_tokens": 2710644,
+      "avg_tokens_per_call": 3188.99
+    },
+    {
+      "timestamp": "2026-07-06T20:22:25.628087",
+      "call_count": 860,
+      "total_tokens": 2758941,
+      "avg_tokens_per_call": 3208.07
+    },
+    {
+      "timestamp": "2026-07-06T20:25:18.416160",
+      "call_count": 870,
+      "total_tokens": 2786073,
+      "avg_tokens_per_call": 3202.38
+    },
+    {
+      "timestamp": "2026-07-06T20:27:07.695811",
+      "call_count": 880,
+      "total_tokens": 2805036,
+      "avg_tokens_per_call": 3187.54
+    },
+    {
+      "timestamp": "2026-07-06T20:29:54.902028",
+      "call_count": 890,
+      "total_tokens": 2852761,
+      "avg_tokens_per_call": 3205.35
+    },
+    {
+      "timestamp": "2026-07-06T20:33:10.781957",
+      "call_count": 900,
+      "total_tokens": 2878885,
+      "avg_tokens_per_call": 3198.76
+    },
+    {
+      "timestamp": "2026-07-06T20:35:22.978331",
+      "call_count": 910,
+      "total_tokens": 2904421,
+      "avg_tokens_per_call": 3191.67
+    },
+    {
+      "timestamp": "2026-07-06T20:38:30.068722",
+      "call_count": 920,
+      "total_tokens": 2954104,
+      "avg_tokens_per_call": 3210.98
+    },
+    {
+      "timestamp": "2026-07-06T20:41:18.605991",
+      "call_count": 930,
+      "total_tokens": 2966092,
+      "avg_tokens_per_call": 3189.35
+    },
+    {
+      "timestamp": "2026-07-06T20:44:06.515832",
+      "call_count": 940,
+      "total_tokens": 3002626,
+      "avg_tokens_per_call": 3194.28
+    },
+    {
+      "timestamp": "2026-07-06T20:47:02.396094",
+      "call_count": 950,
+      "total_tokens": 3050124,
+      "avg_tokens_per_call": 3210.66
+    },
+    {
+      "timestamp": "2026-07-06T20:49:12.519106",
+      "call_count": 960,
+      "total_tokens": 3057820,
+      "avg_tokens_per_call": 3185.23
+    },
+    {
+      "timestamp": "2026-07-06T20:51:45.180947",
+      "call_count": 970,
+      "total_tokens": 3100005,
+      "avg_tokens_per_call": 3195.88
+    },
+    {
+      "timestamp": "2026-07-06T20:54:22.863147",
+      "call_count": 980,
+      "total_tokens": 3138430,
+      "avg_tokens_per_call": 3202.48
+    },
+    {
+      "timestamp": "2026-07-06T20:56:07.775894",
+      "call_count": 990,
+      "total_tokens": 3150299,
+      "avg_tokens_per_call": 3182.12
+    },
+    {
+      "timestamp": "2026-07-06T20:58:51.581271",
+      "call_count": 1000,
+      "total_tokens": 3200246,
+      "avg_tokens_per_call": 3200.25
+    },
+    {
+      "timestamp": "2026-07-06T21:01:51.006131",
+      "call_count": 1010,
+      "total_tokens": 3225533,
+      "avg_tokens_per_call": 3193.6
+    },
+    {
+      "timestamp": "2026-07-06T21:03:54.680851",
+      "call_count": 1020,
+      "total_tokens": 3245745,
+      "avg_tokens_per_call": 3182.1
+    },
+    {
+      "timestamp": "2026-07-06T21:07:03.623685",
+      "call_count": 1030,
+      "total_tokens": 3297239,
+      "avg_tokens_per_call": 3201.2
+    },
+    {
+      "timestamp": "2026-07-06T21:09:28.922195",
+      "call_count": 1040,
+      "total_tokens": 3322977,
+      "avg_tokens_per_call": 3195.17
+    },
+    {
+      "timestamp": "2026-07-06T21:11:16.175598",
+      "call_count": 1050,
+      "total_tokens": 3345517,
+      "avg_tokens_per_call": 3186.21
+    },
+    {
+      "timestamp": "2026-07-06T21:13:53.872713",
+      "call_count": 1060,
+      "total_tokens": 3398160,
+      "avg_tokens_per_call": 3205.81
+    },
+    {
+      "timestamp": "2026-07-06T21:16:19.574582",
+      "call_count": 1070,
+      "total_tokens": 3413343,
+      "avg_tokens_per_call": 3190.04
+    },
+    {
+      "timestamp": "2026-07-06T21:18:16.022655",
+      "call_count": 1080,
+      "total_tokens": 3443453,
+      "avg_tokens_per_call": 3188.38
+    },
+    {
+      "timestamp": "2026-07-06T21:20:45.048445",
+      "call_count": 1090,
+      "total_tokens": 3492639,
+      "avg_tokens_per_call": 3204.26
+    },
+    {
+      "timestamp": "2026-07-06T21:23:24.159123",
+      "call_count": 1100,
+      "total_tokens": 3503870,
+      "avg_tokens_per_call": 3185.34
+    },
+    {
+      "timestamp": "2026-07-06T21:25:43.353372",
+      "call_count": 1110,
+      "total_tokens": 3538954,
+      "avg_tokens_per_call": 3188.25
+    },
+    {
+      "timestamp": "2026-07-06T21:28:26.758141",
+      "call_count": 1120,
+      "total_tokens": 3584142,
+      "avg_tokens_per_call": 3200.13
+    }
+  ],
+  "TTA": [
+    {
+      "timestamp": "2026-07-06T16:52:03.861760",
+      "call_count": 10,
+      "total_time_seconds": 103.664,
+      "avg_time_per_call": 10.366
+    },
+    {
+      "timestamp": "2026-07-06T16:55:18.396559",
+      "call_count": 20,
+      "total_time_seconds": 298.199,
+      "avg_time_per_call": 14.91
+    },
+    {
+      "timestamp": "2026-07-06T17:01:10.865918",
+      "call_count": 10,
+      "total_time_seconds": 86.324,
+      "avg_time_per_call": 8.632
+    },
+    {
+      "timestamp": "2026-07-06T17:03:46.989356",
+      "call_count": 20,
+      "total_time_seconds": 242.447,
+      "avg_time_per_call": 12.122
+    },
+    {
+      "timestamp": "2026-07-06T17:06:23.930272",
+      "call_count": 30,
+      "total_time_seconds": 399.344,
+      "avg_time_per_call": 13.311
+    },
+    {
+      "timestamp": "2026-07-06T17:07:59.872233",
+      "call_count": 40,
+      "total_time_seconds": 495.286,
+      "avg_time_per_call": 12.382
+    },
+    {
+      "timestamp": "2026-07-06T17:10:40.000716",
+      "call_count": 50,
+      "total_time_seconds": 655.414,
+      "avg_time_per_call": 13.108
+    },
+    {
+      "timestamp": "2026-07-06T17:12:55.201143",
+      "call_count": 60,
+      "total_time_seconds": 790.574,
+      "avg_time_per_call": 13.176
+    },
+    {
+      "timestamp": "2026-07-06T17:14:56.684876",
+      "call_count": 70,
+      "total_time_seconds": 912.057,
+      "avg_time_per_call": 13.029
+    },
+    {
+      "timestamp": "2026-07-06T17:17:21.134180",
+      "call_count": 80,
+      "total_time_seconds": 1056.487,
+      "avg_time_per_call": 13.206
+    },
+    {
+      "timestamp": "2026-07-06T17:19:36.607959",
+      "call_count": 90,
+      "total_time_seconds": 1191.937,
+      "avg_time_per_call": 13.244
+    },
+    {
+      "timestamp": "2026-07-06T17:21:55.470194",
+      "call_count": 100,
+      "total_time_seconds": 1330.797,
+      "avg_time_per_call": 13.308
+    },
+    {
+      "timestamp": "2026-07-06T17:24:14.607446",
+      "call_count": 110,
+      "total_time_seconds": 1469.901,
+      "avg_time_per_call": 13.363
+    },
+    {
+      "timestamp": "2026-07-06T17:25:50.460808",
+      "call_count": 120,
+      "total_time_seconds": 1565.74,
+      "avg_time_per_call": 13.048
+    },
+    {
+      "timestamp": "2026-07-06T17:28:10.141096",
+      "call_count": 130,
+      "total_time_seconds": 1705.421,
+      "avg_time_per_call": 13.119
+    },
+    {
+      "timestamp": "2026-07-06T17:30:38.711371",
+      "call_count": 140,
+      "total_time_seconds": 1853.936,
+      "avg_time_per_call": 13.242
+    },
+    {
+      "timestamp": "2026-07-06T17:32:17.741414",
+      "call_count": 150,
+      "total_time_seconds": 1952.966,
+      "avg_time_per_call": 13.02
+    },
+    {
+      "timestamp": "2026-07-06T17:34:44.530174",
+      "call_count": 160,
+      "total_time_seconds": 2099.754,
+      "avg_time_per_call": 13.123
+    },
+    {
+      "timestamp": "2026-07-06T17:37:06.609121",
+      "call_count": 170,
+      "total_time_seconds": 2241.776,
+      "avg_time_per_call": 13.187
+    },
+    {
+      "timestamp": "2026-07-06T17:38:47.031894",
+      "call_count": 180,
+      "total_time_seconds": 2342.198,
+      "avg_time_per_call": 13.012
+    },
+    {
+      "timestamp": "2026-07-06T17:41:13.107441",
+      "call_count": 190,
+      "total_time_seconds": 2488.268,
+      "avg_time_per_call": 13.096
+    },
+    {
+      "timestamp": "2026-07-06T17:43:22.625402",
+      "call_count": 200,
+      "total_time_seconds": 2617.735,
+      "avg_time_per_call": 13.089
+    },
+    {
+      "timestamp": "2026-07-06T17:45:27.677382",
+      "call_count": 210,
+      "total_time_seconds": 2742.786,
+      "avg_time_per_call": 13.061
+    },
+    {
+      "timestamp": "2026-07-06T17:48:11.015082",
+      "call_count": 220,
+      "total_time_seconds": 2906.108,
+      "avg_time_per_call": 13.21
+    },
+    {
+      "timestamp": "2026-07-06T17:50:11.535756",
+      "call_count": 230,
+      "total_time_seconds": 3026.601,
+      "avg_time_per_call": 13.159
+    },
+    {
+      "timestamp": "2026-07-06T17:53:00.934360",
+      "call_count": 240,
+      "total_time_seconds": 3196.0,
+      "avg_time_per_call": 13.317
+    },
+    {
+      "timestamp": "2026-07-06T17:55:47.644615",
+      "call_count": 250,
+      "total_time_seconds": 3362.678,
+      "avg_time_per_call": 13.451
+    },
+    {
+      "timestamp": "2026-07-06T17:57:55.164689",
+      "call_count": 260,
+      "total_time_seconds": 3490.192,
+      "avg_time_per_call": 13.424
+    },
+    {
+      "timestamp": "2026-07-06T18:01:21.213956",
+      "call_count": 270,
+      "total_time_seconds": 3696.241,
+      "avg_time_per_call": 13.69
+    },
+    {
+      "timestamp": "2026-07-06T18:05:07.304861",
+      "call_count": 280,
+      "total_time_seconds": 3922.288,
+      "avg_time_per_call": 14.008
+    },
+    {
+      "timestamp": "2026-07-06T18:07:07.151130",
+      "call_count": 290,
+      "total_time_seconds": 4042.133,
+      "avg_time_per_call": 13.938
+    },
+    {
+      "timestamp": "2026-07-06T18:09:49.998960",
+      "call_count": 300,
+      "total_time_seconds": 4204.979,
+      "avg_time_per_call": 14.017
+    },
+    {
+      "timestamp": "2026-07-06T18:12:28.670455",
+      "call_count": 310,
+      "total_time_seconds": 4363.604,
+      "avg_time_per_call": 14.076
+    },
+    {
+      "timestamp": "2026-07-06T18:14:10.517821",
+      "call_count": 320,
+      "total_time_seconds": 4465.451,
+      "avg_time_per_call": 13.955
+    },
+    {
+      "timestamp": "2026-07-06T18:17:01.025485",
+      "call_count": 330,
+      "total_time_seconds": 4635.958,
+      "avg_time_per_call": 14.048
+    },
+    {
+      "timestamp": "2026-07-06T18:19:06.629285",
+      "call_count": 340,
+      "total_time_seconds": 4761.518,
+      "avg_time_per_call": 14.004
+    },
+    {
+      "timestamp": "2026-07-06T18:21:01.662498",
+      "call_count": 350,
+      "total_time_seconds": 4876.551,
+      "avg_time_per_call": 13.933
+    },
+    {
+      "timestamp": "2026-07-06T18:23:29.117876",
+      "call_count": 360,
+      "total_time_seconds": 5023.979,
+      "avg_time_per_call": 13.955
+    },
+    {
+      "timestamp": "2026-07-06T18:25:52.023533",
+      "call_count": 370,
+      "total_time_seconds": 5166.871,
+      "avg_time_per_call": 13.965
+    },
+    {
+      "timestamp": "2026-07-06T18:27:58.051502",
+      "call_count": 380,
+      "total_time_seconds": 5292.899,
+      "avg_time_per_call": 13.929
+    },
+    {
+      "timestamp": "2026-07-06T18:30:40.498423",
+      "call_count": 390,
+      "total_time_seconds": 5455.319,
+      "avg_time_per_call": 13.988
+    },
+    {
+      "timestamp": "2026-07-06T18:32:44.389190",
+      "call_count": 400,
+      "total_time_seconds": 5579.18,
+      "avg_time_per_call": 13.948
+    },
+    {
+      "timestamp": "2026-07-06T18:35:37.287675",
+      "call_count": 410,
+      "total_time_seconds": 5752.079,
+      "avg_time_per_call": 14.029
+    },
+    {
+      "timestamp": "2026-07-06T18:38:19.308729",
+      "call_count": 420,
+      "total_time_seconds": 5914.057,
+      "avg_time_per_call": 14.081
+    },
+    {
+      "timestamp": "2026-07-06T18:39:53.661955",
+      "call_count": 430,
+      "total_time_seconds": 6008.409,
+      "avg_time_per_call": 13.973
+    },
+    {
+      "timestamp": "2026-07-06T18:42:23.809360",
+      "call_count": 440,
+      "total_time_seconds": 6158.555,
+      "avg_time_per_call": 13.997
+    },
+    {
+      "timestamp": "2026-07-06T18:45:07.561999",
+      "call_count": 450,
+      "total_time_seconds": 6322.26,
+      "avg_time_per_call": 14.049
+    },
+    {
+      "timestamp": "2026-07-06T18:46:56.389737",
+      "call_count": 460,
+      "total_time_seconds": 6431.086,
+      "avg_time_per_call": 13.981
+    },
+    {
+      "timestamp": "2026-07-06T18:49:27.839633",
+      "call_count": 470,
+      "total_time_seconds": 6582.536,
+      "avg_time_per_call": 14.005
+    },
+    {
+      "timestamp": "2026-07-06T18:51:46.761148",
+      "call_count": 480,
+      "total_time_seconds": 6721.393,
+      "avg_time_per_call": 14.003
+    },
+    {
+      "timestamp": "2026-07-06T18:53:33.833429",
+      "call_count": 490,
+      "total_time_seconds": 6828.465,
+      "avg_time_per_call": 13.936
+    },
+    {
+      "timestamp": "2026-07-06T18:56:00.309247",
+      "call_count": 500,
+      "total_time_seconds": 6974.939,
+      "avg_time_per_call": 13.95
+    },
+    {
+      "timestamp": "2026-07-06T18:58:37.611308",
+      "call_count": 510,
+      "total_time_seconds": 7132.2,
+      "avg_time_per_call": 13.985
+    },
+    {
+      "timestamp": "2026-07-06T19:00:36.107695",
+      "call_count": 520,
+      "total_time_seconds": 7250.695,
+      "avg_time_per_call": 13.944
+    },
+    {
+      "timestamp": "2026-07-06T19:02:55.950843",
+      "call_count": 530,
+      "total_time_seconds": 7390.51,
+      "avg_time_per_call": 13.944
+    },
+    {
+      "timestamp": "2026-07-06T19:05:28.005611",
+      "call_count": 540,
+      "total_time_seconds": 7542.539,
+      "avg_time_per_call": 13.968
+    },
+    {
+      "timestamp": "2026-07-06T19:07:40.581571",
+      "call_count": 550,
+      "total_time_seconds": 7675.115,
+      "avg_time_per_call": 13.955
+    },
+    {
+      "timestamp": "2026-07-06T19:10:21.314779",
+      "call_count": 560,
+      "total_time_seconds": 7835.828,
+      "avg_time_per_call": 13.993
+    },
+    {
+      "timestamp": "2026-07-06T19:11:56.167480",
+      "call_count": 570,
+      "total_time_seconds": 7930.647,
+      "avg_time_per_call": 13.913
+    },
+    {
+      "timestamp": "2026-07-06T19:14:32.369258",
+      "call_count": 580,
+      "total_time_seconds": 8086.848,
+      "avg_time_per_call": 13.943
+    },
+    {
+      "timestamp": "2026-07-06T19:17:17.943091",
+      "call_count": 590,
+      "total_time_seconds": 8252.367,
+      "avg_time_per_call": 13.987
+    },
+    {
+      "timestamp": "2026-07-06T19:19:00.678933",
+      "call_count": 600,
+      "total_time_seconds": 8355.103,
+      "avg_time_per_call": 13.925
+    },
+    {
+      "timestamp": "2026-07-06T19:21:41.001049",
+      "call_count": 610,
+      "total_time_seconds": 8515.424,
+      "avg_time_per_call": 13.96
+    },
+    {
+      "timestamp": "2026-07-06T19:24:15.579966",
+      "call_count": 620,
+      "total_time_seconds": 8669.957,
+      "avg_time_per_call": 13.984
+    },
+    {
+      "timestamp": "2026-07-06T19:26:03.484386",
+      "call_count": 630,
+      "total_time_seconds": 8777.862,
+      "avg_time_per_call": 13.933
+    },
+    {
+      "timestamp": "2026-07-06T19:28:45.278455",
+      "call_count": 640,
+      "total_time_seconds": 8939.656,
+      "avg_time_per_call": 13.968
+    },
+    {
+      "timestamp": "2026-07-06T19:31:14.182633",
+      "call_count": 650,
+      "total_time_seconds": 9088.512,
+      "avg_time_per_call": 13.982
+    },
+    {
+      "timestamp": "2026-07-06T19:33:46.451072",
+      "call_count": 660,
+      "total_time_seconds": 9240.781,
+      "avg_time_per_call": 14.001
+    },
+    {
+      "timestamp": "2026-07-06T19:37:10.151840",
+      "call_count": 670,
+      "total_time_seconds": 9444.45,
+      "avg_time_per_call": 14.096
+    },
+    {
+      "timestamp": "2026-07-06T19:39:18.328219",
+      "call_count": 680,
+      "total_time_seconds": 9572.601,
+      "avg_time_per_call": 14.077
+    },
+    {
+      "timestamp": "2026-07-06T19:43:01.530766",
+      "call_count": 690,
+      "total_time_seconds": 9795.804,
+      "avg_time_per_call": 14.197
+    },
+    {
+      "timestamp": "2026-07-06T19:46:15.488829",
+      "call_count": 700,
+      "total_time_seconds": 9989.717,
+      "avg_time_per_call": 14.271
+    },
+    {
+      "timestamp": "2026-07-06T19:48:32.379635",
+      "call_count": 710,
+      "total_time_seconds": 10126.605,
+      "avg_time_per_call": 14.263
+    },
+    {
+      "timestamp": "2026-07-06T19:51:43.306108",
+      "call_count": 720,
+      "total_time_seconds": 10317.531,
+      "avg_time_per_call": 14.33
+    },
+    {
+      "timestamp": "2026-07-06T19:54:46.072472",
+      "call_count": 730,
+      "total_time_seconds": 10500.248,
+      "avg_time_per_call": 14.384
+    },
+    {
+      "timestamp": "2026-07-06T19:56:33.321052",
+      "call_count": 740,
+      "total_time_seconds": 10607.49,
+      "avg_time_per_call": 14.334
+    },
+    {
+      "timestamp": "2026-07-06T19:59:12.216492",
+      "call_count": 750,
+      "total_time_seconds": 10766.385,
+      "avg_time_per_call": 14.355
+    },
+    {
+      "timestamp": "2026-07-06T20:01:51.371933",
+      "call_count": 760,
+      "total_time_seconds": 10925.504,
+      "avg_time_per_call": 14.376
+    },
+    {
+      "timestamp": "2026-07-06T20:03:43.888688",
+      "call_count": 770,
+      "total_time_seconds": 11038.02,
+      "avg_time_per_call": 14.335
+    },
+    {
+      "timestamp": "2026-07-06T20:06:08.235314",
+      "call_count": 780,
+      "total_time_seconds": 11182.366,
+      "avg_time_per_call": 14.336
+    },
+    {
+      "timestamp": "2026-07-06T20:07:59.393406",
+      "call_count": 790,
+      "total_time_seconds": 11293.47,
+      "avg_time_per_call": 14.296
+    },
+    {
+      "timestamp": "2026-07-06T20:09:41.646416",
+      "call_count": 800,
+      "total_time_seconds": 11395.723,
+      "avg_time_per_call": 14.245
+    },
+    {
+      "timestamp": "2026-07-06T20:11:40.657900",
+      "call_count": 810,
+      "total_time_seconds": 11514.714,
+      "avg_time_per_call": 14.216
+    },
+    {
+      "timestamp": "2026-07-06T20:13:27.862272",
+      "call_count": 820,
+      "total_time_seconds": 11621.902,
+      "avg_time_per_call": 14.173
+    },
+    {
+      "timestamp": "2026-07-06T20:15:54.113984",
+      "call_count": 830,
+      "total_time_seconds": 11768.153,
+      "avg_time_per_call": 14.178
+    },
+    {
+      "timestamp": "2026-07-06T20:18:16.302689",
+      "call_count": 840,
+      "total_time_seconds": 11910.31,
+      "avg_time_per_call": 14.179
+    },
+    {
+      "timestamp": "2026-07-06T20:19:44.764649",
+      "call_count": 850,
+      "total_time_seconds": 11998.752,
+      "avg_time_per_call": 14.116
+    },
+    {
+      "timestamp": "2026-07-06T20:22:25.628087",
+      "call_count": 860,
+      "total_time_seconds": 12159.615,
+      "avg_time_per_call": 14.139
+    },
+    {
+      "timestamp": "2026-07-06T20:25:18.416160",
+      "call_count": 870,
+      "total_time_seconds": 12332.357,
+      "avg_time_per_call": 14.175
+    },
+    {
+      "timestamp": "2026-07-06T20:27:07.695811",
+      "call_count": 880,
+      "total_time_seconds": 12441.635,
+      "avg_time_per_call": 14.138
+    },
+    {
+      "timestamp": "2026-07-06T20:29:54.902028",
+      "call_count": 890,
+      "total_time_seconds": 12608.841,
+      "avg_time_per_call": 14.167
+    },
+    {
+      "timestamp": "2026-07-06T20:33:10.781957",
+      "call_count": 900,
+      "total_time_seconds": 12804.678,
+      "avg_time_per_call": 14.227
+    },
+    {
+      "timestamp": "2026-07-06T20:35:22.978331",
+      "call_count": 910,
+      "total_time_seconds": 12936.873,
+      "avg_time_per_call": 14.216
+    },
+    {
+      "timestamp": "2026-07-06T20:38:30.068722",
+      "call_count": 920,
+      "total_time_seconds": 13123.962,
+      "avg_time_per_call": 14.265
+    },
+    {
+      "timestamp": "2026-07-06T20:41:18.605991",
+      "call_count": 930,
+      "total_time_seconds": 13292.449,
+      "avg_time_per_call": 14.293
+    },
+    {
+      "timestamp": "2026-07-06T20:44:06.515832",
+      "call_count": 940,
+      "total_time_seconds": 13460.356,
+      "avg_time_per_call": 14.32
+    },
+    {
+      "timestamp": "2026-07-06T20:47:02.396094",
+      "call_count": 950,
+      "total_time_seconds": 13636.207,
+      "avg_time_per_call": 14.354
+    },
+    {
+      "timestamp": "2026-07-06T20:49:12.519106",
+      "call_count": 960,
+      "total_time_seconds": 13766.313,
+      "avg_time_per_call": 14.34
+    },
+    {
+      "timestamp": "2026-07-06T20:51:45.180947",
+      "call_count": 970,
+      "total_time_seconds": 13918.974,
+      "avg_time_per_call": 14.349
+    },
+    {
+      "timestamp": "2026-07-06T20:54:22.863147",
+      "call_count": 980,
+      "total_time_seconds": 14076.616,
+      "avg_time_per_call": 14.364
+    },
+    {
+      "timestamp": "2026-07-06T20:56:07.775894",
+      "call_count": 990,
+      "total_time_seconds": 14181.517,
+      "avg_time_per_call": 14.325
+    },
+    {
+      "timestamp": "2026-07-06T20:58:51.581271",
+      "call_count": 1000,
+      "total_time_seconds": 14345.307,
+      "avg_time_per_call": 14.345
+    },
+    {
+      "timestamp": "2026-07-06T21:01:51.006131",
+      "call_count": 1010,
+      "total_time_seconds": 14524.687,
+      "avg_time_per_call": 14.381
+    },
+    {
+      "timestamp": "2026-07-06T21:03:54.680851",
+      "call_count": 1020,
+      "total_time_seconds": 14648.36,
+      "avg_time_per_call": 14.361
+    },
+    {
+      "timestamp": "2026-07-06T21:07:03.623685",
+      "call_count": 1030,
+      "total_time_seconds": 14837.303,
+      "avg_time_per_call": 14.405
+    },
+    {
+      "timestamp": "2026-07-06T21:09:28.922195",
+      "call_count": 1040,
+      "total_time_seconds": 14982.563,
+      "avg_time_per_call": 14.406
+    },
+    {
+      "timestamp": "2026-07-06T21:11:16.175598",
+      "call_count": 1050,
+      "total_time_seconds": 15089.813,
+      "avg_time_per_call": 14.371
+    },
+    {
+      "timestamp": "2026-07-06T21:13:53.872713",
+      "call_count": 1060,
+      "total_time_seconds": 15247.509,
+      "avg_time_per_call": 14.384
+    },
+    {
+      "timestamp": "2026-07-06T21:16:19.574582",
+      "call_count": 1070,
+      "total_time_seconds": 15393.146,
+      "avg_time_per_call": 14.386
+    },
+    {
+      "timestamp": "2026-07-06T21:18:16.022655",
+      "call_count": 1080,
+      "total_time_seconds": 15509.594,
+      "avg_time_per_call": 14.361
+    },
+    {
+      "timestamp": "2026-07-06T21:20:45.048445",
+      "call_count": 1090,
+      "total_time_seconds": 15658.582,
+      "avg_time_per_call": 14.366
+    },
+    {
+      "timestamp": "2026-07-06T21:23:24.159123",
+      "call_count": 1100,
+      "total_time_seconds": 15817.67,
+      "avg_time_per_call": 14.38
+    },
+    {
+      "timestamp": "2026-07-06T21:25:43.353372",
+      "call_count": 1110,
+      "total_time_seconds": 15956.864,
+      "avg_time_per_call": 14.376
+    },
+    {
+      "timestamp": "2026-07-06T21:28:26.758141",
+      "call_count": 1120,
+      "total_time_seconds": 16120.248,
+      "avg_time_per_call": 14.393
+    }
+  ],
+  "TTU": [
+    {
+      "timestamp": "2026-07-06T16:52:03.861760",
+      "call_count": 10,
+      "total_tokens_used": 7594
+    },
+    {
+      "timestamp": "2026-07-06T16:55:18.396559",
+      "call_count": 20,
+      "total_tokens_used": 58197
+    },
+    {
+      "timestamp": "2026-07-06T17:01:10.865918",
+      "call_count": 10,
+      "total_tokens_used": 7961
+    },
+    {
+      "timestamp": "2026-07-06T17:03:46.989356",
+      "call_count": 20,
+      "total_tokens_used": 60183
+    },
+    {
+      "timestamp": "2026-07-06T17:06:23.930272",
+      "call_count": 30,
+      "total_tokens_used": 90372
+    },
+    {
+      "timestamp": "2026-07-06T17:07:59.872233",
+      "call_count": 40,
+      "total_tokens_used": 108656
+    },
+    {
+      "timestamp": "2026-07-06T17:10:40.000716",
+      "call_count": 50,
+      "total_tokens_used": 161804
+    },
+    {
+      "timestamp": "2026-07-06T17:12:55.201143",
+      "call_count": 60,
+      "total_tokens_used": 183011
+    },
+    {
+      "timestamp": "2026-07-06T17:14:56.684876",
+      "call_count": 70,
+      "total_tokens_used": 212488
+    },
+    {
+      "timestamp": "2026-07-06T17:17:21.134180",
+      "call_count": 80,
+      "total_tokens_used": 264632
+    },
+    {
+      "timestamp": "2026-07-06T17:19:36.607959",
+      "call_count": 90,
+      "total_tokens_used": 272781
+    },
+    {
+      "timestamp": "2026-07-06T17:21:55.470194",
+      "call_count": 100,
+      "total_tokens_used": 314568
+    },
+    {
+      "timestamp": "2026-07-06T17:24:14.607446",
+      "call_count": 110,
+      "total_tokens_used": 352998
+    },
+    {
+      "timestamp": "2026-07-06T17:25:50.460808",
+      "call_count": 120,
+      "total_tokens_used": 364172
+    },
+    {
+      "timestamp": "2026-07-06T17:28:10.141096",
+      "call_count": 130,
+      "total_tokens_used": 413241
+    },
+    {
+      "timestamp": "2026-07-06T17:30:38.711371",
+      "call_count": 140,
+      "total_tokens_used": 442502
+    },
+    {
+      "timestamp": "2026-07-06T17:32:17.741414",
+      "call_count": 150,
+      "total_tokens_used": 462654
+    },
+    {
+      "timestamp": "2026-07-06T17:34:44.530174",
+      "call_count": 160,
+      "total_tokens_used": 514595
+    },
+    {
+      "timestamp": "2026-07-06T17:37:06.609121",
+      "call_count": 170,
+      "total_tokens_used": 536069
+    },
+    {
+      "timestamp": "2026-07-06T17:38:47.031894",
+      "call_count": 180,
+      "total_tokens_used": 561997
+    },
+    {
+      "timestamp": "2026-07-06T17:41:13.107441",
+      "call_count": 190,
+      "total_tokens_used": 614230
+    },
+    {
+      "timestamp": "2026-07-06T17:43:22.625402",
+      "call_count": 200,
+      "total_tokens_used": 629382
+    },
+    {
+      "timestamp": "2026-07-06T17:45:27.677382",
+      "call_count": 210,
+      "total_tokens_used": 665291
+    },
+    {
+      "timestamp": "2026-07-06T17:48:11.015082",
+      "call_count": 220,
+      "total_tokens_used": 708135
+    },
+    {
+      "timestamp": "2026-07-06T17:50:11.535756",
+      "call_count": 230,
+      "total_tokens_used": 719238
+    },
+    {
+      "timestamp": "2026-07-06T17:53:00.934360",
+      "call_count": 240,
+      "total_tokens_used": 764153
+    },
+    {
+      "timestamp": "2026-07-06T17:55:47.644615",
+      "call_count": 250,
+      "total_tokens_used": 800032
+    },
+    {
+      "timestamp": "2026-07-06T17:57:55.164689",
+      "call_count": 260,
+      "total_tokens_used": 812672
+    },
+    {
+      "timestamp": "2026-07-06T18:01:21.213956",
+      "call_count": 270,
+      "total_tokens_used": 863583
+    },
+    {
+      "timestamp": "2026-07-06T18:05:07.304861",
+      "call_count": 280,
+      "total_tokens_used": 895566
+    },
+    {
+      "timestamp": "2026-07-06T18:07:07.151130",
+      "call_count": 290,
+      "total_tokens_used": 915295
+    },
+    {
+      "timestamp": "2026-07-06T18:09:49.998960",
+      "call_count": 300,
+      "total_tokens_used": 966812
+    },
+    {
+      "timestamp": "2026-07-06T18:12:28.670455",
+      "call_count": 310,
+      "total_tokens_used": 988088
+    },
+    {
+      "timestamp": "2026-07-06T18:14:10.517821",
+      "call_count": 320,
+      "total_tokens_used": 1011027
+    },
+    {
+      "timestamp": "2026-07-06T18:17:01.025485",
+      "call_count": 330,
+      "total_tokens_used": 1061089
+    },
+    {
+      "timestamp": "2026-07-06T18:19:06.629285",
+      "call_count": 340,
+      "total_tokens_used": 1077963
+    },
+    {
+      "timestamp": "2026-07-06T18:21:01.662498",
+      "call_count": 350,
+      "total_tokens_used": 1108684
+    },
+    {
+      "timestamp": "2026-07-06T18:23:29.117876",
+      "call_count": 360,
+      "total_tokens_used": 1159125
+    },
+    {
+      "timestamp": "2026-07-06T18:25:52.023533",
+      "call_count": 370,
+      "total_tokens_used": 1166822
+    },
+    {
+      "timestamp": "2026-07-06T18:27:58.051502",
+      "call_count": 380,
+      "total_tokens_used": 1202050
+    },
+    {
+      "timestamp": "2026-07-06T18:30:40.498423",
+      "call_count": 390,
+      "total_tokens_used": 1246015
+    },
+    {
+      "timestamp": "2026-07-06T18:32:44.389190",
+      "call_count": 400,
+      "total_tokens_used": 1253711
+    },
+    {
+      "timestamp": "2026-07-06T18:35:37.287675",
+      "call_count": 410,
+      "total_tokens_used": 1299551
+    },
+    {
+      "timestamp": "2026-07-06T18:38:19.308729",
+      "call_count": 420,
+      "total_tokens_used": 1334733
+    },
+    {
+      "timestamp": "2026-07-06T18:39:53.661955",
+      "call_count": 430,
+      "total_tokens_used": 1349521
+    },
+    {
+      "timestamp": "2026-07-06T18:42:23.809360",
+      "call_count": 440,
+      "total_tokens_used": 1397332
+    },
+    {
+      "timestamp": "2026-07-06T18:45:07.561999",
+      "call_count": 450,
+      "total_tokens_used": 1420457
+    },
+    {
+      "timestamp": "2026-07-06T18:46:56.389737",
+      "call_count": 460,
+      "total_tokens_used": 1442424
+    },
+    {
+      "timestamp": "2026-07-06T18:49:27.839633",
+      "call_count": 470,
+      "total_tokens_used": 1497479
+    },
+    {
+      "timestamp": "2026-07-06T18:51:46.761148",
+      "call_count": 480,
+      "total_tokens_used": 1519266
+    },
+    {
+      "timestamp": "2026-07-06T18:53:33.833429",
+      "call_count": 490,
+      "total_tokens_used": 1545577
+    },
+    {
+      "timestamp": "2026-07-06T18:56:00.309247",
+      "call_count": 500,
+      "total_tokens_used": 1599210
+    },
+    {
+      "timestamp": "2026-07-06T18:58:37.611308",
+      "call_count": 510,
+      "total_tokens_used": 1615566
+    },
+    {
+      "timestamp": "2026-07-06T19:00:36.107695",
+      "call_count": 520,
+      "total_tokens_used": 1647844
+    },
+    {
+      "timestamp": "2026-07-06T19:02:55.950843",
+      "call_count": 530,
+      "total_tokens_used": 1697749
+    },
+    {
+      "timestamp": "2026-07-06T19:05:28.005611",
+      "call_count": 540,
+      "total_tokens_used": 1710492
+    },
+    {
+      "timestamp": "2026-07-06T19:07:40.581571",
+      "call_count": 550,
+      "total_tokens_used": 1746326
+    },
+    {
+      "timestamp": "2026-07-06T19:10:21.314779",
+      "call_count": 560,
+      "total_tokens_used": 1795161
+    },
+    {
+      "timestamp": "2026-07-06T19:11:56.167480",
+      "call_count": 570,
+      "total_tokens_used": 1803255
+    },
+    {
+      "timestamp": "2026-07-06T19:14:32.369258",
+      "call_count": 580,
+      "total_tokens_used": 1852102
+    },
+    {
+      "timestamp": "2026-07-06T19:17:17.943091",
+      "call_count": 590,
+      "total_tokens_used": 1882820
+    },
+    {
+      "timestamp": "2026-07-06T19:19:00.678933",
+      "call_count": 600,
+      "total_tokens_used": 1902679
+    },
+    {
+      "timestamp": "2026-07-06T19:21:41.001049",
+      "call_count": 610,
+      "total_tokens_used": 1957145
+    },
+    {
+      "timestamp": "2026-07-06T19:24:15.579966",
+      "call_count": 620,
+      "total_tokens_used": 1978917
+    },
+    {
+      "timestamp": "2026-07-06T19:26:03.484386",
+      "call_count": 630,
+      "total_tokens_used": 2004683
+    },
+    {
+      "timestamp": "2026-07-06T19:28:45.278455",
+      "call_count": 640,
+      "total_tokens_used": 2057959
+    },
+    {
+      "timestamp": "2026-07-06T19:31:14.182633",
+      "call_count": 650,
+      "total_tokens_used": 2069525
+    },
+    {
+      "timestamp": "2026-07-06T19:33:46.451072",
+      "call_count": 660,
+      "total_tokens_used": 2104423
+    },
+    {
+      "timestamp": "2026-07-06T19:37:10.151840",
+      "call_count": 670,
+      "total_tokens_used": 2148945
+    },
+    {
+      "timestamp": "2026-07-06T19:39:18.328219",
+      "call_count": 680,
+      "total_tokens_used": 2159625
+    },
+    {
+      "timestamp": "2026-07-06T19:43:01.530766",
+      "call_count": 690,
+      "total_tokens_used": 2207925
+    },
+    {
+      "timestamp": "2026-07-06T19:46:15.488829",
+      "call_count": 700,
+      "total_tokens_used": 2244625
+    },
+    {
+      "timestamp": "2026-07-06T19:48:32.379635",
+      "call_count": 710,
+      "total_tokens_used": 2256700
+    },
+    {
+      "timestamp": "2026-07-06T19:51:43.306108",
+      "call_count": 720,
+      "total_tokens_used": 2305665
+    },
+    {
+      "timestamp": "2026-07-06T19:54:46.072472",
+      "call_count": 730,
+      "total_tokens_used": 2338567
+    },
+    {
+      "timestamp": "2026-07-06T19:56:33.321052",
+      "call_count": 740,
+      "total_tokens_used": 2356955
+    },
+    {
+      "timestamp": "2026-07-06T19:59:12.216492",
+      "call_count": 750,
+      "total_tokens_used": 2411369
+    },
+    {
+      "timestamp": "2026-07-06T20:01:51.371933",
+      "call_count": 760,
+      "total_tokens_used": 2436845
+    },
+    {
+      "timestamp": "2026-07-06T20:03:43.888688",
+      "call_count": 770,
+      "total_tokens_used": 2461155
+    },
+    {
+      "timestamp": "2026-07-06T20:06:08.235314",
+      "call_count": 780,
+      "total_tokens_used": 2516018
+    },
+    {
+      "timestamp": "2026-07-06T20:07:59.393406",
+      "call_count": 790,
+      "total_tokens_used": 2535335
+    },
+    {
+      "timestamp": "2026-07-06T20:09:41.646416",
+      "call_count": 800,
+      "total_tokens_used": 2563443
+    },
+    {
+      "timestamp": "2026-07-06T20:11:40.657900",
+      "call_count": 810,
+      "total_tokens_used": 2611672
+    },
+    {
+      "timestamp": "2026-07-06T20:13:27.862272",
+      "call_count": 820,
+      "total_tokens_used": 2619294
+    },
+    {
+      "timestamp": "2026-07-06T20:15:54.113984",
+      "call_count": 830,
+      "total_tokens_used": 2667103
+    },
+    {
+      "timestamp": "2026-07-06T20:18:16.302689",
+      "call_count": 840,
+      "total_tokens_used": 2699863
+    },
+    {
+      "timestamp": "2026-07-06T20:19:44.764649",
+      "call_count": 850,
+      "total_tokens_used": 2710644
+    },
+    {
+      "timestamp": "2026-07-06T20:22:25.628087",
+      "call_count": 860,
+      "total_tokens_used": 2758941
+    },
+    {
+      "timestamp": "2026-07-06T20:25:18.416160",
+      "call_count": 870,
+      "total_tokens_used": 2786073
+    },
+    {
+      "timestamp": "2026-07-06T20:27:07.695811",
+      "call_count": 880,
+      "total_tokens_used": 2805036
+    },
+    {
+      "timestamp": "2026-07-06T20:29:54.902028",
+      "call_count": 890,
+      "total_tokens_used": 2852761
+    },
+    {
+      "timestamp": "2026-07-06T20:33:10.781957",
+      "call_count": 900,
+      "total_tokens_used": 2878885
+    },
+    {
+      "timestamp": "2026-07-06T20:35:22.978331",
+      "call_count": 910,
+      "total_tokens_used": 2904421
+    },
+    {
+      "timestamp": "2026-07-06T20:38:30.068722",
+      "call_count": 920,
+      "total_tokens_used": 2954104
+    },
+    {
+      "timestamp": "2026-07-06T20:41:18.605991",
+      "call_count": 930,
+      "total_tokens_used": 2966092
+    },
+    {
+      "timestamp": "2026-07-06T20:44:06.515832",
+      "call_count": 940,
+      "total_tokens_used": 3002626
+    },
+    {
+      "timestamp": "2026-07-06T20:47:02.396094",
+      "call_count": 950,
+      "total_tokens_used": 3050124
+    },
+    {
+      "timestamp": "2026-07-06T20:49:12.519106",
+      "call_count": 960,
+      "total_tokens_used": 3057820
+    },
+    {
+      "timestamp": "2026-07-06T20:51:45.180947",
+      "call_count": 970,
+      "total_tokens_used": 3100005
+    },
+    {
+      "timestamp": "2026-07-06T20:54:22.863147",
+      "call_count": 980,
+      "total_tokens_used": 3138430
+    },
+    {
+      "timestamp": "2026-07-06T20:56:07.775894",
+      "call_count": 990,
+      "total_tokens_used": 3150299
+    },
+    {
+      "timestamp": "2026-07-06T20:58:51.581271",
+      "call_count": 1000,
+      "total_tokens_used": 3200246
+    },
+    {
+      "timestamp": "2026-07-06T21:01:51.006131",
+      "call_count": 1010,
+      "total_tokens_used": 3225533
+    },
+    {
+      "timestamp": "2026-07-06T21:03:54.680851",
+      "call_count": 1020,
+      "total_tokens_used": 3245745
+    },
+    {
+      "timestamp": "2026-07-06T21:07:03.623685",
+      "call_count": 1030,
+      "total_tokens_used": 3297239
+    },
+    {
+      "timestamp": "2026-07-06T21:09:28.922195",
+      "call_count": 1040,
+      "total_tokens_used": 3322977
+    },
+    {
+      "timestamp": "2026-07-06T21:11:16.175598",
+      "call_count": 1050,
+      "total_tokens_used": 3345517
+    },
+    {
+      "timestamp": "2026-07-06T21:13:53.872713",
+      "call_count": 1060,
+      "total_tokens_used": 3398160
+    },
+    {
+      "timestamp": "2026-07-06T21:16:19.574582",
+      "call_count": 1070,
+      "total_tokens_used": 3413343
+    },
+    {
+      "timestamp": "2026-07-06T21:18:16.022655",
+      "call_count": 1080,
+      "total_tokens_used": 3443453
+    },
+    {
+      "timestamp": "2026-07-06T21:20:45.048445",
+      "call_count": 1090,
+      "total_tokens_used": 3492639
+    },
+    {
+      "timestamp": "2026-07-06T21:23:24.159123",
+      "call_count": 1100,
+      "total_tokens_used": 3503870
+    },
+    {
+      "timestamp": "2026-07-06T21:25:43.353372",
+      "call_count": 1110,
+      "total_tokens_used": 3538954
+    },
+    {
+      "timestamp": "2026-07-06T21:28:26.758141",
+      "call_count": 1120,
+      "total_tokens_used": 3584142
+    }
+  ]
+}

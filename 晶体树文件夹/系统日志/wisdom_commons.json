@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "crystals": [
+    {
+      "crystal_id": "C001",
+      "content": "注意力质量 = 聚焦深度 × 抗干扰系数",
+      "links": [],
+      "contributor": "anonymous",
+      "is_anonymous": true,
+      "score": 67.9,
+      "contributed_at": "2026-07-13T11:56:52.690745",
+      "status": "active",
+      "usage_count": 1,
+      "last_used": "2026-07-13T11:57:25.413713"
+    }
+  ],
+  "users": {
+    "gui_user": {
+      "credits": 10,
+      "contributions": 1,
+      "last_active": "2026-07-13T11:56:52.690745"
+    },
+    "new_user": {
+      "credits": 0,
+      "contributions": 0,
+      "last_active": "2026-07-13T11:57:25.413713",
+      "inherited_seeds": [
+        "C001"
+      ]
+    }
+  },
+  "contributions": [
+    {
+      "crystal_id": "C001",
+      "user_id": "gui_user",
+      "is_anonymous": true,
+      "timestamp": "2026-07-13T11:56:52.690745"
+    }
+  ],
+  "last_maintenance": "2026-07-13T11:51:06.612465",
+  "total_contributions": 1,
+  "active_seeds": [
+    "C001"
+  ]
+}

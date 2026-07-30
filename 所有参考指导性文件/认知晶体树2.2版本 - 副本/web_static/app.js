@@ -1,0 +1,831 @@
+const state = {
+  sessions: [],
+  currentSessionId: null,
+  messages: [],
+  questions: [],
+  assets: { crystals: [], holes: [], counts: {} },
+  pending: [],
+  tasks: [],
+  jobs: new Map(),
+  currentLayer: "all",
+  currentBatchJobId: null,
+  currentDailyJobId: null,
+};
+
+const $ = (id) => document.getElementById(id);
+
+async function api(path, options = {}) {
+  const res = await fetch(path, {
+    headers: options.body instanceof FormData ? undefined : { "Content-Type": "application/json" },
+    ...options,
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(text || res.statusText);
+  }
+  return res.json();
+}
+
+function renderMessage(role, content, level = "") {
+  const div = document.createElement("div");
+  div.className = `msg ${role} ${level}`;
+  const label = role === "user" ? "你" : role === "assistant" ? "AI" : "系统";
+  div.innerHTML = `<span class="meta">${label} · ${new Date().toLocaleTimeString()}</span>${escapeHtml(content)}`;
+  return div;
+}
+
+function updateChatMeta() {
+  const count = state.messages.filter((m) => ["user", "assistant"].includes(m.role)).length;
+  $("chatMeta").textContent = `${count} 条消息`;
+}
+
+function escapeHtml(text) {
+  return String(text ?? "").replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+}
+
+function setStatus(text) {
+  $("statusLine").textContent = text;
+}
+
+function clampRounds(value) {
+  return Math.max(2, Math.min(12, Number(value || 2)));
+}
+
+function updateRoundControl() {
+  const isSingle = $("reasonMode").value === "single";
+  const input = $("debateRoundsInput");
+  input.disabled = isSingle;
+  input.closest(".round-control")?.classList.toggle("is-disabled", isSingle);
+}
+
+function buildReasonPayload() {
+  const mode = $("reasonMode").value;
+  const payload = { ...inputPayload(), mode };
+  if (mode !== "single") {
+    payload.max_rounds = clampRounds($("debateRoundsInput").value);
+  }
+  return payload;
+}
+
+async function bootstrap() {
+  const data = await api("/api/bootstrap");
+  state.sessions = data.sessions;
+  setStatus(`数据根目录：${data.data_root} · API Key ${data.api_key_configured ? "已配置" : "未配置"}`);
+  renderBackendAuth(Boolean(data.legacy_backend_running));
+  $("assetStats").textContent = `资产 ${data.assets.total || 0}`;
+  $("taskStats").textContent = `任务 ${data.task_count || 0}`;
+  renderSessions();
+  renderFocus(data.assets.L1 || 0);
+  await loadAssets();
+  await loadTasks();
+  renderJobs();
+  if (state.sessions.length) {
+    await loadSession(state.sessions[0].id);
+  } else {
+    await createSession();
+  }
+}
+
+function renderBackendAuth(running) {
+  $("backendLoginBtn").disabled = running;
+  $("backendLogoutBtn").disabled = !running;
+  $("backendLoginBtn").textContent = running ? "老师模式已开启" : "老师入口";
+}
+
+function openAuthDialog() {
+  $("authError").textContent = "";
+  $("authUsername").value = "";
+  $("authPassword").value = "";
+  $("authDialog").showModal();
+  setTimeout(() => $("authUsername").focus(), 0);
+}
+
+async function submitBackendLogin() {
+  const username = $("authUsername").value.trim();
+  const password = $("authPassword").value;
+  if (!username || !password) {
+    $("authError").textContent = "请输入用户名和密码";
+    return;
+  }
+  try {
+    const result = await api("/api/backend/login", {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+    });
+    $("authDialog").close();
+    appendSystem(result.message || "老师模式已开启", "system");
+    renderBackendAuth(Boolean(result.running));
+  } catch (err) {
+    $("authError").textContent = "用户名或密码错误";
+  }
+}
+
+function renderSessions() {
+  const q = $("sessionSearch").value.trim().toLowerCase();
+  $("sessionList").innerHTML = "";
+  state.sessions.filter((s) => !q || s.name.toLowerCase().includes(q)).forEach((s) => {
+    const btn = document.createElement("button");
+    btn.className = `session-item ${s.id === state.currentSessionId ? "active" : ""}`;
+    btn.textContent = s.name;
+    btn.title = `${s.name}\n${s.updated_at || ""}`;
+    btn.onclick = () => loadSession(s.id);
+    $("sessionList").appendChild(btn);
+  });
+}
+
+async function refreshSessions() {
+  state.sessions = (await api("/api/sessions")).sessions;
+  renderSessions();
+}
+
+async function createSession() {
+  const session = await api("/api/sessions", { method: "POST", body: JSON.stringify({}) });
+  await refreshSessions();
+  await loadSession(session.id);
+}
+
+async function renameCurrentSession() {
+  if (!state.currentSessionId) return;
+  const current = state.sessions.find((s) => s.id === state.currentSessionId);
+  const name = prompt("请输入新会话名称：", current?.name || "");
+  if (!name || !name.trim()) return;
+  await api(`/api/sessions/${state.currentSessionId}`, { method: "PATCH", body: JSON.stringify({ name: name.trim() }) });
+  await refreshSessions();
+}
+
+async function deleteCurrentSession() {
+  if (!state.currentSessionId) return;
+  const current = state.sessions.find((s) => s.id === state.currentSessionId);
+  if (!confirm(`删除会话「${current?.name || state.currentSessionId}」？`)) return;
+  await api(`/api/sessions/${state.currentSessionId}`, { method: "DELETE" });
+  await refreshSessions();
+  if (state.sessions.length) await loadSession(state.sessions[0].id);
+  else await createSession();
+}
+
+async function loadSession(id) {
+  const data = await api(`/api/sessions/${id}`);
+  state.currentSessionId = id;
+  state.messages = data.messages;
+  state.questions = data.questions;
+  renderSessions();
+  renderLog();
+  renderQuestions();
+}
+
+function renderLog() {
+  $("logArea").innerHTML = "";
+  if (!state.messages.length) {
+    $("logArea").appendChild(renderMessage("system", "当前会话还没有消息。"));
+    updateChatMeta();
+    return;
+  }
+  state.messages.forEach((m) => $("logArea").appendChild(renderMessage(m.role, m.content)));
+  updateChatMeta();
+  $("logArea").scrollTop = $("logArea").scrollHeight;
+}
+
+function renderQuestions() {
+  $("questionList").innerHTML = "";
+  if (!state.questions.length) {
+    $("questionList").innerHTML = `<div class="question-item">暂无问题</div>`;
+    return;
+  }
+  state.questions.forEach((q) => {
+    const div = document.createElement("div");
+    div.className = "question-item";
+    div.textContent = q.label;
+    $("questionList").appendChild(div);
+  });
+}
+
+function renderFocus(l1Count) {
+  $("attentionCount").textContent = `${Math.min(50, l1Count + 3)}/50`;
+  $("focusSlots").innerHTML = "";
+  for (let i = 1; i <= 20; i += 1) {
+    const span = document.createElement("span");
+    span.className = `slot ${i <= Math.min(17, l1Count) ? "active" : ""} ${i === 5 ? "fixed" : ""}`;
+    span.textContent = String(i).padStart(2, "0");
+    $("focusSlots").appendChild(span);
+  }
+}
+
+async function loadAssets() {
+  state.assets = await api("/api/assets");
+  renderFocus(state.assets.counts.L1 || 0);
+  $("assetStats").textContent = `资产 ${state.assets.counts.total || 0}`;
+  renderAssets();
+  renderManager();
+}
+
+function layerName(layer) {
+  if (layer === "L1") return "高价值区";
+  if (layer === "L2") return "进阶区";
+  if (layer === "L3") return "沉淀区";
+  return layer;
+}
+
+function renderAssets() {
+  const grid = $("assetGrid");
+  grid.innerHTML = "";
+  if (state.currentLayer === "holes") {
+    state.assets.holes.forEach((h) => grid.appendChild(cardHtml("hole", h)));
+    return;
+  }
+  state.assets.crystals
+    .filter((c) => state.currentLayer === "all" || c.layer === state.currentLayer)
+    .forEach((c) => grid.appendChild(cardHtml("crystal", c)));
+}
+
+function cardHtml(type, item) {
+  const div = document.createElement("article");
+  div.className = "asset-card";
+  if (type === "hole") {
+    div.innerHTML = `<div class="asset-head"><span class="pill">${item.id}</span><span class="pill green">启发线索</span></div><p>${escapeHtml(item.content)}</p><div class="asset-meta"><span>紧迫度 ${item.urgency}</span><span>Layer ${item.layer}</span></div>`;
+    return div;
+  }
+  const heat = Math.min(100, Math.round((item.heat || 0) * 100));
+  div.innerHTML = `
+    <div class="asset-head"><span class="pill">${item.id}${item.fixed ? " ★" : ""}</span><span class="pill green">${layerName(item.layer)}</span></div>
+    <p>${escapeHtml(item.content)}</p>
+    <div class="value-track"><div class="value-fill" style="width:${heat}%"></div></div>
+    <div class="asset-meta"><span>热度 ${item.heat}</span><span>${item.last_accessed || "从未访问"}</span></div>`;
+  return div;
+}
+
+async function loadTasks() {
+  state.pending = (await api("/api/pending")).cards;
+  state.tasks = (await api("/api/tasks")).tasks;
+  $("taskStats").textContent = `任务 ${state.tasks.filter((t) => t.status === "pending").length}`;
+  renderTasks();
+}
+
+function renderTasks() {
+  $("pendingList").innerHTML = state.pending.length ? "" : `<div class="list-card">暂无待确认卡片</div>`;
+  state.pending.forEach((card) => {
+    const div = document.createElement("div");
+    div.className = "list-card";
+    div.innerHTML = `<span class="pill">${card.id}</span><p><b>${escapeHtml(card.title)}</b></p><p>${escapeHtml(card.content || card.raw)}</p><div class="list-actions"><button class="success">转为晶体</button><button class="danger">忽略</button></div>`;
+    div.querySelector(".success").onclick = () => confirmPending(card);
+    div.querySelector(".danger").onclick = () => ignorePending(card.id);
+    $("pendingList").appendChild(div);
+  });
+  const pendingTasks = state.tasks.filter((t) => t.status === "pending");
+  $("taskList").innerHTML = pendingTasks.length ? "" : `<div class="list-card">暂无冲突任务</div>`;
+  pendingTasks.forEach((task) => {
+    const div = document.createElement("div");
+    div.className = "list-card";
+    div.innerHTML = `<span class="pill">${task.id}</span><p><b>${escapeHtml(task.title)}</b></p><p>${escapeHtml(task.content)}</p><p>${escapeHtml(task.suggested_action || "")}</p><div class="list-actions"><button class="success">标记处理</button><button class="danger">忽略</button></div>`;
+    div.querySelector(".success").onclick = () => resolveTask(task.id);
+    div.querySelector(".danger").onclick = () => ignoreTask(task.id);
+    $("taskList").appendChild(div);
+  });
+}
+
+function renderManager() {
+  const layer = $("managerLayer").value;
+  $("managerTable").innerHTML = "";
+  state.assets.crystals.filter((c) => layer === "all" || c.layer === layer).forEach((c) => {
+    const row = document.createElement("div");
+    row.className = "table-row";
+    row.innerHTML = `<b>${c.id}</b><span>${escapeHtml(c.content)}</span><span>${c.layer}${c.fixed ? " ★" : ""}</span><span>${c.heat}</span><div class="row-actions"><button>L1</button><button>L2</button><button>L3</button><button class="danger">删</button></div>`;
+    const buttons = row.querySelectorAll("button");
+    buttons[0].onclick = () => patchAsset(c.id, { layer: "L1", fixed: true });
+    buttons[1].onclick = () => patchAsset(c.id, { layer: "L2", fixed: false });
+    buttons[2].onclick = () => patchAsset(c.id, { layer: "L3", fixed: false });
+    buttons[3].onclick = () => deleteAsset(c.id);
+    $("managerTable").appendChild(row);
+  });
+}
+
+async function patchAsset(id, payload) {
+  await api(`/api/assets/${id}`, { method: "PATCH", body: JSON.stringify(payload) });
+  await loadAssets();
+}
+
+async function deleteAsset(id) {
+  if (!confirm(`删除晶体 ${id}？不可恢复。`)) return;
+  await api(`/api/assets/${id}`, { method: "DELETE" });
+  await loadAssets();
+}
+
+async function confirmPending(card) {
+  const content = prompt("确认前可编辑晶体内容：", card.content || card.title);
+  if (content === null) return;
+  let result = await api(`/api/pending/${card.id}/confirm`, { method: "POST", body: JSON.stringify({ content, force: false }) });
+  if (result.needs_force && confirm(`发现可能重复晶体，仍继续？\n${result.similar.map((x) => `${x.id} ${x.score} ${x.content}`).join("\n")}`)) {
+    result = await api(`/api/pending/${card.id}/confirm`, { method: "POST", body: JSON.stringify({ content, force: true }) });
+  }
+  if (result.ok) {
+    await loadTasks();
+    await loadAssets();
+  }
+}
+
+async function ignorePending(id) {
+  await api(`/api/pending/${id}/ignore`, { method: "POST" });
+  await loadTasks();
+}
+
+async function resolveTask(id) {
+  await api(`/api/tasks/${id}/resolve`, { method: "POST" });
+  await loadTasks();
+}
+
+async function ignoreTask(id) {
+  await api(`/api/tasks/${id}/ignore`, { method: "POST" });
+  await loadTasks();
+}
+
+async function confirmPendingById() {
+  const id = prompt("输入卡片 ID（例如 PENDING-20260618120000-001）：");
+  if (!id) return;
+  const card = state.pending.find((item) => item.id === id.trim());
+  const initial = card?.content || card?.title || "";
+  const content = prompt("确认前可编辑晶体内容：", initial);
+  if (content === null) return;
+  let result = await api(`/api/pending/${id.trim()}/confirm`, { method: "POST", body: JSON.stringify({ content, force: false }) });
+  if (result.needs_force && confirm(`发现可能重复晶体，仍继续？\n${result.similar.map((x) => `${x.id} ${x.score} ${x.content}`).join("\n")}`)) {
+    result = await api(`/api/pending/${id.trim()}/confirm`, { method: "POST", body: JSON.stringify({ content, force: true }) });
+  }
+  if (result.ok) {
+    await loadTasks();
+    await loadAssets();
+  }
+}
+
+function activeView(name) {
+  document.querySelectorAll(".nav-list button").forEach((b) => b.classList.toggle("active", b.dataset.view === name));
+  document.querySelectorAll(".view").forEach((v) => v.classList.toggle("active", v.id === `view-${name}`));
+}
+
+async function startJob(path, payload, label) {
+  const data = await api(path, { method: "POST", body: JSON.stringify(payload) });
+  state.jobs.set(data.job_id, { id: data.job_id, label, status: "queued" });
+  renderJobs();
+  pollJob(data.job_id);
+  return data;
+}
+
+async function pollJob(jobId) {
+  const job = await api(`/api/jobs/${jobId}`);
+  state.jobs.set(jobId, { ...state.jobs.get(jobId), ...job });
+  renderJobs();
+  if (job.status === "done") {
+    if (job.result?.debate) openDebateResult(job.result.debate);
+    if (job.result?.preview) openCrystalPreview(job.result.session_id, job.result.preview);
+    await refreshSessions();
+    if (state.currentSessionId) await loadSession(state.currentSessionId);
+    await loadAssets();
+    await loadTasks();
+  } else if (job.status === "error") {
+    appendSystem(job.error || "任务失败", "error");
+  } else {
+    setTimeout(() => pollJob(jobId), 1200);
+  }
+}
+
+function openDebateResult(debate) {
+  const final = debate.final || {};
+  const rigid = final.rigid_core || {};
+  const rounds = debate.rounds || [];
+  $("dialogTitle").textContent = "深入讨论结果";
+  $("dialogBody").innerHTML = `
+    <div class="stack-list">
+      <div class="list-card"><b>一句话结论</b><p>${escapeHtml(rigid.decision_summary || final.one_sentence_conclusion || "")}</p></div>
+      <div class="list-card"><b>给你的建议</b><p>${escapeHtml(final.soft_wrap || final.student_friendly_answer || debate.answer || "")}</p></div>
+      <details class="list-card" open><summary><b>刚性内核</b></summary>
+        <p><b>关键融合：</b>${escapeHtml(rigid.key_synthesis || final.key_synthesis || "")}</p>
+        <p><b>边界风险：</b>${escapeHtml((rigid.risks_and_boundaries || final.risks || []).join("\\n") || "暂无特别风险。")}</p>
+      </details>
+      <details class="list-card"><summary><b>采纳了哪些观点</b></summary>${(rigid.core_adoptions || final.adopted_points || []).map((x) => `<p>${escapeHtml(x)}</p>`).join("") || "<p>暂无详细采纳记录。</p>"}</details>
+      <details class="list-card" open><summary><b>辩论环节</b></summary>${renderDebateRounds(rounds)}</details>
+      <details class="list-card"><summary><b>老师详情</b></summary><p>${escapeHtml(final.teacher_detail || "")}</p><p>模式：${escapeHtml(debate.mode)}；估算调用：${debate.calls_estimate || "-"} 次；轮次：${rounds.length}</p></details>
+    </div>`;
+  $("dialogPrimaryBtn").textContent = "我知道了";
+  $("dialogPrimaryBtn").onclick = () => $("previewDialog").close();
+  $("previewDialog").showModal();
+}
+
+function renderDebateRounds(rounds) {
+  if (!rounds.length) return "<p>暂无辩论轮次记录。</p>";
+  return rounds.map((round) => {
+    const audit = round.audit || {};
+    const answers = round.answers || [];
+    return `
+      <div class="debate-round">
+        <h3>第 ${round.round} 轮 ${round.jaccard !== undefined ? `<span>Jaccard ${round.jaccard}</span>` : ""}</h3>
+        ${audit.summary ? `<p class="audit-line"><b>逻辑检查员：</b>${escapeHtml(audit.summary)}</p>` : ""}
+        ${audit.major_conflict !== undefined ? `<p class="audit-line"><b>关键分歧：</b>${audit.major_conflict ? "存在事实/逻辑层面重大分歧" : "暂无不可调和重大分歧"}</p>` : ""}
+        <div class="role-answer-grid">
+          ${answers.map((item) => `
+            <article class="role-answer">
+              <b>${escapeHtml(item.role || "角色")}</b>
+              ${renderRoleSamples(item.samples || [])}
+              ${formatDebateAnswer(item.answer || "")}
+            </article>
+          `).join("")}
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function renderRoleSamples(samples) {
+  if (!samples.length) return "";
+  return `<details class="debate-section"><summary>角色内多采样</summary>${samples.map((sample) => `
+    <p><b>样本 ${escapeHtml(sample.sample || "")}：</b>${escapeHtml(sample.focus || "")}</p>
+    <p>${escapeHtml(sample.answer || "")}</p>
+  `).join("")}</details>`;
+}
+
+function formatDebateAnswer(text) {
+  const safe = escapeHtml(text);
+  const sections = [
+    ["靶向攻击", "【靶向攻击】"],
+    ["辩护与吸收", "【辩护与吸收】"],
+    ["折冲整合方案", "【折冲整合方案】"],
+  ];
+  if (!sections.some(([, marker]) => safe.includes(marker))) {
+    return `<p>${safe}</p>`;
+  }
+  return sections.map(([title, marker], index) => {
+    const next = sections[index + 1]?.[1];
+    const start = safe.indexOf(marker);
+    if (start < 0) return "";
+    const contentStart = start + marker.length;
+    const end = next ? safe.indexOf(next, contentStart) : -1;
+    const content = safe.slice(contentStart, end >= 0 ? end : undefined).trim();
+    return `<details class="debate-section" ${title === "折冲整合方案" ? "open" : ""}><summary>${title}</summary><p>${content || "未提取到内容"}</p></details>`;
+  }).join("");
+}
+
+function renderJobs() {
+  $("jobList").innerHTML = "";
+  if (!state.jobs.size) {
+    $("jobList").innerHTML = `<div class="job-item">暂无后台任务</div>`;
+    return;
+  }
+  [...state.jobs.values()].slice(-6).reverse().forEach((j) => {
+    const div = document.createElement("div");
+    div.className = `job-item ${j.status || ""}`;
+    const daily = j.daily_progress || {};
+    const logs = (j.logs || []).slice(-2).map((x) => `${x.time} ${x.message}`).join("\n");
+    div.innerHTML = `
+      <b>${escapeHtml(j.label || j.type)}: ${escapeHtml(j.status || "queued")} · ${j.progress || 0}%</b>
+      <progress max="100" value="${Number(j.progress || 0)}"></progress>
+      ${daily.stage ? `<small>${escapeHtml(daily.stage)} · 候选 ${daily.candidate_count || 0} · 卡片 ${daily.pending_count || 0} · 任务 ${daily.task_count || 0} · ${daily.elapsed_seconds || 0}/${daily.budget_seconds || 0}s</small>` : ""}
+      ${logs ? `<small>${escapeHtml(logs)}</small>` : ""}
+      ${j.type === "daily-plan" && ["queued", "running", "stopping"].includes(j.status || "") ? `<button data-stop-daily="${escapeHtml(j.id || "")}" class="danger">停止每日计划</button>` : ""}
+    `;
+    const stopBtn = div.querySelector("[data-stop-daily]");
+    if (stopBtn) {
+      stopBtn.onclick = async () => {
+        await api(`/api/daily-plan/stop/${stopBtn.dataset.stopDaily}`, { method: "POST" });
+        appendSystem("已请求中断每日计划，后端正在整理已有成果...", "system");
+      };
+    }
+    $("jobList").appendChild(div);
+  });
+}
+
+function parseDailyKeywords(text) {
+  return text.split(/[,，;；\s\n]+/).map((x) => x.trim()).filter(Boolean);
+}
+
+function openDailyDialog() {
+  const dialog = $("dailyDialog");
+  if (typeof dialog.showModal === "function") dialog.showModal();
+  else dialog.setAttribute("open", "");
+}
+
+function closeDailyDialog() {
+  const dialog = $("dailyDialog");
+  if (typeof dialog.close === "function") dialog.close();
+  else dialog.removeAttribute("open");
+}
+
+async function startDailyPlan(useDefault = false) {
+  const keywords = useDefault ? [] : parseDailyKeywords($("dailyKeywordsInput").value || "");
+  closeDailyDialog();
+  const data = await api("/api/daily-plan/run", {
+    method: "POST",
+    body: JSON.stringify({
+      api_key: $("apiKeyInput").value.trim() || null,
+      intent_keywords: keywords,
+      time_budget_seconds: 900,
+    }),
+  });
+  state.currentDailyJobId = data.job_id;
+  state.jobs.set(data.job_id, { id: data.job_id, label: "每日计划", type: "daily-plan", status: "queued" });
+  renderJobs();
+  pollJob(data.job_id);
+}
+
+function appendSystem(content, role = "system") {
+  $("logArea").appendChild(renderMessage(role, content, role === "error" ? "error" : ""));
+  if (["user", "assistant"].includes(role)) {
+    state.messages.push({ role, content });
+    updateChatMeta();
+  }
+  $("logArea").scrollTop = $("logArea").scrollHeight;
+}
+
+function inputPayload() {
+  const input = $("mainInput").value.trim();
+  if (!input) throw new Error("请输入内容");
+  return {
+    session_id: state.currentSessionId,
+    input,
+    api_key: $("apiKeyInput").value.trim() || null,
+  };
+}
+
+function openCrystalPreview(sessionId, preview) {
+  $("dialogTitle").textContent = "晶体化预览确认";
+  $("dialogBody").innerHTML = `
+    <div class="stack-list">
+      <div class="list-card"><b>摘要</b><p>${escapeHtml(preview.report_summary)}</p></div>
+      <div class="list-card"><b>新增晶体 ${preview.new_crystals.length}</b>${preview.new_crystals.map((c) => `<p>${c.id} · ${escapeHtml(c.content)}</p>`).join("") || "<p>无</p>"}</div>
+      <div class="list-card"><b>新增孔洞 ${preview.new_holes.length}</b>${preview.new_holes.map((h) => `<p>${h.id} · ${escapeHtml(h.content)}</p>`).join("") || "<p>无</p>"}</div>
+      <div class="list-card"><b>待确认卡片 ${preview.pending_cards.length}</b>${preview.pending_cards.map((c) => `<p>${escapeHtml(c.type)} · ${escapeHtml(c.content)}</p>`).join("") || "<p>无</p>"}</div>
+      <div class="list-card"><b>冲突 ${preview.conflicts.length}</b>${preview.conflicts.map((c) => `<p>${c.a} vs ${c.b} · ${escapeHtml(c.reason)}</p>`).join("") || "<p>无</p>"}</div>
+    </div>`;
+  $("dialogPrimaryBtn").textContent = "确认入库";
+  $("dialogPrimaryBtn").onclick = async () => {
+    await api("/api/crystallize/commit", { method: "POST", body: JSON.stringify({ session_id: sessionId, result: preview }) });
+    $("previewDialog").close();
+    await loadAssets();
+    await loadTasks();
+    if (state.currentSessionId) await loadSession(state.currentSessionId);
+  };
+  $("previewDialog").showModal();
+}
+
+async function showInfo(kind) {
+  const map = {
+    status: "/api/status",
+    holes: "/api/holes",
+    today: "/api/today",
+    health: "/api/health",
+  };
+  const data = await api(map[kind]);
+  $("healthPanel").textContent = JSON.stringify(data, null, 2);
+}
+
+function bindEvents() {
+  $("newSessionBtn").onclick = createSession;
+  $("renameSessionBtn").onclick = renameCurrentSession;
+  $("deleteSessionBtn").onclick = deleteCurrentSession;
+  $("sessionSearch").oninput = renderSessions;
+  $("refreshBtn").onclick = async () => { await bootstrap(); appendSystem("数据已刷新"); };
+  $("backendLoginBtn").onclick = openAuthDialog;
+  $("authSubmitBtn").onclick = submitBackendLogin;
+  $("authPassword").onkeydown = (event) => {
+    if (event.key === "Enter") submitBackendLogin();
+  };
+  $("authUsername").onkeydown = (event) => {
+    if (event.key === "Enter") $("authPassword").focus();
+  };
+  $("backendLogoutBtn").onclick = async () => {
+    try {
+      const result = await api("/api/backend/logout", { method: "POST" });
+      appendSystem(result.message || "已退出老师模式，学生端仍可继续使用", "system");
+      renderBackendAuth(Boolean(result.running));
+    } catch (err) {
+      appendSystem(`退出老师模式失败：${err.message}`, "error");
+    }
+  };
+  document.querySelectorAll(".nav-list button").forEach((b) => b.onclick = () => activeView(b.dataset.view));
+  $("clearInputBtn").onclick = () => { $("mainInput").value = ""; };
+  $("reasonMode").onchange = updateRoundControl;
+  $("debateRoundsInput").onblur = () => {
+    const input = $("debateRoundsInput");
+    input.value = clampRounds(input.value);
+  };
+  $("clearSessionBtn").onclick = async () => {
+    if (!state.currentSessionId || !confirm("清空当前会话消息？")) return;
+    await api(`/api/sessions/${state.currentSessionId}/clear`, { method: "POST" });
+    await loadSession(state.currentSessionId);
+  };
+  $("chatBtn").onclick = async () => {
+    try {
+      const payload = inputPayload();
+      $("mainInput").value = "";
+      appendSystem(payload.input, "user");
+      await startJob("/api/chat", payload, "聊天");
+    } catch (err) { appendSystem(err.message, "error"); }
+  };
+  $("crystalBtn").onclick = async () => {
+    try {
+      const payload = { ...inputPayload(), fast_mode: $("fastModeInput").checked, scope: $("scopeInput").value };
+      $("mainInput").value = "";
+      appendSystem(`[晶体化] ${payload.input}`, "user");
+      await startJob("/api/crystallize", payload, "晶体化");
+    } catch (err) { appendSystem(err.message, "error"); }
+  };
+  $("reasonBtn").onclick = async () => {
+    try {
+      const payload = buildReasonPayload();
+      $("mainInput").value = "";
+      appendSystem(`[深度推理] ${payload.input}`, "user");
+      await startJob("/api/deep-reasoning", payload, "深度思考");
+    } catch (err) { appendSystem(err.message, "error"); }
+  };
+  $("fileInput").onchange = async (ev) => {
+    const file = ev.target.files[0];
+    if (!file) return;
+    const form = new FormData();
+    form.append("session_id", state.currentSessionId || "");
+    form.append("api_key", $("apiKeyInput").value.trim());
+    form.append("upload", file);
+    const data = await api("/api/file-chat", { method: "POST", body: form });
+    state.jobs.set(data.job_id, { label: "文件对话", status: "queued" });
+    pollJob(data.job_id);
+  };
+  $("batchStartBtn").onclick = async () => {
+    try {
+      const folder = $("batchFolderInput").value.trim();
+      if (!folder) throw new Error("请输入后端可访问的文件夹路径");
+      const data = await startJob("/api/batch/start", {
+        folder,
+        mode: $("batchModeInput").value,
+        fast_mode: $("fastModeInput").checked,
+        inject_history: $("batchInjectInput").checked,
+        session_id: state.currentSessionId,
+        api_key: $("apiKeyInput").value.trim() || null,
+      }, "批量处理");
+      state.currentBatchJobId = data.job_id;
+    } catch (err) { appendSystem(err.message, "error"); }
+  };
+  $("batchStopBtn").onclick = async () => {
+    if (!state.currentBatchJobId) {
+      appendSystem("当前没有可停止的批量处理任务", "system");
+      return;
+    }
+    await api(`/api/batch/stop/${state.currentBatchJobId}`, { method: "POST" });
+    appendSystem("正在停止批量处理...", "system");
+  };
+  $("quickStatusBtn").onclick = async () => { activeView("health"); await showInfo("status"); };
+  $("quickHolesBtn").onclick = async () => { activeView("health"); await showInfo("holes"); };
+  $("quickPendingBtn").onclick = async () => { activeView("tasks"); await loadTasks(); };
+  $("quickConfirmBtn").onclick = confirmPendingById;
+  $("quickTodayBtn").onclick = async () => { activeView("health"); await showInfo("today"); };
+  $("quickTasksBtn").onclick = async () => { activeView("tasks"); await loadTasks(); };
+  $("quickManagerBtn").onclick = () => activeView("manager");
+  $("quickSearchBtn").onclick = () => activeView("search");
+  $("quickHealthBtn").onclick = async () => { activeView("health"); await showInfo("health"); };
+  $("dailyBtn").onclick = async () => {
+    $("dailyKeywordsInput").value = "";
+    openDailyDialog();
+    setTimeout(() => $("dailyKeywordsInput").focus(), 0);
+  };
+  document.querySelector('#dailyDialog button[value="cancel"]').onclick = closeDailyDialog;
+  $("dailyStartBtn").onclick = () => startDailyPlan(false).catch((err) => appendSystem(err.message, "error"));
+  $("dailyDefaultBtn").onclick = () => startDailyPlan(true).catch((err) => appendSystem(err.message, "error"));
+  document.querySelectorAll("#assetTabs button").forEach((b) => b.onclick = () => {
+    document.querySelectorAll("#assetTabs button").forEach((x) => x.classList.remove("active"));
+    b.classList.add("active");
+    state.currentLayer = b.dataset.layer;
+    renderAssets();
+  });
+  $("managerLayer").onchange = renderManager;
+  $("managerRefreshBtn").onclick = loadAssets;
+  $("docSearchBtn").onclick = async () => {
+    const data = await api("/api/search", { method: "POST", body: JSON.stringify({ keyword: $("docKeyword").value.trim(), regex: $("docRegex").checked, dirs: $("docDirs").value.split(",").map((x) => x.trim()).filter(Boolean) }) });
+    $("searchResults").textContent = data.results.map((r) => `${r.file}:${r.line}: ${r.text}`).join("\n") + `\n\n共找到 ${data.total} 条结果`;
+  };
+  $("showStatusBtn").onclick = () => showInfo("status");
+  $("showHolesBtn").onclick = () => showInfo("holes");
+  $("showTodayBtn").onclick = () => showInfo("today");
+  $("showHealthBtn").onclick = () => showInfo("health");
+}
+
+bindEvents();
+updateRoundControl();
+bootstrap().catch((err) => {
+  setStatus("加载失败");
+  appendSystem(err.message, "error");
+});
+
+// ===== 认知指纹加载与渲染 =====
+
+async function loadFingerprint() {
+  try {
+    const data = await api("/api/fingerprint");
+    if (data.fingerprint) {
+      renderRadarChart(data.fingerprint);
+      updateProfileLabels(data.fingerprint);
+    } else {
+      updateProfileLabels(null);
+    }
+  } catch (err) {
+    updateProfileLabels(null);
+  }
+}
+
+function renderRadarChart(fp) {
+  const canvas = document.getElementById("radarCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width, h = canvas.height;
+  const cx = w / 2, cy = h / 2;
+  const radius = 70;
+
+  ctx.clearRect(0, 0, w, h);
+
+  if (!fp) {
+    ctx.fillStyle = "#999";
+    ctx.font = "12px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("暂无数据", cx, cy);
+    return;
+  }
+
+  const dims = [
+    fp.risk_tolerance || 0,
+    fp.innovation_preference || 0,
+    fp.decisiveness || 0,
+    fp.attention_span || 0,
+    fp.confidence || 0
+  ];
+  const labels = ["风险容忍", "创新偏好", "决策果断", "注意力持续", "认知置信"];
+  const angles = [-90, -18, 54, 126, 198].map(deg => deg * Math.PI / 180);
+
+  for (let r of [0.3, 0.6, 0.9]) {
+    ctx.beginPath();
+    for (let i = 0; i < 5; i++) {
+      const x = cx + radius * r * Math.cos(angles[i]);
+      const y = cy + radius * r * Math.sin(angles[i]);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = "#ddd";
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+  }
+
+  for (let angle of angles) {
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + radius * 1.05 * Math.cos(angle), cy + radius * 1.05 * Math.sin(angle));
+    ctx.strokeStyle = "#ddd";
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+  }
+
+  ctx.beginPath();
+  for (let i = 0; i < 5; i++) {
+    const r = radius * Math.max(0, Math.min(1, dims[i]));
+    const x = cx + r * Math.cos(angles[i]);
+    const y = cy + r * Math.sin(angles[i]);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = "rgba(111, 86, 217, 0.25)";
+  ctx.fill();
+  ctx.strokeStyle = "#6f56d9";
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  for (let i = 0; i < 5; i++) {
+    const angle = angles[i];
+    const lx = cx + (radius + 20) * Math.cos(angle);
+    const ly = cy + (radius + 20) * Math.sin(angle);
+    ctx.fillStyle = "#555";
+    ctx.font = "9px sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(labels[i], lx, ly);
+  }
+
+  const avg = dims.reduce((a, b) => a + b, 0) / 5;
+  ctx.fillStyle = "#6f56d9";
+  ctx.font = "bold 12px sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(avg.toFixed(2), cx, cy);
+}
+
+function updateProfileLabels(fp) {
+  const container = document.getElementById("profileLabels");
+  if (!container) return;
+  if (!fp) {
+    container.innerHTML = '<span style="color:#999;font-size:11px;">暂无认知数据，开始对话后生成</span>';
+    return;
+  }
+  const items = [
+    ["风险容忍", fp.risk_tolerance],
+    ["创新偏好", fp.innovation_preference],
+    ["决策果断", fp.decisiveness],
+    ["注意力持续", fp.attention_span],
+    ["认知置信", fp.confidence]
+  ];
+  container.innerHTML = items.map(([name, val]) =>
+    `<span style="font-size:10px;color:#555;background:#f0edf5;padding:2px 8px;border-radius:10px;margin:2px;">${name}: ${(val || 0).toFixed(2)}</span>`
+  ).join(" ");
+}
+
+// 在页面加载后自动加载指纹
+document.addEventListener("DOMContentLoaded", function () {
+  setTimeout(loadFingerprint, 1000);
+});

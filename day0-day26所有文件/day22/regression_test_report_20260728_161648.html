@@ -1,0 +1,208 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>认知晶体树 v2.2 全量回归测试报告</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+                background: #f5f7fa;
+                margin: 0;
+                padding: 20px;
+                color: #1a2c3e;
+            }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                background: white;
+                border-radius: 16px;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+                padding: 30px;
+            }
+            h1 {
+                font-size: 28px;
+                border-bottom: 3px solid #2a9d8f;
+                padding-bottom: 12px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            .summary {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 16px;
+                margin: 24px 0;
+                background: #f8fafc;
+                border-radius: 12px;
+                padding: 20px;
+            }
+            .summary-item {
+                text-align: center;
+            }
+            .summary-item .number {
+                font-size: 32px;
+                font-weight: 700;
+            }
+            .summary-item .label {
+                font-size: 14px;
+                color: #5a7b8e;
+            }
+            .status-pass { color: #2a9d8f; }
+            .status-fail { color: #d84a55; }
+            .status-error { color: #f59e0b; }
+            .details { margin-top: 24px; }
+            .failure, .error {
+                background: #fef2f2;
+                border-left: 4px solid #d84a55;
+                padding: 12px 16px;
+                margin-bottom: 12px;
+                border-radius: 8px;
+                overflow-x: auto;
+            }
+            .error {
+                background: #fffbeb;
+                border-left-color: #f59e0b;
+            }
+            .failure h4, .error h4 { margin: 0 0 8px 0; font-size: 15px; }
+            pre {
+                margin: 6px 0;
+                font-size: 13px;
+                background: #f1f3f5;
+                padding: 10px;
+                border-radius: 6px;
+                white-space: pre-wrap;
+                word-break: break-all;
+            }
+            .timestamp {
+                color: #5a7b8e;
+                font-size: 14px;
+                margin-top: 16px;
+                text-align: right;
+                border-top: 1px solid #e9edf2;
+                padding-top: 16px;
+            }
+            .badge {
+                display: inline-block;
+                padding: 4px 12px;
+                border-radius: 40px;
+                font-size: 14px;
+                font-weight: 600;
+            }
+            .badge-pass { background: #d1fae5; color: #065f46; }
+            .badge-fail { background: #fee2e2; color: #991b1b; }
+            .badge-error { background: #fef3c7; color: #92400e; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🧪 认知晶体树 v2.2 全量回归测试报告</h1>
+            <div class="summary">
+                <div class="summary-item">
+                    <div class="number status-pass">24</div>
+                    <div class="label">✅ 通过</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number status-fail">6</div>
+                    <div class="label">❌ 失败</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number status-error">1</div>
+                    <div class="label">⚠️ 错误</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number">31</div>
+                    <div class="label">📊 总计</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number">77.4%</div>
+                    <div class="label">📈 通过率</div>
+                </div>
+            </div>
+
+            <div>
+                <span class="badge badge-pass">通过 24</span>
+                <span class="badge badge-fail">失败 6</span>
+                <span class="badge badge-error">错误 1</span>
+            </div>
+
+            <div class="details">
+                <h2>📋 详细信息</h2>
+                
+        <div class="failure">
+            <h4>❌ test_isolated_crystal_trigger_validation (__main__.TestMetaPrimitiveChains)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 201, in test_isolated_crystal_trigger_validation
+    self.assertGreaterEqual(gap_result.get("stats", {}).get("isolated_count", 0), 3)
+AssertionError: 0 not greater than or equal to 3
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ test_history_diagnose_and_reuse (__main__.TestHistoryRetrieval)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 223, in test_history_diagnose_and_reuse
+    self.assertTrue(result.get("matched", False))
+AssertionError: False is not true
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ test_create_and_validate_skill (__main__.TestSkillMigration)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 294, in test_create_and_validate_skill
+    self.assertTrue(result["valid"])
+AssertionError: False is not true
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ test_claim_extractor (__main__.TestVerificationComponents)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 338, in test_claim_extractor
+    self.assertGreater(len(claims), 0)
+AssertionError: 0 not greater than 0
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ test_status_bar_data (__main__.TestHealthAssertions)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 491, in test_status_bar_data
+    self.assertIsInstance(status.get("cognitive_continuity_score"), (int, float))
+AssertionError: None is not an instance of (<class 'int'>, <class 'float'>)
+</pre>
+        </div>
+        
+        <div class="failure">
+            <h4>❌ test_auth_register_login (__main__.TestAuthAndPayment)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 538, in test_auth_register_login
+    self.assertTrue(success)
+AssertionError: False is not true
+</pre>
+        </div>
+        
+                
+        <div class="error">
+            <h4>⚠️ test_sandbox_execution (__main__.TestVerificationComponents)</h4>
+            <pre>Traceback (most recent call last):
+  File "D:\AI开发软件\小吴2026\康迈乐公司AI开发\认知树养成\认知晶体树2.2版本\full_regression_test.py", line 354, in test_sandbox_execution
+    claim = ClaimExtractor().extract_from_text("准确率为95%")[0]
+IndexError: list index out of range
+</pre>
+        </div>
+        
+                
+            </div>
+
+            <div class="timestamp">
+                测试开始：2026-07-28 16:16:48<br>
+                测试结束：2026-07-28 16:42:01<br>
+                耗时：1513.07 秒
+            </div>
+        </div>
+    </body>
+    </html>
+    

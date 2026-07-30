@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-07-19T20:01:13.968920",
+  "data": {
+    "ai_papers": [
+      "Partition, Prompt, Aggregate: Statistical Self-Consistency in Language Models (发布于: 2026-07-16)",
+      "RoboTTT: Context Scaling for Robot Policies (发布于: 2026-07-16)",
+      "MeanFlowNFT: Bringing Forward-Process RL to Average-Velocity Generators (发布于: 2026-07-16)",
+      "SciDiagramEdit: Learning to Edit Scientific Diagrams from Paper Revisions (发布于: 2026-07-16)",
+      "Online Neural Space Time Memory for Dynamic Novel View Synthesis (发布于: 2026-07-16)"
+    ],
+    "hf_papers": [
+      "(HF页面结构可能已更新)"
+    ],
+    "llm_news": {
+      "面壁智能 新模型": [
+        "面壁智能上半年融资超50亿元,估值突破200亿",
+        "面壁智能端侧大模型将搭载三星手机上市"
+      ],
+      "智谱AI 最新进展": [
+        "智谱的万亿估值,是中国AI的新故事"
+      ],
+      "阿里通义 大模型": [
+        "阿里通义实验室发布 Wan-Streamer v0.2模型",
+        "阿里通义实验室发布Wan-Streamer v0.2模型"
+      ]
+    },
+    "neuro_papers": [
+      "Thoughtseeds as Latent Causes: A Dual-Process Computational Phenomenology of Focused-Attention Meditation (发布于: 2026-07-16)",
+      "Leveraging unlabelled data for generalizable neural population decoding (发布于: 2026-07-15)",
+      "A modular state-space model of human perception, cognition, and decision dynamics (发布于: 2026-07-15)",
+      "Activity Regeneration from Silent States in Neuronal Networks with Transient Synaptic Memory (发布于: 2026-07-15)"
+    ],
+    "timestamp": "2026-07-19T20:01:13.968920"
+  }
+}

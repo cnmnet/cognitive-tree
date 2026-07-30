@@ -1,0 +1,87 @@
+[
+  {
+    "role": "radical",
+    "timestamp": "2026-07-16T10:44:27.136119",
+    "candidate_type": "add_reflection_instruction",
+    "eval_score": 0.6999999999999998,
+    "applied": true
+  },
+  {
+    "role": "radical",
+    "timestamp": "2026-07-16T10:46:22.523757",
+    "candidate_type": "add_reflection_instruction",
+    "eval_score": 0.6999999999999998,
+    "applied": true
+  },
+  {
+    "role": "judge",
+    "timestamp": "2026-07-16T11:48:41.558879",
+    "candidate_type": "add_reflection_instruction",
+    "eval_score": 1.0,
+    "eight_defenses_passed": true,
+    "external_source": "mock",
+    "applied": true
+  },
+  {
+    "role": "spokesperson",
+    "timestamp": "2026-07-16T11:49:42.640838",
+    "candidate_type": "add_reflection_instruction",
+    "eval_score": 1.0,
+    "eight_defenses_passed": true,
+    "external_source": "mock",
+    "applied": true
+  },
+  {
+    "role": "structural",
+    "timestamp": "2026-07-16T12:03:43.484373",
+    "candidate_type": "enhance_analogy_thinking",
+    "eval_score": 1.0,
+    "eight_defenses_passed": true,
+    "external_source": "mock",
+    "applied": true
+  },
+  {
+    "role": "radical",
+    "timestamp": "2026-07-16T12:06:06.561171",
+    "candidate_type": "enhance_disruptive_thinking",
+    "eval_score": 1.0,
+    "eight_defenses_passed": true,
+    "external_source": "mock",
+    "applied": true
+  },
+  {
+    "role": "radical",
+    "timestamp": "2026-07-16T14:39:41.462951",
+    "candidate_type": "enhance_disruptive_thinking",
+    "eval_score": 1.0,
+    "eight_defenses_passed": true,
+    "external_source": "mock",
+    "applied": true
+  },
+  {
+    "role": "radical",
+    "timestamp": "2026-07-16T15:01:13.959123",
+    "candidate_type": "enhance_disruptive_thinking",
+    "eval_score": 1.0,
+    "eight_defenses_passed": true,
+    "external_source": "mock",
+    "applied": true
+  },
+  {
+    "role": "radical",
+    "timestamp": "2026-07-16T15:37:41.985546",
+    "candidate_type": "enhance_disruptive_thinking",
+    "eval_score": 1.0,
+    "eight_defenses_passed": true,
+    "external_source": "mock",
+    "applied": true
+  },
+  {
+    "role": "system",
+    "timestamp": "2026-07-16T15:38:00.573950",
+    "event": "crystal_generated",
+    "crystal_id": "C099",
+    "source": "trace",
+    "applied": true
+  }
+]

@@ -1,0 +1,628 @@
+{
+  "exploration_log": [
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-13T16:04:41.982932",
+      "force_level": "high",
+      "crystal_generated": "C082",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-13T16:26:23.114819",
+      "force_level": "high",
+      "crystal_generated": "C083",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-13T16:26:24.398567",
+      "force_level": "medium",
+      "crystal_generated": "C084",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H006",
+      "timestamp": "2026-07-13T16:26:26.565570",
+      "force_level": "high",
+      "crystal_generated": "C085",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H045",
+      "timestamp": "2026-07-13T17:00:51.354482",
+      "force_level": "medium",
+      "crystal_generated": "C086",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H057",
+      "timestamp": "2026-07-13T17:00:52.985041",
+      "force_level": "medium",
+      "crystal_generated": "C087",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H059",
+      "timestamp": "2026-07-13T17:00:54.603711",
+      "force_level": "medium",
+      "crystal_generated": "C088",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H060",
+      "timestamp": "2026-07-13T17:04:11.748680",
+      "force_level": "medium",
+      "crystal_generated": "C089",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H032",
+      "timestamp": "2026-07-13T17:04:12.958381",
+      "force_level": "medium",
+      "crystal_generated": "C090",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H005",
+      "timestamp": "2026-07-13T17:04:14.473556",
+      "force_level": "medium",
+      "crystal_generated": "C091",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H025",
+      "timestamp": "2026-07-14T11:04:06.284530",
+      "force_level": "medium",
+      "crystal_generated": "C092",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H029",
+      "timestamp": "2026-07-14T11:04:07.431053",
+      "force_level": "medium",
+      "crystal_generated": "C093",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H036",
+      "timestamp": "2026-07-14T11:04:08.526728",
+      "force_level": "medium",
+      "crystal_generated": "C094",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H047",
+      "timestamp": "2026-07-14T11:06:59.652856",
+      "force_level": "medium",
+      "crystal_generated": "C095",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-20T16:15:44.618562",
+      "force_level": "high",
+      "crystal_generated": "C100",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-20T16:15:45.989270",
+      "force_level": "high",
+      "crystal_generated": "C101",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-20T16:15:47.217315",
+      "force_level": "medium",
+      "crystal_generated": "C102",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-21T19:45:54.765290",
+      "force_level": "high",
+      "crystal_generated": "C103",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-21T19:45:56.199957",
+      "force_level": "high",
+      "crystal_generated": "C104",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-21T19:45:57.599429",
+      "force_level": "medium",
+      "crystal_generated": "C105",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-21T19:52:24.867449",
+      "force_level": "high",
+      "crystal_generated": "C106",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-21T19:52:26.860677",
+      "force_level": "high",
+      "crystal_generated": "C107",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-21T19:52:28.585918",
+      "force_level": "medium",
+      "crystal_generated": "C108",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-23T13:42:53.077557",
+      "force_level": "high",
+      "crystal_generated": "C109",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-23T13:42:54.090788",
+      "force_level": "high",
+      "crystal_generated": "C110",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-23T13:42:55.377891",
+      "force_level": "medium",
+      "crystal_generated": "C111",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-23T13:47:20.796656",
+      "force_level": "high",
+      "crystal_generated": "C112",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-23T13:47:22.121165",
+      "force_level": "high",
+      "crystal_generated": "C113",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-23T13:47:23.462660",
+      "force_level": "medium",
+      "crystal_generated": "C114",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-23T15:48:49.737306",
+      "force_level": "high",
+      "crystal_generated": "C115",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-23T15:48:51.619541",
+      "force_level": "high",
+      "crystal_generated": "C116",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-23T15:48:52.964354",
+      "force_level": "medium",
+      "crystal_generated": "C117",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-24T13:38:39.986751",
+      "force_level": "high",
+      "crystal_generated": "C118",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-24T13:38:41.684459",
+      "force_level": "high",
+      "crystal_generated": "C119",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-24T13:38:43.303436",
+      "force_level": "medium",
+      "crystal_generated": "C120",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-24T13:41:52.598167",
+      "force_level": "high",
+      "crystal_generated": "C121",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-24T13:41:54.321208",
+      "force_level": "high",
+      "crystal_generated": "C122",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-24T13:41:56.089631",
+      "force_level": "medium",
+      "crystal_generated": "C123",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T15:53:41.897448",
+      "force_level": "high",
+      "crystal_generated": "C124",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T15:53:42.038654",
+      "force_level": "high",
+      "crystal_generated": "C125",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T15:53:42.186687",
+      "force_level": "medium",
+      "crystal_generated": "C126",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T15:58:23.770658",
+      "force_level": "high",
+      "crystal_generated": "C127",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T15:58:23.910659",
+      "force_level": "high",
+      "crystal_generated": "C128",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T15:58:24.047472",
+      "force_level": "medium",
+      "crystal_generated": "C129",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T16:00:03.878131",
+      "force_level": "high",
+      "crystal_generated": "C130",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T16:00:04.060057",
+      "force_level": "high",
+      "crystal_generated": "C131",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T16:00:04.187057",
+      "force_level": "medium",
+      "crystal_generated": "C132",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T16:01:35.688244",
+      "force_level": "high",
+      "crystal_generated": "C133",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T16:01:35.845424",
+      "force_level": "high",
+      "crystal_generated": "C134",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T16:01:35.990453",
+      "force_level": "medium",
+      "crystal_generated": "C135",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T16:02:50.993958",
+      "force_level": "high",
+      "crystal_generated": "C136",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T16:02:51.140811",
+      "force_level": "high",
+      "crystal_generated": "C137",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T16:02:51.277815",
+      "force_level": "medium",
+      "crystal_generated": "C138",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T16:27:07.360216",
+      "force_level": "high",
+      "crystal_generated": "C139",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T16:27:10.013083",
+      "force_level": "high",
+      "crystal_generated": "C140",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T16:27:12.578422",
+      "force_level": "medium",
+      "crystal_generated": "C141",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T16:42:33.144934",
+      "force_level": "high",
+      "crystal_generated": "C142",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T16:42:37.106037",
+      "force_level": "high",
+      "crystal_generated": "C143",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T16:42:40.912465",
+      "force_level": "medium",
+      "crystal_generated": "C144",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T16:58:46.807635",
+      "force_level": "high",
+      "crystal_generated": "C145",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T16:58:49.362158",
+      "force_level": "high",
+      "crystal_generated": "C146",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T16:59:01.459446",
+      "force_level": "medium",
+      "crystal_generated": "C147",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T17:13:44.994875",
+      "force_level": "high",
+      "crystal_generated": "C148",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T17:13:47.739232",
+      "force_level": "high",
+      "crystal_generated": "C149",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T17:13:51.020669",
+      "force_level": "medium",
+      "crystal_generated": "C150",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T17:30:25.521765",
+      "force_level": "high",
+      "crystal_generated": "C151",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T17:30:29.395400",
+      "force_level": "high",
+      "crystal_generated": "C152",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T17:30:35.083619",
+      "force_level": "medium",
+      "crystal_generated": "C153",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T19:12:10.791994",
+      "force_level": "high",
+      "crystal_generated": "C154",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T19:12:14.758897",
+      "force_level": "high",
+      "crystal_generated": "C155",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T19:12:21.572232",
+      "force_level": "medium",
+      "crystal_generated": "C156",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T19:26:08.945260",
+      "force_level": "high",
+      "crystal_generated": "C157",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T19:26:14.350101",
+      "force_level": "high",
+      "crystal_generated": "C158",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T19:26:17.505965",
+      "force_level": "medium",
+      "crystal_generated": "C159",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T19:40:46.486196",
+      "force_level": "high",
+      "crystal_generated": "C160",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T19:40:49.274740",
+      "force_level": "high",
+      "crystal_generated": "C161",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T19:40:52.759689",
+      "force_level": "medium",
+      "crystal_generated": "C162",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T19:54:46.381354",
+      "force_level": "high",
+      "crystal_generated": "C163",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T19:54:50.156826",
+      "force_level": "high",
+      "crystal_generated": "C164",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T19:54:54.537552",
+      "force_level": "medium",
+      "crystal_generated": "C165",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-26T20:07:46.374987",
+      "force_level": "high",
+      "crystal_generated": "C166",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-26T20:07:49.989978",
+      "force_level": "high",
+      "crystal_generated": "C167",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-26T20:07:54.756838",
+      "force_level": "medium",
+      "crystal_generated": "C168",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-28T12:16:52.128372",
+      "force_level": "high",
+      "crystal_generated": "C169",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-28T12:16:53.659908",
+      "force_level": "high",
+      "crystal_generated": "C170",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-28T12:16:54.802471",
+      "force_level": "medium",
+      "crystal_generated": "C171",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H001",
+      "timestamp": "2026-07-28T12:25:58.139737",
+      "force_level": "high",
+      "crystal_generated": "C172",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H002",
+      "timestamp": "2026-07-28T12:25:59.523514",
+      "force_level": "high",
+      "crystal_generated": "C173",
+      "status": "completed"
+    },
+    {
+      "hole_id": "H003",
+      "timestamp": "2026-07-28T12:26:00.760999",
+      "force_level": "medium",
+      "crystal_generated": "C174",
+      "status": "completed"
+    }
+  ],
+  "last_saved": "2026-07-28T12:26:00.760999"
+}

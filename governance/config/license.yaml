@@ -1,0 +1,13 @@
+default_tier: community
+addons:
+  community:
+    - baseline
+    - retrieval
+    - debate
+    - report
+  pro:
+    - planner
+    - education
+  enterprise:
+    - governance
+    - private_deploy

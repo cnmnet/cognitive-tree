@@ -1,0 +1,3 @@
+PyYAML
+cryptography
+radon>=6.0

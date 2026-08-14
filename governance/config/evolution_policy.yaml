@@ -1,0 +1,16 @@
+fast_loop:
+  interval_minutes: 5
+  min_score: 65
+  max_duration_seconds: 2
+slow_loop:
+  schedule: "0 3 * * *"
+  replay_hours: 24
+  min_improvement: 0.03
+  metrics:
+    - jaccard
+    - crystal_reference_rate
+    - audit_feedback_length
+    - regression_tests
+gates:
+  require_rollback_on:
+    - regression_tests

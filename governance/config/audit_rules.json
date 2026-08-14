@@ -1,0 +1,9 @@
+{
+  "role_feedback_min_chars": 200,
+  "role_feedback_expand_chars": 150,
+  "role_feedback_section_min_chars": 30,
+  "audit_max_retries": 2,
+  "audit_role_max_chars": 1000,
+  "round_summary_min_chars": 50,
+  "round_summary_max_chars": 300
+}

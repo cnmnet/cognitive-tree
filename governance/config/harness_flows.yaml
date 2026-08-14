@@ -1,0 +1,40 @@
+version: "1.0"
+flows:
+  daily:
+    description: "每日基线到报告的标准流程"
+    steps:
+      - id: baseline
+        processor: baseline
+        params:
+          rounds: 2
+      - id: retrieval
+        processor: retrieval
+        depends_on: [baseline]
+        params:
+          scope: global
+      - id: debate
+        processor: debate
+        depends_on: [retrieval]
+        params:
+          mode: debate_full
+      - id: report
+        processor: report
+        depends_on: [debate]
+        params: {}
+  education:
+    description: "语文作文因材施教流程"
+    steps:
+      - id: class_context
+        processor: retrieval
+        params:
+          scope: class
+      - id: essay_debate
+        processor: debate
+        depends_on: [class_context]
+        params:
+          mode: education
+      - id: five_versions
+        processor: report
+        depends_on: [essay_debate]
+        params:
+          style: education

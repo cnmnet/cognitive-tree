@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cognitive-crystal-tree"
+version = "0.1.0"
+description = "可插拔自进化的认知与决策引擎（认知晶体树）"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "商业保留 All Rights Reserved"}
+authors = [{name = "康迈乐公司"}]
+dependencies = [
+    "PyYAML",
+    "cryptography",
+    "radon>=6.0",
+]
+
+[project.optional-dependencies]
+server = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+    "PyJWT",
+    "stripe",
+    "requests",
+    "python-dotenv",
+    "python-multipart",
+    "numpy",
+    "scikit-learn",
+    "beautifulsoup4",
+    "feedparser",
+    "arxiv",
+    "pandas",
+    "python-docx",
+    "pypdf",
+    "python-pptx",
+    "jieba",
+]
+test = [
+    "pytest",
+    "pyflakes",
+]
+
+[project.scripts]
+crystal-tree-cli = "access.cli:main"
+crystal-tree-web = "access.web:main"
+
+[tool.setuptools.packages.find]
+include = [
+    "access*",
+    "auth*",
+    "webhook*",
+    "core*",
+    "data*",
+    "evolution*",
+    "external*",
+    "governance*",
+    "harness*",
+    "addons*",
+    "web_static*",
+    "i18n*",
+]
+exclude = ["access.gui_parts*"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+governance = ["config/*.json", "config/*.yaml"]
+web_static = ["*.html", "*.js", "*.css", "*.svg", "*.png"]
+i18n = ["*.json"]

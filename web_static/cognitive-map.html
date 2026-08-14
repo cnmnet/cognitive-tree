@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>认知星图 · 集体认知地图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0b0a1a;
+            font-family: 'Segoe UI', '微软雅黑', sans-serif;
+            color: #e0e0e0;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #header {
+            background: rgba(20, 18, 40, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2a2a4a;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+        #header h1 {
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #a78bfa, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        #header .info {
+            font-size: 13px;
+            color: #9ca3af;
+        }
+        #header .info span {
+            margin-left: 20px;
+        }
+        #canvas-wrapper {
+            flex: 1;
+            position: relative;
+            background: #0b0a1a;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+        }
+        canvas:active {
+            cursor: grabbing;
+        }
+        #tooltip {
+            position: absolute;
+            background: rgba(10, 10, 30, 0.92);
+            backdrop-filter: blur(4px);
+            border: 1px solid #4a4a7a;
+            border-radius: 8px;
+            padding: 10px 14px;
+            max-width: 280px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s;
+            font-size: 13px;
+            line-height: 1.5;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+            color: #e5e7eb;
+            z-index: 20;
+        }
+        #tooltip .title {
+            font-weight: 600;
+            color: #c4b5fd;
+            margin-bottom: 4px;
+        }
+        #tooltip .detail {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+        #tooltip .content-preview {
+            margin-top: 4px;
+            font-size: 12px;
+            color: #d1d5db;
+        }
+        #detail-panel {
+            position: absolute;
+            right: 24px;
+            top: 80px;
+            width: 320px;
+            max-height: 70vh;
+            background: rgba(16, 14, 36, 0.92);
+            backdrop-filter: blur(8px);
+            border: 1px solid #3a3a6a;
+            border-radius: 12px;
+            padding: 20px;
+            overflow-y: auto;
+            display: none;
+            box-shadow: 0 8px 48px rgba(0,0,0,0.7);
+            z-index: 15;
+        }
+        #detail-panel.show {
+            display: block;
+        }
+        #detail-panel h2 {
+            font-size: 18px;
+            color: #c4b5fd;
+            margin-bottom: 8px;
+        }
+        #detail-panel .label {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 8px;
+        }
+        #detail-panel .value {
+            font-size: 14px;
+            color: #e5e7eb;
+            word-break: break-word;
+        }
+        #detail-panel .close-btn {
+            float: right;
+            background: none;
+            border: none;
+            color: #9ca3af;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0 8px;
+        }
+        #detail-panel .close-btn:hover {
+            color: #f87171;
+        }
+        #legend {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            background: rgba(10, 10, 30, 0.85);
+            backdrop-filter: blur(4px);
+            border: 1px solid #2a2a4a;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 12px;
+            color: #d1d5db;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            z-index: 10;
+        }
+        #legend .row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .color-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .color-dot.L1 { background: #f59e0b; }
+        .color-dot.L2 { background: #60a5fa; }
+        .color-dot.L3 { background: #a78bfa; }
+        .color-dot.footprint { background: #f472b6; box-shadow: 0 0 8px #f472b6; }
+        .color-dot.blind { background: rgba(255, 100, 100, 0.3); border: 1px dashed #ef4444; }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #9ca3af;
+            font-size: 16px;
+            z-index: 5;
+        }
+        #loading .spinner {
+            border: 3px solid #2a2a4a;
+            border-top: 3px solid #818cf8;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 12px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #stats {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            font-size: 12px;
+            color: #6b7280;
+            background: rgba(0,0,0,0.5);
+            padding: 6px 12px;
+            border-radius: 6px;
+            z-index: 10;
+        }
+        /* 滚动条美化 */
+        #detail-panel::-webkit-scrollbar {
+            width: 4px;
+        }
+        #detail-panel::-webkit-scrollbar-track {
+            background: #1a1a3a;
+        }
+        #detail-panel::-webkit-scrollbar-thumb {
+            background: #4a4a7a;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <h1>🌌 认知星图 · 集体认知地图</h1>
+    <div class="info">
+        <span id="node-count">加载中...</span>
+        <span>拖拽浏览 · 滚轮缩放</span>
+        <span style="margin-left:16px; cursor:pointer;" onclick="window.location.href='/'">← 返回主站</span>
+    </div>
+</div>
+
+<div id="canvas-wrapper">
+    <div id="loading">
+        <div class="spinner"></div>
+        <div>正在绘制星图...</div>
+    </div>
+    <canvas id="starMap"></canvas>
+    <div id="tooltip"></div>
+    <div id="detail-panel">
+        <button class="close-btn" onclick="closeDetail()">✕</button>
+        <h2 id="detail-title">晶体详情</h2>
+        <div class="label">内容</div>
+        <div class="value" id="detail-content"></div>
+        <div class="label">层级</div>
+        <div class="value" id="detail-layer"></div>
+        <div class="label">热度</div>
+        <div class="value" id="detail-heat"></div>
+        <div class="label">链接</div>
+        <div class="value" id="detail-links"></div>
+        <div class="label">最后访问</div>
+        <div class="value" id="detail-accessed"></div>
+        <div style="margin-top:12px;">
+            <button onclick="jumpToCrystal()" style="background:#4f46e5; border:none; color:white; padding:6px 16px; border-radius:6px; cursor:pointer;">跳转到晶体管理</button>
+        </div>
+    </div>
+    <div id="legend">
+        <div class="row"><span class="color-dot L1"></span> L1 核心</div>
+        <div class="row"><span class="color-dot L2"></span> L2 支撑</div>
+        <div class="row"><span class="color-dot L3"></span> L3 边缘</div>
+        <div class="row"><span class="color-dot footprint"></span> 近期足迹</div>
+        <div class="row"><span class="color-dot blind"></span> 认知盲区</div>
+    </div>
+    <div id="stats"></div>
+</div>
+
+<script>
+    // ===== 全局变量 =====
+    const canvas = document.getElementById('starMap');
+    const ctx = canvas.getContext('2d');
+    const tooltip = document.getElementById('tooltip');
+    const detailPanel = document.getElementById('detail-panel');
+    const loading = document.getElementById('loading');
+
+    let nodes = [];
+    let blindSpots = [];
+    let scale = 1.0;
+    let offsetX = 0, offsetY = 0;
+    let isDragging = false;
+    let startX, startY, startOffX, startOffY;
+    let hoveredNode = null;
+    let selectedNodeId = null;
+
+    // 颜色映射
+    const layerColors = {
+        'L1': '#f59e0b',
+        'L2': '#60a5fa',
+        'L3': '#a78bfa'
+    };
+
+    // ===== 初始化 Canvas 尺寸 =====
+    function resizeCanvas() {
+        const wrapper = document.getElementById('canvas-wrapper');
+        canvas.width = wrapper.clientWidth;
+        canvas.height = wrapper.clientHeight;
+        draw();
+    }
+    window.addEventListener('resize', resizeCanvas);
+
+    // ===== 获取数据 =====
+    async function fetchMapData() {
+        try {
+            const resp = await fetch('/api/cognitive-map');
+            const data = await resp.json();
+            if (data.status !== 'success') {
+                throw new Error(data.message || '加载失败');
+            }
+            nodes = data.nodes;
+            blindSpots = data.blind_spots || [];
+            document.getElementById('node-count').textContent = `晶体数: ${nodes.length}`;
+            loading.style.display = 'none';
+            // 自动调整缩放和偏移使所有点可见
+            fitToView();
+            resizeCanvas();
+        } catch (err) {
+            loading.innerHTML = `<div style="color:#f87171;">❌ 加载失败: ${err.message}</div>`;
+            console.error(err);
+        }
+    }
+
+    // ===== 适应视图 =====
+    function fitToView() {
+        if (nodes.length === 0) return;
+        // 计算所有点的边界
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(n => {
+            if (n.x < minX) minX = n.x;
+            if (n.x > maxX) maxX = n.x;
+            if (n.y < minY) minY = n.y;
+            if (n.y > maxY) maxY = n.y;
+        });
+        const pad = 0.1;
+        const rangeX = maxX - minX + 2*pad;
+        const rangeY = maxY - minY + 2*pad;
+        // 计算缩放，使所有点占画布的 80%
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+        const scaleX = (canvasWidth * 0.8) / rangeX;
+        const scaleY = (canvasHeight * 0.8) / rangeY;
+        scale = Math.min(scaleX, scaleY, 10); // 限制最大缩放
+        // 偏移使得居中
+        const centerX = (minX + maxX) / 2;
+        const centerY = (minY + maxY) / 2;
+        offsetX = canvasWidth/2 - centerX * scale;
+        offsetY = canvasHeight/2 - centerY * scale;
+    }
+
+    // ===== 坐标转换 =====
+    function toScreen(x, y) {
+        return {
+            sx: x * scale + offsetX,
+            sy: y * scale + offsetY
+        };
+    }
+
+    // ===== 绘制主循环 =====
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (nodes.length === 0) return;
+
+        // 1. 绘制盲区（底层）
+        blindSpots.forEach(spot => {
+            const pos = toScreen(spot.x, spot.y);
+            const radius = spot.radius * scale * 50; // 缩放半径
+            ctx.beginPath();
+            ctx.arc(pos.sx, pos.sy, radius, 0, Math.PI*2);
+            ctx.fillStyle = 'rgba(239, 68, 68, 0.12)';
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(239, 68, 68, 0.4)';
+            ctx.setLineDash([4, 8]);
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+            ctx.setLineDash([]);
+            // 文字
+            ctx.fillStyle = 'rgba(239, 68, 68, 0.7)';
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(spot.label || '盲区', pos.sx, pos.sy + radius + 16);
+        });
+
+        // 2. 绘制连线（先画线再画点）
+        const drawnLinks = new Set();
+        nodes.forEach(n => {
+            n.links.forEach(targetId => {
+                const target = nodes.find(t => t.id === targetId);
+                if (!target) return;
+                const key = [n.id, target.id].sort().join('-');
+                if (drawnLinks.has(key)) return;
+                drawnLinks.add(key);
+                const p1 = toScreen(n.x, n.y);
+                const p2 = toScreen(target.x, target.y);
+                ctx.beginPath();
+                ctx.moveTo(p1.sx, p1.sy);
+                ctx.lineTo(p2.sx, p2.sy);
+                ctx.strokeStyle = 'rgba(100, 100, 200, 0.25)';
+                ctx.lineWidth = 1.2;
+                ctx.stroke();
+            });
+        });
+
+        // 3. 绘制节点
+        nodes.forEach(n => {
+            const pos = toScreen(n.x, n.y);
+            const radius = 4 + n.heat * 8; // 热度映射大小
+            const isFootprint = n.in_footprint || false;
+
+            // 如果是足迹，画光晕
+            if (isFootprint) {
+                const grad = ctx.createRadialGradient(pos.sx, pos.sy, 0, pos.sx, pos.sy, radius*2.5);
+                grad.addColorStop(0, 'rgba(244, 114, 182, 0.3)');
+                grad.addColorStop(1, 'rgba(244, 114, 182, 0)');
+                ctx.beginPath();
+                ctx.arc(pos.sx, pos.sy, radius*2.5, 0, Math.PI*2);
+                ctx.fillStyle = grad;
+                ctx.fill();
+            }
+
+            // 主圆
+            const color = layerColors[n.layer] || '#888';
+            ctx.beginPath();
+            ctx.arc(pos.sx, pos.sy, radius, 0, Math.PI*2);
+            ctx.fillStyle = color;
+            ctx.shadowColor = isFootprint ? '#f472b6' : 'rgba(0,0,0,0.3)';
+            ctx.shadowBlur = isFootprint ? 18 : 6;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            // 边框
+            ctx.strokeStyle = '#1a1a3a';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            // 如果被选中，高亮
+            if (n.id === selectedNodeId) {
+                ctx.beginPath();
+                ctx.arc(pos.sx, pos.sy, radius+4, 0, Math.PI*2);
+                ctx.strokeStyle = '#fbbf24';
+                ctx.lineWidth = 2.5;
+                ctx.stroke();
+            }
+
+            // 保存节点屏幕坐标用于点击检测
+            n._screenX = pos.sx;
+            n._screenY = pos.sy;
+            n._radius = radius;
+        });
+
+        // 更新统计
+        document.getElementById('stats').textContent = `缩放: ${scale.toFixed(1)}x | 晶体: ${nodes.length}`;
+    }
+
+    // ===== 鼠标事件 =====
+    function getMousePos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.clientX || e.touches?.[0]?.clientX || 0;
+        const clientY = e.clientY || e.touches?.[0]?.clientY || 0;
+        return { x: clientX - rect.left, y: clientY - rect.top };
+    }
+
+    function findNodeAt(mx, my) {
+        // 从后往前遍历（上层优先）
+        for (let i = nodes.length-1; i >= 0; i--) {
+            const n = nodes[i];
+            const dx = mx - n._screenX;
+            const dy = my - n._screenY;
+            if (dx*dx + dy*dy <= (n._radius + 6) ** 2) {
+                return n;
+            }
+        }
+        return null;
+    }
+
+    canvas.addEventListener('mousedown', (e) => {
+        if (e.button === 0) {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            startOffX = offsetX;
+            startOffY = offsetY;
+            canvas.style.cursor = 'grabbing';
+        }
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        const pos = getMousePos(e);
+        // 悬停检测
+        const hovered = findNodeAt(pos.x, pos.y);
+        if (hovered) {
+            canvas.style.cursor = 'pointer';
+            tooltip.style.opacity = '1';
+            tooltip.style.left = (e.clientX - canvas.getBoundingClientRect().left + 14) + 'px';
+            tooltip.style.top = (e.clientY - canvas.getBoundingClientRect().top - 10) + 'px';
+            tooltip.innerHTML = `
+                <div class="title">${hovered.id}</div>
+                <div class="detail">层级: ${hovered.layer} · 热度: ${hovered.heat.toFixed(2)}</div>
+                <div class="content-preview">${hovered.content.slice(0, 80)}${hovered.content.length>80?'...':''}</div>
+            `;
+            hoveredNode = hovered;
+        } else {
+            tooltip.style.opacity = '0';
+            hoveredNode = null;
+        }
+
+        if (isDragging) {
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            offsetX = startOffX + dx;
+            offsetY = startOffY + dy;
+            draw();
+        }
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            canvas.style.cursor = 'grab';
+        }
+    });
+
+    canvas.addEventListener('click', (e) => {
+        if (hoveredNode) {
+            selectedNodeId = hoveredNode.id;
+            showDetail(hoveredNode);
+            draw();
+        } else {
+            closeDetail();
+        }
+    });
+
+    // 滚轮缩放
+    canvas.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? 0.9 : 1.1;
+        const newScale = Math.min(20, Math.max(0.2, scale * delta));
+        // 缩放中心为鼠标位置
+        const rect = canvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+        const wx = (mx - offsetX) / scale;
+        const wy = (my - offsetY) / scale;
+        scale = newScale;
+        offsetX = mx - wx * scale;
+        offsetY = my - wy * scale;
+        draw();
+    }, { passive: false });
+
+    // 触摸支持
+    let lastTouchDist = 0;
+    canvas.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            startOffX = offsetX;
+            startOffY = offsetY;
+        } else if (e.touches.length === 2) {
+            const dx = e.touches[0].clientX - e.touches[1].clientX;
+            const dy = e.touches[0].clientY - e.touches[1].clientY;
+            lastTouchDist = Math.sqrt(dx*dx + dy*dy);
+        }
+    }, { passive: true });
+
+    canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        if (e.touches.length === 1 && isDragging) {
+            const dx = e.touches[0].clientX - startX;
+            const dy = e.touches[0].clientY - startY;
+            offsetX = startOffX + dx;
+            offsetY = startOffY + dy;
+            draw();
+        } else if (e.touches.length === 2) {
+            const dx = e.touches[0].clientX - e.touches[1].clientX;
+            const dy = e.touches[0].clientY - e.touches[1].clientY;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if (lastTouchDist > 0) {
+                const delta = dist / lastTouchDist;
+                const newScale = Math.min(20, Math.max(0.2, scale * delta));
+                scale = newScale;
+                draw();
+            }
+            lastTouchDist = dist;
+        }
+    }, { passive: false });
+
+    canvas.addEventListener('touchend', () => {
+        isDragging = false;
+        lastTouchDist = 0;
+    });
+
+    // ===== 详情面板 =====
+    function showDetail(node) {
+        document.getElementById('detail-title').textContent = node.id;
+        document.getElementById('detail-content').textContent = node.content;
+        document.getElementById('detail-layer').textContent = node.layer;
+        document.getElementById('detail-heat').textContent = node.heat.toFixed(3);
+        document.getElementById('detail-links').textContent = node.links.length ? node.links.join(', ') : '无';
+        document.getElementById('detail-accessed').textContent = node.last_accessed || '从未';
+        // 保存当前详情晶体ID
+        detailPanel.dataset.crystalId = node.id;
+        detailPanel.classList.add('show');
+    }
+
+    function closeDetail() {
+        detailPanel.classList.remove('show');
+        selectedNodeId = null;
+        draw();
+    }
+
+    function jumpToCrystal() {
+        const cid = detailPanel.dataset.crystalId;
+        if (cid) {
+            // 跳转到晶体管理页面（或主站晶体管理）
+            window.location.href = `/?crystal=${cid}`; // 假设主站支持参数
+            // 或者打开新窗口
+            // window.open(`/?crystal=${cid}`, '_blank');
+        }
+    }
+
+    // ===== 启动 =====
+    fetchMapData();
+    // 确保首次绘制
+    setTimeout(() => {
+        resizeCanvas();
+    }, 200);
+
+</script>
+</body>
+</html>

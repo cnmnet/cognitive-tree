@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <rect width="1600" height="900" fill="none"/>
+  <g opacity="0.78" stroke="#6f56d9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M125 680H1480"/>
+    <path d="M180 690h310m54 0h290m62 0h420"/>
+    <path d="M260 612h228l42 68H218l42-68Z"/>
+    <path d="M315 568h120v44H315z"/>
+    <path d="M335 540h80v28h-80z"/>
+    <circle cx="354" cy="554" r="5"/>
+    <circle cx="397" cy="554" r="5"/>
+    <path d="M370 568v44"/>
+    <path d="M288 632l-46-52m222 52l54-58"/>
+    <path d="M230 578c20-32 48-44 84-36"/>
+    <path d="M520 574c-32-26-66-32-104-18"/>
+    <path d="M655 584h220v86H655z"/>
+    <path d="M690 615h150m-136 24h102"/>
+    <path d="M650 584l-42-38m272 38l46-42"/>
+    <circle cx="608" cy="546" r="10"/>
+    <circle cx="926" cy="542" r="10"/>
+    <path d="M1040 610h130l36 70h-202l36-70Z"/>
+    <path d="M1076 548h96v62h-96z"/>
+    <path d="M1096 520h56v28h-56z"/>
+    <circle cx="1104" cy="572" r="5"/>
+    <circle cx="1144" cy="572" r="5"/>
+    <path d="M1116 590c14 8 28 8 42 0"/>
+    <path d="M1010 628l-72-44m266 44l82-52"/>
+    <path d="M936 584l-24-48 48 10-24 38Z"/>
+    <path d="M1284 576l38-42 22 50-60-8Z"/>
+  </g>
+  <g opacity="0.62" stroke="#20b783" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M705 438l60-56 64 56-64 58-60-58Z"/>
+    <path d="M765 382v114"/>
+    <path d="M705 438h124"/>
+    <path d="M590 455c44-40 86-48 126-24"/>
+    <path d="M817 432c54-34 110-34 170 0"/>
+    <circle cx="588" cy="455" r="8"/>
+    <circle cx="987" cy="432" r="8"/>
+    <path d="M470 430h82m-41-41v82"/>
+    <path d="M1110 430h82m-41-41v82"/>
+  </g>
+  <g opacity="0.52" stroke="#5c9df2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M210 276h210v118H210z"/>
+    <path d="M242 310h146m-146 34h110"/>
+    <path d="M1180 260h230v126h-230z"/>
+    <path d="M1215 296h152m-152 34h98"/>
+    <path d="M140 168c170 70 304 72 402 5"/>
+    <path d="M1000 162c155 88 294 96 426 24"/>
+    <circle cx="542" cy="173" r="8"/>
+    <circle cx="1000" cy="162" r="8"/>
+    <path d="M760 176c64-52 126-50 184 8"/>
+  </g>
+  <g opacity="0.45" fill="#efc96e">
+    <circle cx="525" cy="338" r="7"/>
+    <circle cx="975" cy="326" r="7"/>
+    <circle cx="1345" cy="476" r="6"/>
+    <circle cx="172" cy="506" r="6"/>
+  </g>
+</svg>

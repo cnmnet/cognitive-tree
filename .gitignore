@@ -1,0 +1,41 @@
+# 敏感信息
+.env
+.env.*
+!.env.example
+security.key
+*.key
+users.json
+user_profile.json
+
+# 运行数据与产物
+chat_sessions.db
+*.db
+*.sqlite3
+crystals.bak
+*.bak
+晶体数据/
+晶体数据 - 副本/
+系统日志/
+暂存区/
+晶体树文件夹/skills/trending/
+晶体树文件夹/核心配置/辩论角色模板.json
+docs/complexity_metrics.json
+docs/输出/报告/
+docs/输出/上传/
+dist_public/
+dist/
+build/
+*.egg-info/
+_tmp_wheel_check_*/
+model_cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.zip
+*.log
+
+# parity 参考快照只需提交运行所需的最小文件
+tools/reference/scripts/
+tools/reference/核心配置/
+tools/reference/web_static/*
+!tools/reference/web_static/index.html

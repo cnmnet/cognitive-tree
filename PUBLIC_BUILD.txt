@@ -1,0 +1,2 @@
+公开版不含 GUI 源码、旧版 parity 参考、环境密钥与运行时数据。
+Public build: no GUI source, no parity reference, no secrets, no runtime data.

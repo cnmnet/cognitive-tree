@@ -1,0 +1,5 @@
+recursive-include web_static *
+recursive-include governance/config *
+recursive-include i18n *.py *.json
+include LICENSE
+include README.md

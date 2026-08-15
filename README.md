@@ -1,17 +1,28 @@
 # 认知晶体树 / Cognitive Crystal Tree
 
-可插拔自进化的认知与决策引擎：多角色辩论、晶体知识库、检索、报告、自进化与验证闭环。
+一个可插拔、自进化的多角色辩论与认知沉淀引擎。
 
-Pluggable self-evolving cognitive and decision engine: multi-role debate, crystal knowledge base, retrieval, reporting, self-evolution and verification loop.
+A pluggable, self-evolving multi-role debate and cognitive crystallization engine.
 
-> 商业保留（All Rights Reserved）。本仓库仅用于授权协作，公开版本不含 GUI 源码。
-> Commercial use reserved. The public version does not include GUI source code.
+## 它解决什么问题
+
+AI 让内容生产和决策变得更快，但团队往往只沉淀了提示词，没有沉淀“为什么这么做”的判断依据。
+
+认知晶体树把“可交给 AI 的流程知识”和“必须由人内化的决策认知”分开，把每次项目实践沉淀为可检索、可迭代、可验证的认知晶体，而不是散落的提示词素材。
+
+## 和普通提示词库 / RAG 的区别
+
+| 方案 | 沉淀什么 | 能否验证 | 能否迭代 |
+| --- | --- | --- | --- |
+| 提示词库 | 怎么问 AI | 弱 | 弱 |
+| RAG | 已有文本 | 部分 | 中 |
+| 认知晶体树 | 决策依据、反例、失效边界 | 强 | 强 |
 
 ## 快速开始 / Quick Start
 
 ```bash
 pip install -e ".[server,test]"
-crystal-tree-cli --help
+crystal-tree-cli --flow daily
 crystal-tree-web
 ```
 
@@ -24,33 +35,29 @@ docker build -t cognitive-crystal-tree .
 docker run -p 8000:8000 cognitive-crystal-tree
 ```
 
-## 公开版 / Public Release
+## 架构 / Architecture
 
-GUI 源码只保留在私有工作区，不进入公开包。发布前执行：
-
-```bash
-python tools/export_public.py
-cd dist_public
-pip install .
+```text
+access       接入层：CLI / Web / GUI（公开版不含 GUI）
+harness      大脑：多角色辩论、审计、报告、验证
+evolution    自进化：Gödel、元层、双环、策略
+core         基石：模型、接口、持久化
+data         数据：存储、向量、服务
+external     外部：AI、搜索、抓取、证据
+governance   治理：配置、Prompt、审计规则
 ```
 
-`dist_public/` 不含 GUI 源码、旧版 parity 参考、`.env` 与密钥。完整回归和 parity 只在私有工作区运行。
+## 三种入口 / Entry Points
 
-The public build keeps GUI source private. Run `python tools/export_public.py`, then install from `dist_public/`.
+- CLI：`crystal-tree-cli`
+- Web：`crystal-tree-web`
+- GUI：仅保留私有工作区，不进入公开版
 
 ## 环境变量 / Environment
 
-复制 `.env.example` 为 `.env` 后填写 DeepSeek / 百度千帆 Key。`.env` 与密钥绝不进入打包产物或镜像。
+复制 `.env.example` 为 `.env`，填写 DeepSeek / 百度千帆 Key。
 
-Copy `.env.example` to `.env` and fill in DeepSeek / Baidu Qianfan keys. `.env` and secrets are never packaged.
-
-## 目录 / Layout
-
-- `access` 接入层（公开版不含 GUI）
-- `harness` 大脑：辩论、报告、验证
-- `evolution` 自进化：Gödel、元层、双环、策略
-- `core` 基石：模型、接口、持久化
-- `data` / `external` / `governance` 支撑层
+`.env` 和密钥绝不进入打包产物或镜像。
 
 ## 验证 / Verification
 
@@ -60,4 +67,4 @@ python tools/regression_check.py
 
 ## License
 
-见 [LICENSE](LICENSE)。
+商业保留（All Rights Reserved），见 [LICENSE](LICENSE)。

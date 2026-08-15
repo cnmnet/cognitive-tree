@@ -136,10 +136,89 @@ class TestSeverelyTruncatedDetection(unittest.TestCase):
         self.assertFalse(self.debate._is_severely_truncated("太短", 2048))
 
 
+class TestCrystalCitationRequirements(unittest.TestCase):
+    def test_role_system_requires_crystal_citations_for_all_roles(self):
+        debate = object.__new__(DebateEngine)
+        debate.ctx = DebateContext()
+        role = DebateRole(key="radical", name="激进者", instruction="颠覆")
+        system = debate._role_system(
+            role,
+            "【注意力材料（高度相关晶体）】\n- [C001] 认知晶体树的核心是动态分层",
+        )
+        self.assertIn("必须引用", system)
+        self.assertIn("[C", system)
+
+    def test_review_unreliable_outputs_requires_preserving_crystal_refs(self):
+        class _CaptureReviewAI:
+            def __init__(self):
+                self.prompt = ""
+
+            def chat(self, prompt, **kwargs):
+                self.prompt = prompt
+                return "这是修正后的完整回答，内容完整且以句号收尾。"
+
+        debate = object.__new__(DebateEngine)
+        debate.ctx = DebateContext()
+        debate.ai = _CaptureReviewAI()
+        debate.log = lambda message, level="system": None
+        debate.ctx.last_round_answers = [
+            {
+                "role": "激进者",
+                "answer": "依据 [C023] 拓扑映射原则提出反向方案 待补充",
+            }
+        ]
+        debate.ctx.audit_external_context = "外部参考"
+        debate._review_unreliable_outputs({})
+        self.assertIn("保留原回答中的引用编号", debate.ai.prompt)
+        self.assertIn("[C", debate.ai.prompt)
+        self.assertIn("[C023]", debate.ctx.last_round_answers[0]["answer"])
+        self.assertTrue(debate.ctx.last_round_answers[0]["answer"].rstrip().endswith("。"))
+
+    def test_role_external_fallback_uses_evidence_package_not_network(self):
+        from harness.evidence import EvidenceItem, EvidencePackage
+
+        class _BadFetcher:
+            def fetch_qianfan(self, query, max_results=3):
+                return []
+
+            def fetch_by_source(self, source_type, query=None, max_results=5):
+                raise AssertionError("角色简报不应触发整包网络抓取")
+
+        debate = object.__new__(DebateEngine)
+        debate.ctx = DebateContext()
+        debate.log = lambda message, level="system": None
+        debate.ctx.evidence_package = EvidencePackage(
+            items=[
+                EvidenceItem(
+                    evidence_id="E001",
+                    source="缓存",
+                    title="行业案例",
+                    content="外部行业案例与政策参考，用于角色简报兜底。",
+                    relevance=0.8,
+                )
+            ]
+        )
+        role = DebateRole(key="radical", name="激进者", instruction="颠覆")
+        with mock.patch(
+            "harness.processors.debate.ExternalFetcher",
+            return_value=_BadFetcher(),
+        ):
+            brief = debate._fetch_role_specific_external(
+                role,
+                ["颠覆性", "创新"],
+                "如何设计认知沉淀机制？",
+            )
+        self.assertIn("行业案例", brief)
+
+
 class TestReliabilityAlarm(unittest.TestCase):
     def test_is_reliable_output_rules(self):
         self.assertTrue(_is_reliable_output("内容完整。"))
         self.assertTrue(_is_reliable_output("代码块```"))
+        self.assertTrue(_is_reliable_output("这一条以括号收尾，属于完整结论（示例）"))
+        self.assertTrue(_is_reliable_output("这一条以省略号自然收尾…"))
+        self.assertTrue(_is_reliable_output("这是以 Markdown 加粗收尾的结论。**"))
+        self.assertTrue(_is_reliable_output("这是以引用编号收尾的结论。[E001]"))
         self.assertFalse(_is_reliable_output("内容待补充"))
         self.assertFalse(_is_reliable_output("错误：API Key 无效"))
         self.assertFalse(_is_reliable_output("内容没有正常收尾"))

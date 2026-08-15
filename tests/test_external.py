@@ -5,6 +5,7 @@ from external.ai_client import AIClient, aggregate_call_log, generate_session_ti
 from external.fetcher import ExternalFetcher
 from external.network import NetworkManager
 from external.search import SearchService
+from external.services import score_cognitive_level
 from governance.config import Config
 from data.storage import FileIO
 
@@ -49,8 +50,12 @@ class TestExternal(unittest.TestCase):
         self.assertEqual(totals["calls"], 2)
         self.assertEqual(totals["prompt_tokens"], 300)
         self.assertEqual(totals["completion_tokens"], 130)
+        self.assertEqual(totals["total_tokens"], 430)
         self.assertEqual(totals["prompt_cache_hit_tokens"], 180)
         self.assertEqual(totals["prompt_cache_miss_tokens"], 120)
+        self.assertEqual(totals["by_caller"]["chat"]["calls"], 1)
+        self.assertEqual(totals["by_caller"]["chat"]["prompt_tokens"], 100)
+        self.assertEqual(totals["by_caller"]["chat_json"]["completion_tokens"], 80)
 
     def test_title_fallback(self):
         title = generate_session_title_from_content("你好，这是一段很长很长的对话内容用于测试")
@@ -74,6 +79,61 @@ class TestExternal(unittest.TestCase):
 
     def test_network_user_agent(self):
         self.assertIn(NetworkManager.get_random_user_agent(), Config.USER_AGENTS)
+
+    def test_cognitive_scorer_pending_without_valid_ai(self):
+        class FakeAI:
+            def __init__(self):
+                self.calls = 0
+
+            def chat_json(self, prompt, temperature=0.3):
+                self.calls += 1
+                return {"error": "mock failure"}
+
+        result = score_cognitive_level("报告文本", ai_client=FakeAI())
+        self.assertEqual(result["status"], "pending_llm")
+        self.assertIsNone(result["cognitive_level"])
+
+    def test_cognitive_scorer_parses_llm_result(self):
+        class FakeAI:
+            def chat_json(self, prompt, temperature=0.3):
+                return {
+                    "dimensions": {
+                        "knowledge_lifecycle": 90,
+                        "human_ai_collaboration_reconstruction": 90,
+                        "cognitive_domestication_awareness": 85,
+                        "tree_decomposition_potential": 95,
+                        "long_term_asset_irreplaceability": 95,
+                        "hidden_trap_detection": 80,
+                    },
+                    "surprise_winning": {
+                        "score": 92,
+                        "sub_scores": {
+                            "counterintuitive": 95,
+                            "opportunity_window": 90,
+                            "asymmetric_payoff": 90,
+                        },
+                        "evidence": "反常识、机会窗口、非对称收益",
+                    },
+                }
+
+        result = score_cognitive_level("报告文本", ai_client=FakeAI())
+        self.assertEqual(result["status"], "scored")
+        self.assertEqual(len(result["dimensions"]), 6)
+        self.assertEqual(result["surprise_winning"]["score"], 92.0)
+        self.assertIn("反常识", result["strategy_tags"])
+        self.assertEqual(result["cognitive_level"], "structured")
+
+    def test_cognitive_scorer_retries_invalid_json(self):
+        class FakeAI:
+            def __init__(self):
+                self.calls = 0
+
+            def chat_json(self, prompt, temperature=0.3):
+                self.calls += 1
+                return {"error": "bad"}
+
+        result = score_cognitive_level("报告文本", ai_client=FakeAI())
+        self.assertEqual(result["status"], "pending_llm")
 
 
 if __name__ == "__main__":

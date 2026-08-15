@@ -26,9 +26,9 @@ from harness.rumad import RUMADController
 def _is_reliable_output(answer: str) -> bool:
     """判断角色输出是否可靠：无错误标记/占位符，且以正常标点或代码块收尾。"""
     tail = answer.rstrip()
-    return bool(answer) and not answer.startswith(("错误", "AI调用失败")) \
+    return bool(tail) and not answer.startswith(("错误", "AI调用失败")) \
         and not any(m in answer for m in ("待补充", "占位", "TODO")) \
-        and (tail[-1] in "。！？!?；;" or tail.endswith("```"))
+        and (tail.endswith("```") or tail[-1] in "。！？!?；;…”’\"'）)]*`")
 
 
 _CONTEXT_LABEL_RE = re.compile(r"【[^】]{0,24}】|用户[:：]|助手[:：]|系统[:：]|AI[:：]")
@@ -297,7 +297,8 @@ class DebateEngine:
                 result = ai_client._call_api(
                     [{"role": "system", "content": system}, {"role": "user", "content": prompt}],
                     temperature=temperature,
-                    max_tokens=max_tokens
+                    max_tokens=max_tokens,
+                    caller=f"role:{role.key}",
                 )
 
                 if result is None:
@@ -611,26 +612,26 @@ class DebateEngine:
                 return "\n".join(matched[:3])
 
         try:
-            fetcher = ExternalFetcher(log_callback=self.log, file_io=FileIO)
-            qianfan_results = fetcher.fetch_qianfan(
-                keywords[0] if keywords else question,
-                max_results=2,
-            )
-            if qianfan_results:
-                return "\n".join(
-                    [f"- {r.get('title', '')}: {r.get('summary', '')[:120]}" for r in qianfan_results]
-                )
             if Config.ENABLE_BAIDU_QIANFAN:
-                self.log("⚠️ 百度千帆简报失败/为空，降级到现有抓取", "warning")
-            # 使用第一个关键词搜索
-            results = fetcher.fetch_by_source("custom", query=keywords[0] if keywords else question, max_results=2)
-            if results:
-                return "\n".join([f"- {r.get('title', '')}" for r in results])
-            else:
-                return "（未获取到该角色的专属外部信息）"
+                fetcher = ExternalFetcher(log_callback=self.log, file_io=FileIO)
+                qianfan_results = fetcher.fetch_qianfan(
+                    keywords[0] if keywords else question,
+                    max_results=2,
+                )
+                if qianfan_results:
+                    return "\n".join(
+                        [
+                            f"- {r.get('title', '')}: {r.get('summary', '')[:120]}"
+                            for r in qianfan_results
+                        ]
+                    )
+                self.log("⚠️ 百度千帆简报失败/为空，使用证据包兜底", "warning")
         except Exception as e:
-            self.log(f"⚠️ 角色专属外部抓取失败：{e}", "warning")
-            return "（专属外部信息暂不可用）"
+            self.log(f"⚠️ 百度千帆简报失败：{e}", "warning")
+
+        if package and package.items:
+            return "\n".join(item.format_prompt(120) for item in package.items[:3])
+        return "（未获取到该角色的专属外部信息）"
 
     def _generate_role_search_intent(self, role: DebateRole, question: str) -> List[str]:
         """根据角色立场和问题，生成专属搜索关键词（jieba 提取 + 过滤上下文标记）。"""
@@ -1075,7 +1076,7 @@ class DebateEngine:
 
             shared_prefix += """
 
-【晶体引用建议】仅当高度相关（相似度>0.7）时引用，并说明支持或反驳。
+【强制引用】只要注意力材料或证据包提供了相关晶体（[Cxxx]），每轮发言必须引用至少 1 个 [Cxxx]，并说明支持或反驳；没有相关晶体时，必须明确写“当前无匹配晶体”。
 【语言要求】全部中文，专有名词后加括号解释。
 【外部证据要求】引用外部事实时必须给出可核验线索：具体日期、机构/媒体/论文来源、数字与单位（例如 [arxiv] 2026年论文、[news] 2026-08-01 路透社）。若证据包已提供 [E编号]，优先直接引用编号。禁止只写“研究表明”而不给来源。"""
 
@@ -2052,6 +2053,7 @@ class DebateEngine:
         # ===== Day 0: 埋点计时 =====
         self._start_time = time.time()
         self._token_count = 0
+        self._call_log_start = len(AIClient.CALL_LOG)
 
         # 加载认知风格（用于后续）
         try:
@@ -2531,20 +2533,33 @@ class DebateEngine:
             elapsed = time.time() - self._start_time
             self.log(f"📊 辩论耗时：{elapsed:.2f} 秒", "system")
             # ===== 真实 token 用量统计（来自 AIClient.CALL_LOG） =====
-            usage = aggregate_call_log()
+            run_call_log = list(AIClient.CALL_LOG[self._call_log_start:])
+            usage = aggregate_call_log(run_call_log)
             prompt_total = usage["prompt_tokens"]
             completion_total = usage["completion_tokens"]
             cache_hit = usage["prompt_cache_hit_tokens"]
             cache_miss = usage["prompt_cache_miss_tokens"]
+            call_count = usage["calls"]
             estimated_cost = (
                 cache_miss * Config.DEEPSEEK_INPUT_MISS_PRICE_PER_M
                 + cache_hit * Config.DEEPSEEK_INPUT_HIT_PRICE_PER_M
                 + completion_total * Config.DEEPSEEK_OUTPUT_PRICE_PER_M
             ) / 1_000_000
             self._token_count = prompt_total + completion_total
+            result["_meta"]["estimated_tokens"] = self._token_count
+            result["_token_usage"] = {
+                "calls": call_count,
+                "prompt_tokens": prompt_total,
+                "completion_tokens": completion_total,
+                "total_tokens": self._token_count,
+                "prompt_cache_hit_tokens": cache_hit,
+                "prompt_cache_miss_tokens": cache_miss,
+                "by_caller": usage.get("by_caller", {}),
+            }
             self.log(
-                f"📊 Token消耗：Prompt {prompt_total} / Completion {completion_total} / "
-                f"缓存命中 {cache_hit}，预估成本：${estimated_cost:.6f}",
+                f"📊 Token消耗：调用 {call_count} 次 | Prompt {prompt_total} / "
+                f"Completion {completion_total} / 总 {self._token_count} / "
+                f"缓存命中 {cache_hit} / 未命中 {cache_miss}，预估成本：${estimated_cost:.6f}",
                 "system",
             )
 
@@ -2959,6 +2974,14 @@ class DebateEngine:
         """重审不可靠输出：基于原回答与外部总览逐条修正并回写本轮答案。"""
         answers = getattr(self.ctx, "last_round_answers", None) or []
         overview = getattr(self.ctx, "audit_external_context", "") or ""
+        crystal_context = getattr(self.ctx, "crystal_cache", "") or ""
+        evidence_context = ""
+        package = getattr(self.ctx, "evidence_package", None)
+        if package is not None:
+            try:
+                evidence_context = package.format_for_prompt()
+            except Exception:
+                evidence_context = ""
         unreliable = [
             item for item in answers
             if item.get("answer") and not _is_reliable_output(item.get("answer", ""))
@@ -2973,11 +2996,26 @@ class DebateEngine:
                 f"请基于事实修正为完整回答。\n\n"
                 f"【原回答】\n{original}\n\n"
                 f"【外部事实参考】\n{overview or '（无）'}\n\n"
+                f"【晶体/证据参考】\n{crystal_context or '（无）'}\n\n{evidence_context}\n\n"
                 f"要求：保留原有核心观点；修复截断、占位、错误标记；"
+                f"保留原回答中的引用编号；如果原回答没有引用，请从晶体/证据参考中补上相关 [Cxxx]；"
                 f"补全为结构完整、以正常标点收尾的正文；不要解释过程，直接输出修正后的完整正文。"
             )
             corrected = self.ai.chat(review_prompt)
             if corrected and isinstance(corrected, str) and len(corrected.strip()) > 10:
+                refs = re.findall(
+                    r"\[C\d+\]|\[E\d+\]|\[(?:arxiv|news|hf|external)\]",
+                    original,
+                )
+                if refs:
+                    missing = [ref for ref in refs if ref not in corrected]
+                    if missing:
+                        corrected = (
+                            corrected.rstrip()
+                            + "\n\n【保留引用】"
+                            + "、".join(missing[:3])
+                            + "。"
+                        )
                 item["answer"] = corrected.strip()
                 self.log(
                     f"🔄 {role} 不可靠输出已重审修正（{count_output_words(item['answer'])}字）",

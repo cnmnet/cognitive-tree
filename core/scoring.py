@@ -98,20 +98,87 @@ PRACTICAL_WORDS = [
     "毛利率",
     "客户留存",
 ]
+SURPRISE_KEYWORDS = {
+    "counterintuitive": [
+        "反常识",
+        "反直觉",
+        "颠覆",
+        "打破",
+        "默认前提",
+        "反过来",
+        "非常规",
+        "推翻",
+        "逆向",
+        "挑战共识",
+    ],
+    "opportunity_window": [
+        "时机",
+        "窗口",
+        "杠杆",
+        "借力",
+        "切入点",
+        "先发",
+        "卡位",
+        "机会",
+        "拐点",
+        "空窗",
+    ],
+    "asymmetric_payoff": [
+        "小成本",
+        "低成本",
+        "低风险",
+        "高上限",
+        "不对称",
+        "非对称",
+        "止损",
+        "试错成本",
+        "退出条件",
+        "有限下注",
+        "以小博大",
+    ],
+}
 DIMENSION_LABELS = [
     ("argument_depth", "论证深度"),
     ("evidence_quality", "证据质量"),
     ("logic_rigor", "逻辑严谨"),
     ("perspective_diversity", "视角多样"),
     ("innovation_insight", "创新洞察"),
+    ("surprise_winning", "出奇制胜"),
     ("structure_organization", "结构组织"),
     ("readability", "可读性"),
     ("practical_value", "实用价值"),
+]
+BASE_DIMENSION_KEYS = [
+    key for key, _ in DIMENSION_LABELS if key != "surprise_winning"
 ]
 
 
 def count_hits(text: str, words: list) -> int:
     return sum(1 for w in words if w in text)
+
+
+def score_surprise_winning(text: str) -> dict:
+    sub_scores = {}
+    for key, words in SURPRISE_KEYWORDS.items():
+        hits = count_hits(text, words)
+        sub_scores[key] = min(100, 40 + 20 * min(hits, 3))
+    score = round(
+        0.4 * sub_scores["counterintuitive"]
+        + 0.3 * sub_scores["opportunity_window"]
+        + 0.3 * sub_scores["asymmetric_payoff"],
+        1,
+    )
+    evidence_words = [
+        word
+        for words in SURPRISE_KEYWORDS.values()
+        for word in words
+        if word in text
+    ][:3]
+    return {
+        "score": score,
+        "sub_scores": sub_scores,
+        "evidence": "、".join(evidence_words),
+    }
 
 
 def ends_complete(text: str) -> bool:
@@ -230,6 +297,7 @@ def score_report(text: str) -> dict:
         "logic_rigor": round(logic_rigor, 1),
         "perspective_diversity": round(perspective_diversity, 1),
         "innovation_insight": round(innovation_insight, 1),
+        "surprise_winning": score_surprise_winning(text)["score"],
         "structure_organization": round(structure_organization, 1),
         "readability": round(readability, 1),
         "practical_value": round(practical_value, 1),
@@ -237,16 +305,23 @@ def score_report(text: str) -> dict:
 
 
 def score_summary(scores: dict) -> float:
-    return round(sum(scores.values()) / len(scores), 1)
+    if "surprise_winning" not in scores:
+        return round(sum(scores.values()) / len(scores), 1)
+    base = sum(scores[key] for key in BASE_DIMENSION_KEYS) / len(BASE_DIMENSION_KEYS)
+    return round(0.75 * base + 0.25 * scores["surprise_winning"], 1)
 
 
 def score_payload(text: str) -> dict:
     scores = score_report(text)
-    return {"scores": scores, "total": score_summary(scores)}
+    return {
+        "scores": scores,
+        "total": score_summary(scores),
+        "surprise_winning": score_surprise_winning(text),
+    }
 
 
 def score_line(text: str) -> str:
-    """给回答追加一行紧凑的八维评分结果。"""
+    """给回答追加一行紧凑的九维评分结果。"""
     payload = score_payload(text)
     parts = [
         f"{label} {payload['scores'][key]}"

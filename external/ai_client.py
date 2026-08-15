@@ -22,14 +22,39 @@ def aggregate_call_log(logs: List[Dict] = None) -> Dict[str, int]:
         "calls": len(entries),
         "prompt_tokens": 0,
         "completion_tokens": 0,
+        "total_tokens": 0,
         "prompt_cache_hit_tokens": 0,
         "prompt_cache_miss_tokens": 0,
+        "by_caller": {},
     }
     for entry in entries:
-        totals["prompt_tokens"] += int(entry.get("prompt_tokens", 0) or 0)
-        totals["completion_tokens"] += int(entry.get("completion_tokens", 0) or 0)
-        totals["prompt_cache_hit_tokens"] += int(entry.get("prompt_cache_hit_tokens", 0) or 0)
-        totals["prompt_cache_miss_tokens"] += int(entry.get("prompt_cache_miss_tokens", 0) or 0)
+        prompt = int(entry.get("prompt_tokens", 0) or 0)
+        completion = int(entry.get("completion_tokens", 0) or 0)
+        cache_hit = int(entry.get("prompt_cache_hit_tokens", 0) or 0)
+        cache_miss = int(entry.get("prompt_cache_miss_tokens", 0) or 0)
+        totals["prompt_tokens"] += prompt
+        totals["completion_tokens"] += completion
+        totals["total_tokens"] += prompt + completion
+        totals["prompt_cache_hit_tokens"] += cache_hit
+        totals["prompt_cache_miss_tokens"] += cache_miss
+        caller = str(entry.get("caller") or "unknown")
+        item = totals["by_caller"].setdefault(
+            caller,
+            {
+                "calls": 0,
+                "prompt_tokens": 0,
+                "completion_tokens": 0,
+                "total_tokens": 0,
+                "prompt_cache_hit_tokens": 0,
+                "prompt_cache_miss_tokens": 0,
+            },
+        )
+        item["calls"] += 1
+        item["prompt_tokens"] += prompt
+        item["completion_tokens"] += completion
+        item["total_tokens"] += prompt + completion
+        item["prompt_cache_hit_tokens"] += cache_hit
+        item["prompt_cache_miss_tokens"] += cache_miss
     return totals
 
 
@@ -57,7 +82,7 @@ class AIClient:
     def _call_api(self, messages: List[Dict], temperature: float = 0.7,
                   response_format: Dict = None, stream: bool = False,
                   callback: Callable[[str], None] = None,
-                  max_tokens: int = None) -> Optional[str]:
+                  max_tokens: int = None, caller: str = None) -> Optional[str]:
         # === 1. 初始化 result 为 None（防御性编程） ===
         result = None
         start_time = time.time()
@@ -117,9 +142,10 @@ class AIClient:
                     try:
                         response_data = resp.json()
                         usage = response_data.get("usage") or {}
+                        call_caller = caller or sys._getframe(1).f_code.co_name
                         AIClient.CALL_LOG.append(
                             {
-                                "caller": sys._getframe(1).f_code.co_name,
+                                "caller": call_caller,
                                 "prompt_tokens": int(usage.get("prompt_tokens", 0)),
                                 "completion_tokens": int(usage.get("completion_tokens", 0)),
                                 "prompt_cache_hit_tokens": int(usage.get("prompt_cache_hit_tokens", 0) or 0),

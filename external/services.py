@@ -6,6 +6,153 @@ import re
 import requests
 from typing import Any, Dict, List
 
+from external.ai_client import AIClient
+from governance.config import Config
+
+
+COGNITIVE_DIMENSION_LABELS = {
+    "zh_CN": [
+        ("knowledge_lifecycle", "知识生命周期意识"),
+        ("human_ai_collaboration_reconstruction", "人机协同机制重构"),
+        ("cognitive_domestication_awareness", "认知驯化风险与独立思想"),
+        ("tree_decomposition_potential", "树形拆解潜力"),
+        ("long_term_asset_irreplaceability", "长期资产与不可替代性"),
+        ("hidden_trap_detection", "隐性陷阱识别"),
+    ],
+    "en_US": [
+        ("knowledge_lifecycle", "Knowledge Lifecycle Awareness"),
+        ("human_ai_collaboration_reconstruction", "Human-AI Collaboration Reconstruction"),
+        ("cognitive_domestication_awareness", "Cognitive Domestication Awareness"),
+        ("tree_decomposition_potential", "Tree Decomposition Potential"),
+        ("long_term_asset_irreplaceability", "Long-Term Asset and Irreplaceability"),
+        ("hidden_trap_detection", "Hidden Trap Detection"),
+    ],
+}
+
+SURPRISE_TAGS = {
+    "counterintuitive": "反常识",
+    "opportunity_window": "机会窗口",
+    "asymmetric_payoff": "非对称收益",
+}
+
+
+def _cognitive_prompt(text: str, lang: str) -> str:
+    labels = COGNITIVE_DIMENSION_LABELS.get(lang, COGNITIVE_DIMENSION_LABELS["zh_CN"])
+    dimensions = "\n".join(f"- {key}: {label} (0-100)" for key, label in labels)
+    return (
+        "你是认知晶体树的认知层级评审员。请只返回 JSON，不要输出解释。\n"
+        "评分维度：\n"
+        f"{dimensions}\n"
+        "- surprise_winning: 出奇制胜（0-100），并给出反常识 counterintuitive、"
+        "机会窗口 opportunity_window、非对称收益 asymmetric_payoff 三个子分（0-100）\n"
+        "JSON schema：\n"
+        '{"dimensions": {"knowledge_lifecycle": 0, '
+        '"human_ai_collaboration_reconstruction": 0, '
+        '"cognitive_domestication_awareness": 0, '
+        '"tree_decomposition_potential": 0, '
+        '"long_term_asset_irreplaceability": 0, '
+        '"hidden_trap_detection": 0}, '
+        '"surprise_winning": {"score": 0, '
+        '"sub_scores": {"counterintuitive": 0, '
+        '"opportunity_window": 0, "asymmetric_payoff": 0}, '
+        '"evidence": "..."}}\n'
+        "评分依据必须引用报告原句或核心概念。\n\n"
+        f"报告文本：\n{text[:12000]}"
+    )
+
+
+def _normalize_cognitive_result(data: Any) -> Any:
+    if not isinstance(data, dict):
+        return None
+    dims = data.get("dimensions")
+    if not isinstance(dims, dict):
+        return None
+    base_keys = [key for key, _ in COGNITIVE_DIMENSION_LABELS["zh_CN"]]
+    if any(not isinstance(dims.get(key), (int, float)) for key in base_keys):
+        return None
+    surprise = data.get("surprise_winning")
+    if not isinstance(surprise, dict):
+        return None
+    sub = surprise.get("sub_scores")
+    if not isinstance(sub, dict):
+        return None
+    sub_keys = ("counterintuitive", "opportunity_window", "asymmetric_payoff")
+    if any(not isinstance(sub.get(key), (int, float)) for key in sub_keys):
+        return None
+    surprise_score = round(
+        0.4 * float(sub["counterintuitive"])
+        + 0.3 * float(sub["opportunity_window"])
+        + 0.3 * float(sub["asymmetric_payoff"]),
+        1,
+    )
+    base_avg = sum(float(dims[key]) for key in base_keys) / len(base_keys)
+    weighted_total = round(0.75 * base_avg + 0.25 * surprise_score, 1)
+    if weighted_total >= 90:
+        level = "deep"
+    elif weighted_total >= 80:
+        level = "structured"
+    elif weighted_total >= 70:
+        level = "experience_structured"
+    else:
+        level = "summary"
+    return {
+        "dimensions": {key: round(float(dims[key]), 1) for key in base_keys},
+        "surprise_winning": {
+            "score": surprise_score,
+            "sub_scores": {key: round(float(sub[key]), 1) for key in sub_keys},
+            "evidence": str(surprise.get("evidence", ""))[:200],
+        },
+        "weighted_total": weighted_total,
+        "cognitive_level": level,
+        "strategy_tags": [
+            SURPRISE_TAGS[key] for key in sub_keys if float(sub[key]) >= 80
+        ],
+    }
+
+
+def _pending_cognitive() -> Dict[str, Any]:
+    return {
+        "method": "llm_assisted",
+        "dimensions": {},
+        "surprise_winning": {
+            "score": None,
+            "sub_scores": {},
+            "evidence": "",
+        },
+        "weighted_total": None,
+        "cognitive_level": None,
+        "strategy_tags": [],
+        "status": "pending_llm",
+    }
+
+
+def score_cognitive_level(
+    text: str,
+    ai_client: Any = None,
+    lang: str = "zh_CN",
+) -> Dict[str, Any]:
+    if ai_client is None:
+        ai_client = AIClient(api_key=Config.get_api_key())
+    last_error = ""
+    for _ in range(2):
+        try:
+            raw = ai_client.chat_json(_cognitive_prompt(text, lang), temperature=0.2)
+        except Exception as exc:
+            last_error = str(exc)
+            raw = {"error": last_error}
+        if isinstance(raw, dict) and "error" in raw:
+            last_error = str(raw.get("error", ""))
+            continue
+        normalized = _normalize_cognitive_result(raw)
+        if normalized is not None:
+            normalized["method"] = "llm_assisted"
+            normalized["status"] = "scored"
+            return normalized
+        last_error = "invalid cognitive score schema"
+    result = _pending_cognitive()
+    result["error"] = last_error[:200]
+    return result
+
 
 def search_documents(
     search_service: Any,
